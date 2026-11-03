@@ -144,8 +144,10 @@ def main():
             shutil.rmtree(dst)
         shutil.copytree(src, dst)
     run("git", "add", "renders")
-    status = subprocess.run(["git", "status", "--porcelain"], cwd=ROOT, capture_output=True, text=True)
-    if not status.stdout.strip():
+    # check staged changes only: untracked worktree files (art/, outbox/) must not count,
+    # otherwise an empty stage proceeds to `git commit` and fails the job
+    diff = subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=ROOT)
+    if diff.returncode == 0:
         print("nothing new to commit on renders branch")
         return
     sha = os.environ.get("GITHUB_SHA", "local")[:7]

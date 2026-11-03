@@ -101,8 +101,7 @@ jobs:
         with:
           pattern: render-*
           path: art
-          merge-multiple: true
-      - run: pip install --quiet numpy soundfile
+      - run: pip install --quiet --break-system-packages numpy soundfile
       - name: stitch and publish to renders branch
         env:
           ART_DIR: art
