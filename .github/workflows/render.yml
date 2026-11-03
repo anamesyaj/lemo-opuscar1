@@ -56,6 +56,8 @@ jobs:
         with: { node-version: '22' }
       - run: npm ci
       - run: node node_modules/playwright-core/cli.js install chromium-headless-shell
+      - name: install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
       - name: render look stills
         if: ${{ matrix.task.kind == 'look' }}
         run: |
@@ -102,6 +104,8 @@ jobs:
           pattern: render-*
           path: art
       - run: pip install --quiet --break-system-packages numpy soundfile
+      - name: install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
       - name: stitch and publish to renders branch
         env:
           ART_DIR: art
