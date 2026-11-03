@@ -167,25 +167,26 @@ export function buildMorning() {
   R.fill(P([[240, 1400], [840, 1380], [1080, 1500], [1080, H], [0, H], [0, 1560]]),
     lin(0, 1400, 1080, 1920, [[0, '#cf9463'], [1, '#9a6540']]),
     { dir: -12, fallback: -12, group: 'blanket', maxR: 34, detail: 1.6 });
-  // torso — sleep shirt, one connected form with the neck and head.
-  // Flatter top (r=45) so the shoulders read as a line, not a blob.
+  // torso — deep warm-brown pajama top, clearly darker than the wall wash
+  // so the figure separates from the background. Flatter top (r=45) so the
+  // shoulders read as a line, not a blob. 3-stop gradient for value structure.
   R.fill(RR(395, 1055, 290, 310, 45),
-    lin(395, 1055, 685, 1365, [[0, '#d9a878'], [.55, '#c08d5f'], [1, '#a97a4e']]),
+    lin(395, 1055, 685, 1365, [[0, '#8a5a33'], [.55, '#6b4226'], [1, '#4e3018']]),
     { dir: -8, fallback: -8, group: 'torso', maxR: 26, detail: 1.6 });
   // shoulder masses — the arms grow out of these
-  R.fill(E(452, 1098, 64, 50), '#c08d5f', { maxR: 16, group: 'torso' });
-  R.fill(E(628, 1098, 64, 50), '#c08d5f', { maxR: 16, group: 'torso' });
+  R.fill(E(452, 1098, 64, 50), '#6b4226', { maxR: 16, group: 'torso' });
+  R.fill(E(628, 1098, 64, 50), '#6b4226', { maxR: 16, group: 'torso' });
   // neck — wide and tall, drawn BEFORE the head so the head overlaps its
   // top; its bottom sinks 60+ px into the torso. Visible neck ≈ 70 px.
   R.fill(RR(498, 975, 84, 145, 24),
     lin(498, 975, 582, 1120, [[0, '#cfa06a'], [.5, '#c08b58'], [1, '#a9794a']]),
     { dir: 90, fallback: 90, group: 'neck', maxR: 12, detail: 1.4 });
-  // arms raised in a stretch: sleeves from the shoulders, elbow dabs,
-  // forearms, hands
-  R.line(c => { c.moveTo(452, 1100); c.lineTo(342, 882); }, '#bd8857', 78, { group: 'arm', maxR: 12 });
-  R.line(c => { c.moveTo(628, 1100); c.lineTo(738, 882); }, '#bd8857', 78, { group: 'arm', maxR: 12 });
-  R.fill(E(342, 882, 44, 44), '#bd8857', { maxR: 12, group: 'arm' });
-  R.fill(E(738, 882, 44, 44), '#bd8857', { maxR: 12, group: 'arm' });
+  // arms raised in a stretch: pajama sleeves from the shoulders, elbow dabs,
+  // then bare forearms and hands (skin)
+  R.line(c => { c.moveTo(452, 1100); c.lineTo(342, 882); }, '#6b4226', 78, { group: 'arm', maxR: 12 });
+  R.line(c => { c.moveTo(628, 1100); c.lineTo(738, 882); }, '#6b4226', 78, { group: 'arm', maxR: 12 });
+  R.fill(E(342, 882, 44, 44), '#6b4226', { maxR: 12, group: 'arm' });
+  R.fill(E(738, 882, 44, 44), '#6b4226', { maxR: 12, group: 'arm' });
   R.line(c => { c.moveTo(342, 882); c.lineTo(292, 772); }, '#e0aa72', 56, { group: 'arm', maxR: 10 });
   R.line(c => { c.moveTo(738, 882); c.lineTo(788, 772); }, '#e0aa72', 56, { group: 'arm', maxR: 10 });
   R.fill(E(284, 748, 36, 40), '#e0aa72', { maxR: 10, group: 'hand' });
