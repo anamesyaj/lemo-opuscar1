@@ -30,9 +30,10 @@ export function buildBedroom(opts = {}) {
   R.fill(RR(762, 222, 216, 296, 8),
     lin(762, 222, 978, 518, [[0, '#2b3850'], [1, '#121724']]),
     { dir: 90, group: 'wing', maxR: 20 });
-  R.fill(E(870, 330, 52, 52), '#dfe6f2', { maxR: 9, group: 'moon' });
-  R.tint(E(870, 330, 120, 120), rad(870, 330, 16, 120, [[0, 'rgba(200,215,235,.28)'], [1, 'rgba(200,215,235,0)']]));
-  R.fill(P([[862, 222], [884, 222], [884, 518], [862, 518]]), '#0b0d11', { dir: 90, group: 'winf', maxR: 7 });
+  if (opts.moon !== false) {
+    R.fill(E(870, 330, 52, 52), '#dfe6f2', { maxR: 9, group: 'moon' });
+    R.tint(E(870, 330, 120, 120), rad(870, 330, 16, 120, [[0, 'rgba(200,215,235,.28)'], [1, 'rgba(200,215,235,0)']]));
+  }  R.fill(P([[862, 222], [884, 222], [884, 518], [862, 518]]), '#0b0d11', { dir: 90, group: 'winf', maxR: 7 });
   R.fill(P([[762, 358], [978, 358], [978, 380], [762, 380]]), '#0b0d11', { dir: 0, group: 'winf', maxR: 7 });
   // headboard hint behind the pillow, right edge
   R.fill(RR(880, 980, 200, 430, 30), '#241d15', { dir: 90, group: 'bed', maxR: 24 });
@@ -73,7 +74,7 @@ export function buildBedroom(opts = {}) {
 
 // the one coloured thing: red alarm clock, own ref so it renders grey:0.
 // cx, cy place it per scene (bedroom + morning put it on the nightstand).
-export function buildClock(cx = 240, cy = 1060) {
+export function buildClock(cx = 240, cy = 1060, opts = {}) {
   const R = new Ref(W, H, 1);
   R.fill(E(cx - 62, cy - 78, 30, 22, -.5), '#b8342a', { maxR: 8, group: 'bell' });
   R.fill(E(cx + 62, cy - 78, 30, 22, .5), '#b8342a', { maxR: 8, group: 'bell' });
@@ -85,9 +86,11 @@ export function buildClock(cx = 240, cy = 1060) {
     const a = k * Math.PI / 6;
     R.fill(E(cx + Math.cos(a) * 52, cy + Math.sin(a) * 52, 5, 5), '#3a3430', { maxR: 3, group: 'ticks' });
   }
-  R.line(c => { c.moveTo(cx, cy); c.lineTo(cx - 22, cy + 30); }, '#3a3430', 9, { group: 'hands', maxR: 4 });
-  R.line(c => { c.moveTo(cx, cy); c.lineTo(cx + 34, cy - 12); }, '#3a3430', 7, { group: 'hands', maxR: 4 });
-  R.fill(E(cx, cy, 9, 9), '#b8342a', { maxR: 4, group: 'hands' });
+  if (opts.hands !== false) {
+    R.line(c => { c.moveTo(cx, cy); c.lineTo(cx - 22, cy + 30); }, '#3a3430', 9, { group: 'hands', maxR: 4 });
+    R.line(c => { c.moveTo(cx, cy); c.lineTo(cx + 34, cy - 12); }, '#3a3430', 7, { group: 'hands', maxR: 4 });
+    R.fill(E(cx, cy, 9, 9), '#b8342a', { maxR: 4, group: 'hands' });
+  }
   R.tint(E(cx, cy, 190, 190), rad(cx, cy, 30, 190, [[0, 'rgba(220,70,45,.40)'], [1, 'rgba(220,70,45,0)']]));
   return { ref: R, strokes: paintRef(R, { seed: 21 }).data() };
 }
@@ -232,7 +235,8 @@ export function buildWaves() {
 }
 
 // Thief 1: wine glass (alcohol). Dark nocturnal plate, red wine the accent.
-export function buildWine() {
+// opts.liquid === false leaves the wine out (film mode sways it separately).
+export function buildWine(opts = {}) {
   const R = new Ref(W, H, 1);
   R.fill(P([[0, 0], [W, 0], [W, H], [0, H]]),
     lin(0, 0, 0, H, [[0, '#1b1e27'], [1, '#0d0f15']]),
@@ -243,8 +247,10 @@ export function buildWine() {
   R.fill(P([[0, 1290], [W, 1290], [W, 1312], [0, 1312]]), '#0e0a08', { dir: 0, group: 'table', maxR: 8 });
   // glass bowl + stem + base
   R.fill(E(540, 860, 155, 195), '#414a5e', { maxR: 20, group: 'glass', detail: 1.6 });
-  R.fill(E(540, 930, 120, 128), '#8e2430', { maxR: 15, group: 'wine', detail: 1.6 });
-  R.fill(E(540, 872, 118, 34), '#b03a48', { maxR: 9, group: 'wine' });
+  if (opts.liquid !== false) {
+    R.fill(E(540, 930, 120, 128), '#8e2430', { maxR: 15, group: 'wine', detail: 1.6 });
+    R.fill(E(540, 872, 118, 34), '#b03a48', { maxR: 9, group: 'wine' });
+  }
   R.line(c => { c.moveTo(540, 1055); c.lineTo(540, 1290); }, '#414a5e', 28, { group: 'glass', maxR: 8 });
   R.fill(E(540, 1308, 115, 28), '#414a5e', { maxR: 10, group: 'glass' });
   R.line(c => { c.moveTo(462, 760); c.quadraticCurveTo(442, 860, 464, 950); }, '#ccd6e8', 15, { group: 'glass', maxR: 5 });
@@ -253,7 +259,8 @@ export function buildWine() {
 }
 
 // Thief 2: coffee cup (late caffeine). Dark plate, warm cup, steam wisps.
-export function buildCoffee() {
+// opts.steam === false leaves the wisps out (film mode animates them separately).
+export function buildCoffee(opts = {}) {
   const R = new Ref(W, H, 1);
   R.fill(P([[0, 0], [W, 0], [W, H], [0, H]]),
     lin(0, 0, 0, H, [[0, '#1c1a24'], [1, '#0e0d13']]),
@@ -269,8 +276,8 @@ export function buildCoffee() {
   R.fill(E(540, 884, 122, 30), '#241610', { maxR: 10, group: 'coffee' });
   // handle
   R.line(c => { c.arc(672, 1070, 72, -1.25, 1.25); }, '#4c3a29', 32, { group: 'cup', maxR: 10 });
-  // steam wisps
-  for (const [sx, ph] of [[490, 0], [590, 2.1]]) {
+  // steam wisps (own plate in film mode, so they can rise per-frame)
+  if (opts.steam !== false) for (const [sx, ph] of [[490, 0], [590, 2.1]]) {
     const pl = [];
     for (let y = 820; y >= 560; y -= 16) pl.push([sx + Math.sin((820 - y) / 60 + ph) * 26, y]);
     R.line(c => { c.moveTo(pl[0][0], pl[0][1]); for (let i = 1; i < pl.length; i++) c.lineTo(pl[i][0], pl[i][1]); },
@@ -302,4 +309,62 @@ export function buildCracks() {
     strokes: paintRef(R, { seed: 95, app: (x, y) => Math.hypot(x - 450, y - 1060) / 1000 * 1.2 }).data(),
     pts: CRACK_PTS,
   };
+}
+
+// ---------- Procedural motion plates (film mode) ----------
+// Small separate plates drawn per-frame with a time-varying transform M.
+// Fixed seeds → no boiling. The static world stays baked; only these move.
+
+// The sleeper's breathing chest: a blanket mound drawn OVER the bedroom
+// plate; the timeline scales it ±1.6% around (560, 1420) on a ~4.3 s period.
+export function buildChest() {
+  const R = new Ref(W, H, 1);
+  R.fill(E(560, 1415, 175, 64), '#454e68', { group: 'chest', maxR: 24, detail: 1.6 });
+  R.fill(E(560, 1448, 150, 40), '#333a51', { group: 'chest', maxR: 16 });
+  R.line(c => { c.moveTo(415, 1402); c.quadraticCurveTo(560, 1372, 705, 1402); }, '#5a647f', 10, { group: 'chest', maxR: 5 });
+  R.line(c => { c.moveTo(440, 1452); c.quadraticCurveTo(560, 1428, 680, 1452); }, '#2c3247', 9, { group: 'chest', maxR: 5 });
+  return { ref: R, strokes: paintRef(R, { seed: 101 }).data() };
+}
+
+// Clock hands as separate plates, drawn pointing at 12; the timeline
+// rotates them per-frame around (cx, cy) so the clock ticks.
+export function buildClockSecond(cx = 190, cy = 600) {
+  const R = new Ref(W, H, 1);
+  R.line(c => { c.moveTo(cx, cy + 16); c.lineTo(cx, cy - 58); }, '#3a3430', 6, { group: 'sechand', maxR: 3 });
+  R.fill(E(cx, cy - 58, 7, 7), '#b8342a', { maxR: 3, group: 'sechand' });
+  return { ref: R, strokes: paintRef(R, { seed: 102 }).data() };
+}
+export function buildClockMinute(cx = 190, cy = 600) {
+  const R = new Ref(W, H, 1);
+  R.line(c => { c.moveTo(cx, cy + 14); c.lineTo(cx, cy - 46); }, '#3a3430', 8, { group: 'minhand', maxR: 3 });
+  R.fill(E(cx, cy, 9, 9), '#b8342a', { maxR: 4, group: 'minhand' });
+  return { ref: R, strokes: paintRef(R, { seed: 103 }).data() };
+}
+
+// The moon as a separate plate for a slow drift across the window.
+export function buildMoon() {
+  const R = new Ref(W, H, 1);
+  R.fill(E(870, 330, 52, 52), '#dfe6f2', { maxR: 9, group: 'moon' });
+  R.tint(E(870, 330, 120, 120), rad(870, 330, 16, 120, [[0, 'rgba(200,215,235,.28)'], [1, 'rgba(200,215,235,0)']]));
+  return { ref: R, strokes: paintRef(R, { seed: 104 }).data() };
+}
+
+// Steam wisps as a separate plate; the timeline loops them rising + fading.
+export function buildSteam() {
+  const R = new Ref(W, H, 1);
+  for (const [sx, ph] of [[490, 0], [590, 2.1]]) {
+    const pl = [];
+    for (let y = 820; y >= 560; y -= 16) pl.push([sx + Math.sin((820 - y) / 60 + ph) * 26, y]);
+    R.line(c => { c.moveTo(pl[0][0], pl[0][1]); for (let i = 1; i < pl.length; i++) c.lineTo(pl[i][0], pl[i][1]); },
+      '#9aa2b5', 13, { group: 'steam', maxR: 5 });
+  }
+  return { ref: R, strokes: paintRef(R, { seed: 105 }).data() };
+}
+
+// Wine liquid as a separate plate for a gentle sway in the glass.
+export function buildWineLiquid() {
+  const R = new Ref(W, H, 1);
+  R.fill(E(540, 930, 120, 128), '#8e2430', { maxR: 15, group: 'wine', detail: 1.6 });
+  R.fill(E(540, 872, 118, 34), '#b03a48', { maxR: 9, group: 'wine' });
+  return { ref: R, strokes: paintRef(R, { seed: 106 }).data() };
 }
