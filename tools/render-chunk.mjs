@@ -28,7 +28,7 @@ ff.stdin.on('error', () => { dead ??= 'ffmpeg closed its input early'; });
 const t0 = Date.now();
 for (let f = FROM; f < TO && !dead; f++) {
   await page.evaluate(t => window.render(t), f / FPS);
-  const buf = await page.screenshot({ type: 'jpeg', quality: 95 });
+  const buf = await page.screenshot({ type: 'jpeg', quality: 95, timeout: 180000 });
   if (dead) break;
   if (!ff.stdin.write(buf)) await Promise.race([new Promise(r => ff.stdin.once('drain', r)), closed]);
   if ((f - FROM) % 60 === 0) console.log(`frame ${f - FROM}/${TO - FROM}  ${((Date.now() - t0) / 1000).toFixed(0)}s`);

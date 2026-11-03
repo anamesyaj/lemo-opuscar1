@@ -9,7 +9,7 @@
     "burned_in": true,
     "srt": "audio/captions.srt"
   },
-  "chunks": 12,
+  "chunks": 24,
   "film": "01-eight-hours-sleep",
   "fps": 24,
   "grain": 0,
@@ -39,5 +39,5 @@
     }
   ],
   "size": "1080x1920",
-  "_trigger": "film-run-1"
+  "_trigger": "film-run-2"
 }
