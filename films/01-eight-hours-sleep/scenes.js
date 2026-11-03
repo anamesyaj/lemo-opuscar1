@@ -16,7 +16,7 @@ const W = 1080, H = 1920;
 // Closer framing: head in profile on the pillow (hair, closed eye, peaceful
 // mouth), blanket over the shoulder. Monochrome world (grey:1); the red alarm
 // clock is a separate ref (grey:0). Window/moon/bed secondary.
-export function buildBedroom() {
+export function buildBedroom(opts = {}) {
   const R = new Ref(W, H, 1);
   // wall + floor (value-first: 3+ values)
   R.fill(P([[0, 0], [W, 0], [W, 1560], [0, 1560]]),
@@ -68,7 +68,7 @@ export function buildBedroom() {
   // nightstand, upper left — the clock's perch
   R.fill(RR(80, 700, 220, 300, 12), '#221b14', { dir: 90, group: 'stand', maxR: 20 });
   R.fill(RR(100, 1000, 180, 26, 8), '#191410', { dir: 0, group: 'stand', maxR: 8 });
-  return { ref: R, strokes: paintRef(R, { seed: 71 }).data() };
+  return { ref: R, strokes: paintRef(R, { seed: 71, rev: opts.rev, app: opts.app }).data() };
 }
 
 // the one coloured thing: red alarm clock, own ref so it renders grey:0.
@@ -93,7 +93,7 @@ export function buildClock(cx = 240, cy = 1060) {
 }
 
 // ---------- Scene 2: sleep-cycle chart ----------
-export function buildChart() {
+export function buildChart(opts = {}) {
   const R = new Ref(W, H, 1);
   R.fill(P([[0, 0], [W, 0], [W, H], [0, H]]),
     lin(0, 0, 0, H, [[0, '#171d2e'], [1, '#0d1120']]),
@@ -138,13 +138,13 @@ export function buildChart() {
     R.fill(RR(lx, ly, 56, 56, 10), col, { maxR: 8, group: 'leg' + i });
     R.text(t, lx + 150, ly + 44, `600 40px ${SERIF}`, '#ece5d3', { align: 'left', maxR: 4, group: 'leg' + i });
   });
-  return { ref: R, strokes: paintRef(R, { seed: 33 }).data() };
+  return { ref: R, strokes: paintRef(R, { seed: 33, rev: opts.rev, app: opts.app }).data() };
 }
 
 // ---------- Scene 3: morning — the WAKING PERSON is the subject ----------
 // Same sleeper as the bedroom scene, now sitting up and stretching;
 // warm morning light secondary.
-export function buildMorning() {
+export function buildMorning(opts = {}) {
   const R = new Ref(W, H, 1);
   // warm wall + floor
   R.fill(P([[0, 0], [W, 0], [W, 1560], [0, 1560]]),
@@ -211,5 +211,95 @@ export function buildMorning() {
   // nightstand + clock, upper left
   R.fill(RR(80, 700, 220, 300, 12), '#5a3d24', { dir: 90, group: 'stand', maxR: 20 });
   R.fill(RR(100, 1000, 180, 26, 8), '#42291a', { dir: 0, group: 'stand', maxR: 8 });
-  return { ref: R, strokes: paintRef(R, { seed: 75 }).data() };
+  return { ref: R, strokes: paintRef(R, { seed: 75, rev: opts.rev, app: opts.app }).data() };
+}
+
+// ---------- Film plates: sleep waves (shot 2), thieves (shot 5), cracks ----------
+
+// Sleep waves rolling under the sleeper: 3 sine lines across the bed area.
+export function buildWaves() {
+  const R = new Ref(W, H, 1);
+  const pts = [];
+  for (let r = 0; r < 3; r++) {
+    const y0 = 1420 + r * 95, amp = 48 - r * 9, ph = r * 1.35;
+    const pl = [];
+    for (let x = 40; x <= 1040; x += 20) pl.push([x, y0 + Math.sin((x - 40) / 130 + ph) * amp]);
+    pts.push(pl);
+    R.line(c => { c.moveTo(pl[0][0], pl[0][1]); for (let i = 1; i < pl.length; i++) c.lineTo(pl[i][0], pl[i][1]); },
+      '#aebdd6', 15, { group: 'wave' + r, maxR: 6 });
+  }
+  return { ref: R, strokes: paintRef(R, { seed: 91, app: (x, y) => (x / W) * 5 }).data(), pts };
+}
+
+// Thief 1: wine glass (alcohol). Dark nocturnal plate, red wine the accent.
+export function buildWine() {
+  const R = new Ref(W, H, 1);
+  R.fill(P([[0, 0], [W, 0], [W, H], [0, H]]),
+    lin(0, 0, 0, H, [[0, '#1b1e27'], [1, '#0d0f15']]),
+    { dir: 90, fallback: 90, group: 'bg', maxR: 55, detail: 2 });
+  R.fill(P([[0, 1300], [W, 1300], [W, H], [0, H]]),
+    lin(0, 1300, 0, H, [[0, '#251b13'], [1, '#100b08']]),
+    { dir: 0, fallback: 0, group: 'table', maxR: 40 });
+  R.fill(P([[0, 1290], [W, 1290], [W, 1312], [0, 1312]]), '#0e0a08', { dir: 0, group: 'table', maxR: 8 });
+  // glass bowl + stem + base
+  R.fill(E(540, 860, 155, 195), '#414a5e', { maxR: 20, group: 'glass', detail: 1.6 });
+  R.fill(E(540, 930, 120, 128), '#8e2430', { maxR: 15, group: 'wine', detail: 1.6 });
+  R.fill(E(540, 872, 118, 34), '#b03a48', { maxR: 9, group: 'wine' });
+  R.line(c => { c.moveTo(540, 1055); c.lineTo(540, 1290); }, '#414a5e', 28, { group: 'glass', maxR: 8 });
+  R.fill(E(540, 1308, 115, 28), '#414a5e', { maxR: 10, group: 'glass' });
+  R.line(c => { c.moveTo(462, 760); c.quadraticCurveTo(442, 860, 464, 950); }, '#ccd6e8', 15, { group: 'glass', maxR: 5 });
+  R.tint(E(540, 930, 260, 220), rad(540, 930, 30, 260, [[0, 'rgba(190,60,70,.20)'], [1, 'rgba(190,60,70,0)']]));
+  return { ref: R, strokes: paintRef(R, { seed: 93, app: (x, y) => (x / W) * 1.2 }).data() };
+}
+
+// Thief 2: coffee cup (late caffeine). Dark plate, warm cup, steam wisps.
+export function buildCoffee() {
+  const R = new Ref(W, H, 1);
+  R.fill(P([[0, 0], [W, 0], [W, H], [0, H]]),
+    lin(0, 0, 0, H, [[0, '#1c1a24'], [1, '#0e0d13']]),
+    { dir: 90, fallback: 90, group: 'bg', maxR: 55, detail: 2 });
+  R.fill(P([[0, 1300], [W, 1300], [W, H], [0, H]]),
+    lin(0, 1300, 0, H, [[0, '#221a13'], [1, '#0f0b08']]),
+    { dir: 0, fallback: 0, group: 'table', maxR: 40 });
+  R.fill(P([[0, 1290], [W, 1290], [W, 1312], [0, 1312]]), '#0e0a08', { dir: 0, group: 'table', maxR: 8 });
+  // cup body
+  R.fill(P([[415, 880], [665, 880], [620, 1260], [460, 1260]]),
+    lin(415, 880, 665, 1260, [[0, '#5c4632'], [1, '#38291d']]),
+    { dir: -12, fallback: -12, group: 'cup', maxR: 24, detail: 1.6 });
+  R.fill(E(540, 884, 122, 30), '#241610', { maxR: 10, group: 'coffee' });
+  // handle
+  R.line(c => { c.arc(672, 1070, 72, -1.25, 1.25); }, '#4c3a29', 32, { group: 'cup', maxR: 10 });
+  // steam wisps
+  for (const [sx, ph] of [[490, 0], [590, 2.1]]) {
+    const pl = [];
+    for (let y = 820; y >= 560; y -= 16) pl.push([sx + Math.sin((820 - y) / 60 + ph) * 26, y]);
+    R.line(c => { c.moveTo(pl[0][0], pl[0][1]); for (let i = 1; i < pl.length; i++) c.lineTo(pl[i][0], pl[i][1]); },
+      '#9aa2b5', 13, { group: 'steam', maxR: 5 });
+  }
+  R.tint(E(540, 700, 200, 180), rad(540, 700, 20, 200, [[0, 'rgba(200,170,130,.12)'], [1, 'rgba(200,170,130,0)']]));
+  return { ref: R, strokes: paintRef(R, { seed: 94, app: (x, y) => (x / W) * 1.2 }).data() };
+}
+
+// Grey paint cracks: jagged polylines radiating from the sleeper's face.
+// Sparse ref — the timeline filters the batch to the polylines.
+const CRACK_PTS = [
+  [[450, 1060], [525, 1005], [610, 1038], [700, 975], [795, 998]],
+  [[450, 1060], [388, 1128], [318, 1108], [248, 1148]],
+  [[450, 1060], [508, 1148], [578, 1188], [655, 1162]],
+  [[450, 1060], [368, 1002], [288, 1022], [208, 992]],
+  [[450, 1060], [545, 978], [625, 1002]],
+  [[450, 1060], [430, 950], [470, 880], [440, 810]],
+];
+export function buildCracks() {
+  const R = new Ref(W, H, 1);
+  for (let i = 0; i < CRACK_PTS.length; i++) {
+    const pl = CRACK_PTS[i];
+    R.line(c => { c.moveTo(pl[0][0], pl[0][1]); for (let j = 1; j < pl.length; j++) c.lineTo(pl[j][0], pl[j][1]); },
+      '#0a0a0d', 13, { group: 'crack' + i, maxR: 5 });
+  }
+  return {
+    ref: R,
+    strokes: paintRef(R, { seed: 95, app: (x, y) => Math.hypot(x - 450, y - 1060) / 1000 * 1.2 }).data(),
+    pts: CRACK_PTS,
+  };
 }

@@ -1,3 +1,12 @@
 <!doctype html><html><head><meta charset="utf-8">
-<style>html,body{margin:0;background:#000;overflow:hidden}canvas{display:block}</style></head>
-<body><canvas id="c"></canvas><script type="module" src="main.js"></script></body></html>
+<style>
+html,body{margin:0;background:#000;overflow:hidden}
+canvas{display:block}
+#cap{position:fixed;left:5%;right:5%;bottom:9%;text-align:center;white-space:pre-line;
+  font:400 44px Georgia,'Times New Roman','DejaVu Serif',serif;color:#f5f0e6;
+  text-shadow:0 2px 12px rgba(0,0,0,.78);pointer-events:none}
+#disc{position:fixed;left:8%;right:8%;bottom:3.2%;text-align:center;
+  font:400 29px Georgia,'Times New Roman','DejaVu Serif',serif;color:#e8e2d2;
+  text-shadow:0 1px 8px rgba(0,0,0,.85);opacity:0;pointer-events:none}
+</style></head>
+<body><canvas id="c"></canvas><div id="cap"></div><div id="disc">Educational content only — not medical advice. Talk to your doctor about persistent fatigue.</div><script type="module" src="main.js"></script></body></html>

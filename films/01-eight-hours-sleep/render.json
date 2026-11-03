@@ -29,15 +29,15 @@
       }
     ]
   },
-  "mode": "look",
+  "mode": "film",
   "out": "01-eight-hours-sleep.mp4",
   "pages": [
     {
       "dir": ".",
       "dur": 60,
-      "q": ""
+      "q": "film=1"
     }
   ],
   "size": "1080x1920",
-  "_trigger": "look-run-5"
+  "_trigger": "film-run-1"
 }
