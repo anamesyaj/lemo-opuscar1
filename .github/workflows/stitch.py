@@ -67,13 +67,20 @@ def build_audio(cfg, film_dir, work):
     music_wav = os.path.join(work, "music.wav")
     run("python3", os.path.join(ROOT, au["music_script"]), music_wav)
     mix_wav = os.path.join(work, "mix.wav")
-    # duck the music under the voice (~8 dB), keep the full 60 s (duration=longest)
+    # Full film duration: the voice (51.5 s here) must be padded to it, otherwise
+    # sidechaincompress truncates the ducked music when the voice sidechain EOFs
+    # and the mix comes out short (mux.sh would then pad the tail with silence,
+    # killing the closing music swell).
+    film_dur = sum(p.get("dur", 60) for p in cfg.get("pages", [{"dur": 60}]))
+    # NOTE: link labels must NOT be single letters like [v] — ffmpeg fails to
+    # resolve a re-used single-char output label ("Stream specifier 'v' ...
+    # matches no streams", Invalid argument). Descriptive labels work.
     run("ffmpeg", "-y", "-loglevel", "error", "-i", voice_src, "-i", music_wav,
         "-filter_complex",
-        "[0:a]aresample=44100[v];[1:a]aresample=44100[m];"
-        "[m][v]sidechaincompress=threshold=0.04:ratio=9:attack=15:release=600:makeup=1[dm];"
-        "[v][dm]amix=inputs=2:duration=longest:normalize=0[a]",
-        "-map", "[a]", mix_wav)
+        f"[0:a]aresample=44100,apad=whole_dur={film_dur}[voice];[1:a]aresample=44100[mus];"
+        "[mus][voice]sidechaincompress=threshold=0.04:ratio=9:attack=15:release=600:makeup=1[ducked];"
+        "[voice][ducked]amix=inputs=2:duration=longest:normalize=0[aout]",
+        "-map", "[aout]", mix_wav)
     return mix_wav
 
 
