@@ -16,7 +16,7 @@ const cam = { x: W / 2, y: H / 2, zoom: 1 };
 // each entry: {S (built scene), grey} — grey:1 = monochrome world, grey:0 = colour
 let parts, post;
 if (scene === 'bedroom') {
-  const room = buildBedroom(), clock = buildClock();
+  const room = buildBedroom(), clock = buildClock(190, 600);
   parts = [
     { S: room, grey: 1, reveal: 1e6 },
     { S: clock, grey: 0, reveal: 1e6 },
@@ -26,7 +26,7 @@ if (scene === 'bedroom') {
   parts = [{ S: buildChart(), grey: 0, reveal: -1e6 }];
   post = { light: [-.5, -.6, .7], amb: .75, dif: .3, spec: .18, ao: 1.1, expo: 1, sat: 1.05, vig: .3 };
 } else { // morning
-  const room = buildMorning(), clock = buildClock();
+  const room = buildMorning(), clock = buildClock(190, 600);
   parts = [
     { S: room, grey: 0, reveal: -1e6 },
     { S: clock, grey: 0, reveal: -1e6 },

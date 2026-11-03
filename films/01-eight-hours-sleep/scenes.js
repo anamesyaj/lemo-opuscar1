@@ -12,49 +12,69 @@ const SERIF = 'Georgia, "Times New Roman", serif';
 
 const W = 1080, H = 1920;
 
-// ---------- Scene 1: night bedroom, monochrome world + one red alarm clock ----------
+// ---------- Scene 1: night bedroom — the SLEEPER is the subject ----------
+// Closer framing: head in profile on the pillow (hair, closed eye, peaceful
+// mouth), blanket over the shoulder. Monochrome world (grey:1); the red alarm
+// clock is a separate ref (grey:0). Window/moon/bed secondary.
 export function buildBedroom() {
   const R = new Ref(W, H, 1);
-  // wall + floor (value-first: 3+ values each via gradient)
-  R.fill(P([[0, 0], [W, 0], [W, 1300], [0, 1300]]),
-    lin(0, 0, 0, 1300, [[0, '#262c38'], [.6, '#1a1e28'], [1, '#12151c']]),
+  // wall + floor (value-first: 3+ values)
+  R.fill(P([[0, 0], [W, 0], [W, 1560], [0, 1560]]),
+    lin(0, 0, 0, 1560, [[0, '#232936'], [.6, '#181c26'], [1, '#10131a']]),
     { dir: 90, fallback: 90, group: 'wall', maxR: 55, detail: 2 });
-  R.fill(P([[0, 1300], [W, 1300], [W, H], [0, H]]),
-    lin(0, 1300, 0, H, [[0, '#231c15'], [1, '#120e0a']]),
+  R.fill(P([[0, 1560], [W, 1560], [W, H], [0, H]]),
+    lin(0, 1560, 0, H, [[0, '#201913'], [1, '#100c08']]),
     { dir: 0, fallback: 0, group: 'floor', maxR: 40 });
-  R.fill(P([[0, 1290], [W, 1290], [W, 1312], [0, 1312]]), '#0d0b09', { dir: 0, group: 'base', maxR: 8 });
-  // window with moon
-  R.fill(RR(90, 280, 340, 440, 18), '#0c0e12', { dir: 90, group: 'winf', maxR: 16 });
-  R.fill(RR(112, 302, 296, 396, 10),
-    lin(112, 302, 408, 698, [[0, '#2c3a52'], [1, '#131826']]),
-    { dir: 90, group: 'wing', maxR: 22 });
-  R.fill(E(260, 450, 74, 74), '#dfe6f2', { maxR: 10, group: 'moon' });
-  R.tint(E(260, 450, 170, 170), rad(260, 450, 20, 170, [[0, 'rgba(200,215,235,.30)'], [1, 'rgba(200,215,235,0)']]));
-  R.fill(P([[248, 302], [272, 302], [272, 698], [248, 698]]), '#0c0e12', { dir: 90, group: 'winf', maxR: 8 });
-  R.fill(P([[112, 488], [408, 488], [408, 512], [112, 512]]), '#0c0e12', { dir: 0, group: 'winf', maxR: 8 });
-  // bed: headboard, mattress, blanket, pillow, sleeper
-  R.fill(RR(620, 880, 420, 380, 24), '#2b2119', { dir: 90, group: 'bed', maxR: 26 });
-  R.fill(RR(580, 1140, 480, 190, 30), '#3a3f4a', { dir: 0, group: 'bed', maxR: 24 });
-  R.fill(RR(580, 1180, 480, 300, 60),
-    lin(580, 1180, 1060, 1480, [[0, '#3b4257'], [1, '#262b3a']]),
-    { dir: -18, fallback: -18, group: 'blanket', maxR: 30, detail: 1.8 });
-  R.fill(E(820, 1330, 150, 90), '#2e3444', { group: 'blanket', maxR: 22 }); // knee lump
-  R.fill(RR(660, 1090, 260, 110, 40), '#4a5060', { dir: 0, group: 'pillow', maxR: 16 });
-  R.fill(E(790, 1128, 58, 58), '#6a6f7a', { maxR: 8, group: 'head' });
-  R.fill(c => { c.arc(790, 1112, 60, Math.PI, 0); c.closePath(); }, '#2c2823', { maxR: 8, group: 'hair' });
-  // nightstand
-  R.fill(RR(120, 1150, 240, 330, 12), '#241d16', { dir: 90, group: 'stand', maxR: 20 });
-  R.fill(P([[140, 1480], [170, 1480], [165, 1620], [135, 1620]]), '#1a1410', { dir: 90, group: 'stand', maxR: 8 });
-  R.fill(P([[310, 1480], [340, 1480], [345, 1620], [315, 1620]]), '#1a1410', { dir: 90, group: 'stand', maxR: 8 });
-  // rug
-  R.fill(E(540, 1700, 340, 95), '#1d2027', { dir: 0, group: 'rug', maxR: 24 });
-  return { ref: R, strokes: paintRef(R, { seed: 7 }).data() };
+  // window with moon — small, secondary, upper right
+  R.fill(RR(740, 200, 260, 340, 14), '#0b0d11', { dir: 90, group: 'winf', maxR: 14 });
+  R.fill(RR(762, 222, 216, 296, 8),
+    lin(762, 222, 978, 518, [[0, '#2b3850'], [1, '#121724']]),
+    { dir: 90, group: 'wing', maxR: 20 });
+  R.fill(E(870, 330, 52, 52), '#dfe6f2', { maxR: 9, group: 'moon' });
+  R.tint(E(870, 330, 120, 120), rad(870, 330, 16, 120, [[0, 'rgba(200,215,235,.28)'], [1, 'rgba(200,215,235,0)']]));
+  R.fill(P([[862, 222], [884, 222], [884, 518], [862, 518]]), '#0b0d11', { dir: 90, group: 'winf', maxR: 7 });
+  R.fill(P([[762, 358], [978, 358], [978, 380], [762, 380]]), '#0b0d11', { dir: 0, group: 'winf', maxR: 7 });
+  // headboard hint behind the pillow, right edge
+  R.fill(RR(880, 980, 200, 430, 30), '#241d15', { dir: 90, group: 'bed', maxR: 24 });
+  // pillow — the light plane the sleeper reads against
+  R.fill(RR(90, 1060, 900, 300, 90),
+    lin(90, 1060, 990, 1360, [[0, '#5d6372'], [1, '#434856']]),
+    { dir: 0, fallback: 0, group: 'pillow', maxR: 30, detail: 1.8 });
+  R.fill(E(470, 1205, 215, 64), '#3b404d', { group: 'pillow', maxR: 18 });
+  // hair mass (face overlaps its front edge)
+  R.fill(P([[350, 815], [470, 782], [590, 820], [652, 925], [658, 1050], [632, 1165], [582, 1235], [545, 1180], [562, 1080], [542, 985], [502, 900], [428, 858]]),
+    '#2b2724', { dir: -30, fallback: -30, group: 'hair', maxR: 22, detail: 1.6 });
+  R.fill(E(705, 1235, 92, 32, .25), '#2b2724', { maxR: 12, group: 'hair' });
+  R.fill(E(795, 1272, 58, 22, .3), '#332e2a', { maxR: 10, group: 'hair' });
+  // face in profile, facing left
+  R.fill(P([[380, 830], [310, 860], [285, 920], [278, 962], [262, 1000], [250, 1032], [268, 1054], [260, 1074], [272, 1092], [264, 1110], [282, 1132], [312, 1162], [362, 1192], [432, 1212], [472, 1262], [560, 1292], [622, 1242], [642, 1152], [646, 1052], [622, 952], [562, 882], [472, 842]]),
+    lin(250, 830, 646, 1292, [[0, '#9499a5'], [1, '#787d89']]),
+    { dir: -24, fallback: -24, group: 'face', maxR: 14, detail: 2 });
+  R.fill(E(505, 1062, 30, 38), '#7e838e', { maxR: 8, group: 'face' });
+  R.fill(E(505, 1066, 14, 20), '#5e636d', { maxR: 5, group: 'face' });
+  // closed eye, eyebrow, peaceful mouth
+  R.line(c => { c.arc(338, 986, 27, Math.PI * .12, Math.PI * .88); }, '#26232a', 11, { group: 'eye', maxR: 4 });
+  R.line(c => { c.moveTo(298, 932); c.lineTo(368, 944); }, '#26232a', 13, { group: 'eye', maxR: 4 });
+  R.line(c => { c.moveTo(272, 1094); c.quadraticCurveTo(288, 1102, 304, 1096); }, '#4a4e57', 9, { group: 'eye', maxR: 4 });
+  R.fill(E(292, 1058, 16, 10), '#6a6f7a', { maxR: 5, group: 'face' });
+  // blanket pulled up over the shoulder
+  R.fill(P([[240, 1330], [560, 1290], [900, 1380], [1080, 1440], [1080, H], [0, H], [0, 1500]]),
+    lin(0, 1300, 1080, 1920, [[0, '#414a63'], [1, '#272c3d']]),
+    { dir: -14, fallback: -14, group: 'blanket', maxR: 34, detail: 1.6 });
+  R.fill(E(560, 1315, 150, 58), '#4e5872', { group: 'blanket', maxR: 20 });
+  R.fill(E(560, 1350, 150, 38), '#323847', { group: 'blanket', maxR: 16 });
+  // moonlight wash over the sleeper
+  R.tint(E(520, 1150, 430, 220), rad(520, 1150, 40, 430, [[0, 'rgba(200,215,235,.16)'], [1, 'rgba(200,215,235,0)']]));
+  // nightstand, upper left — the clock's perch
+  R.fill(RR(80, 700, 220, 300, 12), '#221b14', { dir: 90, group: 'stand', maxR: 20 });
+  R.fill(RR(100, 1000, 180, 26, 8), '#191410', { dir: 0, group: 'stand', maxR: 8 });
+  return { ref: R, strokes: paintRef(R, { seed: 71 }).data() };
 }
 
-// the one coloured thing: red alarm clock, own ref so it renders grey:0
-export function buildClock() {
+// the one coloured thing: red alarm clock, own ref so it renders grey:0.
+// cx, cy place it per scene (bedroom + morning put it on the nightstand).
+export function buildClock(cx = 240, cy = 1060) {
   const R = new Ref(W, H, 1);
-  const cx = 240, cy = 1060;
   R.fill(E(cx - 62, cy - 78, 30, 22, -.5), '#b8342a', { maxR: 8, group: 'bell' });
   R.fill(E(cx + 62, cy - 78, 30, 22, .5), '#b8342a', { maxR: 8, group: 'bell' });
   R.fill(P([[cx - 40, cy + 78], [cx - 58, cy + 122], [cx - 30, cy + 122]]), '#8e2a20', { maxR: 8, group: 'leg' });
@@ -121,37 +141,64 @@ export function buildChart() {
   return { ref: R, strokes: paintRef(R, { seed: 33 }).data() };
 }
 
-// ---------- Scene 3: morning room, raking light ----------
+// ---------- Scene 3: morning — the WAKING PERSON is the subject ----------
+// Same sleeper as the bedroom scene, now sitting up and stretching;
+// warm morning light secondary.
 export function buildMorning() {
   const R = new Ref(W, H, 1);
-  R.fill(P([[0, 0], [W, 0], [W, 1300], [0, 1300]]),
-    lin(0, 0, 0, 1300, [[0, '#e3ac74'], [.6, '#cf9660'], [1, '#a9744a']]),
+  // warm wall + floor
+  R.fill(P([[0, 0], [W, 0], [W, 1560], [0, 1560]]),
+    lin(0, 0, 0, 1560, [[0, '#e8b47e'], [.6, '#d29a63'], [1, '#a9784b']]),
     { dir: 90, fallback: 90, group: 'wall', maxR: 55, detail: 2 });
-  R.fill(P([[0, 1300], [W, 1300], [W, H], [0, H]]),
-    lin(0, 1300, 0, H, [[0, '#6b4a30'], [1, '#472e1c']]),
+  R.fill(P([[0, 1560], [W, 1560], [W, H], [0, H]]),
+    lin(0, 1560, 0, H, [[0, '#6e4c31'], [1, '#482f1d']]),
     { dir: 0, fallback: 0, group: 'floor', maxR: 40 });
-  R.fill(P([[0, 1290], [W, 1290], [W, 1312], [0, 1312]]), '#3a2417', { dir: 0, group: 'base', maxR: 8 });
-  // bright window + sun
-  R.fill(RR(90, 280, 340, 440, 18), '#4a2f1c', { dir: 90, group: 'winf', maxR: 16 });
-  R.fill(RR(112, 302, 296, 396, 10),
-    lin(112, 302, 408, 698, [[0, '#ffe9b0'], [1, '#f7c878']]),
-    { dir: 90, group: 'wing', maxR: 22 });
-  R.fill(E(260, 450, 80, 80), '#fff3cf', { maxR: 10, group: 'sun' });
-  R.fill(P([[248, 302], [272, 302], [272, 698], [248, 698]]), '#4a2f1c', { dir: 90, group: 'winf', maxR: 8 });
-  R.fill(P([[112, 488], [408, 488], [408, 512], [112, 512]]), '#4a2f1c', { dir: 0, group: 'winf', maxR: 8 });
-  // sun shafts raking across the room
-  R.tint(P([[430, 340], [560, 340], [1080, 1500], [900, 1500]]), 'rgba(255,224,160,.30)');
-  R.tint(P([[430, 520], [520, 520], [980, 1620], [840, 1620]]), 'rgba(255,224,160,.22)');
-  // bed, sleeper sitting up
-  R.fill(RR(620, 880, 420, 380, 24), '#5a3a24', { dir: 90, group: 'bed', maxR: 26 });
-  R.fill(RR(580, 1140, 480, 190, 30), '#8a6a4a', { dir: 0, group: 'bed', maxR: 24 });
-  R.fill(RR(580, 1150, 480, 330, 60),
-    lin(580, 1150, 1060, 1480, [[0, '#c98d5e'], [1, '#96603c']]),
-    { dir: -18, fallback: -18, group: 'blanket', maxR: 30, detail: 1.8 });
-  R.fill(RR(680, 1020, 220, 170, 60), '#e8b98a', { maxR: 14, group: 'torso' }); // shoulders
-  R.fill(E(790, 960, 58, 62), '#d9a06f', { maxR: 8, group: 'head' });
-  R.fill(c => { c.arc(790, 944, 60, Math.PI, 0); c.closePath(); }, '#4a3524', { maxR: 8, group: 'hair' });
-  R.fill(RR(120, 1150, 240, 330, 12), '#5a3d24', { dir: 90, group: 'stand', maxR: 20 });
-  R.fill(E(540, 1700, 340, 95), '#8a5f3a', { dir: 0, group: 'rug', maxR: 24 });
-  return { ref: R, strokes: paintRef(R, { seed: 55 }).data() };
+  // sun window — smaller, secondary, upper right
+  R.fill(RR(760, 220, 240, 320, 14), '#4a2f1c', { dir: 90, group: 'winf', maxR: 14 });
+  R.fill(RR(780, 240, 200, 280, 8),
+    lin(780, 240, 980, 520, [[0, '#ffedb8'], [1, '#f8cd7d']]),
+    { dir: 90, group: 'wing', maxR: 20 });
+  R.fill(E(880, 350, 58, 58), '#fff6d8', { maxR: 9, group: 'sun' });
+  R.fill(P([[872, 240], [894, 240], [894, 520], [872, 520]]), '#4a2f1c', { dir: 90, group: 'winf', maxR: 7 });
+  R.fill(P([[780, 368], [980, 368], [980, 390], [780, 390]]), '#4a2f1c', { dir: 0, group: 'winf', maxR: 7 });
+  // soft sun shaft, secondary
+  R.tint(P([[560, 300], [660, 300], [1080, 1300], [940, 1300]]), 'rgba(255,226,165,.26)');
+  // blanket over the lap
+  R.fill(P([[240, 1400], [840, 1380], [1080, 1500], [1080, H], [0, H], [0, 1560]]),
+    lin(0, 1400, 1080, 1920, [[0, '#cf9463'], [1, '#9a6540']]),
+    { dir: -12, fallback: -12, group: 'blanket', maxR: 34, detail: 1.6 });
+  // torso — sleep shirt
+  R.fill(RR(400, 1060, 280, 300, 80),
+    lin(400, 1060, 680, 1360, [[0, '#d9a878'], [1, '#a97a4e']]),
+    { dir: -8, fallback: -8, group: 'torso', maxR: 26, detail: 1.6 });
+  // arms raised in a stretch: sleeves, elbow dabs, forearms, hands
+  R.line(c => { c.moveTo(452, 1120); c.lineTo(342, 882); }, '#bd8857', 74, { group: 'arm', maxR: 12 });
+  R.line(c => { c.moveTo(628, 1120); c.lineTo(738, 882); }, '#bd8857', 74, { group: 'arm', maxR: 12 });
+  R.fill(E(342, 882, 42, 42), '#bd8857', { maxR: 12, group: 'arm' });
+  R.fill(E(738, 882, 42, 42), '#bd8857', { maxR: 12, group: 'arm' });
+  R.line(c => { c.moveTo(342, 882); c.lineTo(292, 772); }, '#e0aa72', 54, { group: 'arm', maxR: 10 });
+  R.line(c => { c.moveTo(738, 882); c.lineTo(788, 772); }, '#e0aa72', 54, { group: 'arm', maxR: 10 });
+  R.fill(E(284, 748, 34, 38), '#e0aa72', { maxR: 10, group: 'hand' });
+  R.fill(E(796, 748, 34, 38), '#e0aa72', { maxR: 10, group: 'hand' });
+  // neck + hair mass, then the face over it — same dark hair as the sleeper
+  R.fill(RR(505, 1022, 70, 80, 22), '#c08b58', { dir: 90, group: 'neck', maxR: 10 });
+  R.fill(E(540, 872, 122, 132), '#4a3524', { maxR: 16, group: 'hair', detail: 1.8 });
+  R.fill(E(540, 950, 92, 100), '#dfa26e', { maxR: 12, group: 'head', detail: 2 });
+  R.fill(E(436, 1010, 42, 72, .18), '#4a3524', { maxR: 12, group: 'hair' });
+  R.fill(E(644, 1010, 42, 72, -.18), '#4a3524', { maxR: 12, group: 'hair' });
+  // calm awake face: open eyes, brows, nose dab, gentle smile
+  R.fill(E(448, 958, 17, 23), '#cf9459', { maxR: 7, group: 'head' });
+  R.fill(E(632, 958, 17, 23), '#cf9459', { maxR: 7, group: 'head' });
+  R.fill(E(498, 950, 13, 8), '#2e2620', { maxR: 4, group: 'eye' });
+  R.fill(E(582, 950, 13, 8), '#2e2620', { maxR: 4, group: 'eye' });
+  R.line(c => { c.moveTo(470, 910); c.lineTo(524, 917); }, '#3a2c20', 11, { group: 'eye', maxR: 4 });
+  R.line(c => { c.moveTo(556, 917); c.lineTo(610, 910); }, '#3a2c20', 11, { group: 'eye', maxR: 4 });
+  R.fill(E(540, 986, 10, 14), '#c08b58', { maxR: 4, group: 'head' });
+  R.line(c => { c.arc(540, 998, 32, Math.PI * .18, Math.PI * .82); }, '#7a4a30', 9, { group: 'mouth', maxR: 4 });
+  // warm wash over the waker
+  R.tint(E(540, 1000, 400, 340), rad(540, 1000, 40, 400, [[0, 'rgba(255,222,160,.14)'], [1, 'rgba(255,222,160,0)']]));
+  // nightstand + clock, upper left
+  R.fill(RR(80, 700, 220, 300, 12), '#5a3d24', { dir: 90, group: 'stand', maxR: 20 });
+  R.fill(RR(100, 1000, 180, 26, 8), '#42291a', { dir: 0, group: 'stand', maxR: 8 });
+  return { ref: R, strokes: paintRef(R, { seed: 75 }).data() };
 }
