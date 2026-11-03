@@ -75,10 +75,13 @@ def build_audio(cfg, film_dir, work):
     # NOTE: link labels must NOT be single letters like [v] — ffmpeg fails to
     # resolve a re-used single-char output label ("Stream specifier 'v' ...
     # matches no streams", Invalid argument). Descriptive labels work.
+    # NOTE 2: an output link feeding TWO downstream filters needs an explicit
+    # asplit — the runner's apt ffmpeg (6.1.x) rejects label reuse that newer
+    # ffmpeg accepts. asplit=2 is bit-identical and version-safe.
     run("ffmpeg", "-y", "-loglevel", "error", "-i", voice_src, "-i", music_wav,
         "-filter_complex",
-        f"[0:a]aresample=44100,apad=whole_dur={film_dur}[voice];[1:a]aresample=44100[mus];"
-        "[mus][voice]sidechaincompress=threshold=0.04:ratio=9:attack=15:release=600:makeup=1[ducked];"
+        f"[0:a]aresample=44100,apad=whole_dur={film_dur},asplit=2[voice][vsc];[1:a]aresample=44100[mus];"
+        "[mus][vsc]sidechaincompress=threshold=0.04:ratio=9:attack=15:release=600:makeup=1[ducked];"
         "[voice][ducked]amix=inputs=2:duration=longest:normalize=0[aout]",
         "-map", "[aout]", mix_wav)
     return mix_wav
