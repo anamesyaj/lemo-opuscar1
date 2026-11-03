@@ -1,0 +1,112 @@
+# Generic Lemo-Opuscar render farm.
+# Renders any film under films/<name>/ driven by its render.json:
+#   mode "look" -> 3 style stills (still.mjs) for the Look checkpoint
+#   mode "film" -> frame chunks across matrix jobs -> stitched + mixed MP4
+# Finished files are committed to the `renders` branch (never main).
+# Trigger: push to main touching films/** or the pipeline itself, or manual dispatch.
+name: render
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'films/**'
+      - '.github/workflows/render.yml'
+      - '.github/workflows/plan.py'
+      - '.github/workflows/stitch.py'
+      - 'tools/render-chunk.mjs'
+      - 'tools/make-music.py'
+  workflow_dispatch:
+    inputs:
+      film:
+        description: 'Film folder under films/ (e.g. 01-eight-hours-sleep)'
+        required: true
+
+permissions:
+  contents: write
+
+concurrency:
+  group: render-farm
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      tasks: ${{ steps.plan.outputs.tasks }}
+      films: ${{ steps.plan.outputs.films }}
+    steps:
+      - uses: actions/checkout@v7
+        with: { fetch-depth: 2 }
+      - id: plan
+        run: python3 .github/workflows/plan.py
+
+  render:
+    needs: plan
+    if: ${{ needs.plan.outputs.tasks != '[]' }}
+    strategy:
+      fail-fast: false
+      matrix:
+        task: ${{ fromJSON(needs.plan.outputs.tasks) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v4
+        with: { node-version: '22' }
+      - run: npm ci
+      - run: node node_modules/playwright-core/cli.js install chromium-headless-shell
+      - name: render look stills
+        if: ${{ matrix.task.kind == 'look' }}
+        run: |
+          mkdir -p "look/${{ matrix.task.film }}"
+          for s in $(echo '${{ toJSON(matrix.task.stills) }}' | python3 -c "import json,sys; [print(x['q']+'|'+x['name']) for x in json.load(sys.stdin)]"); do
+            q="${s%%|*}"; name="${s##*|}"
+            node core/render/still.mjs "${{ matrix.task.pagedir }}" 0 \
+              --q "$q" --prefix "${name}_" --out "look/${{ matrix.task.film }}" \
+              --size "${{ matrix.task.size }}"
+          done
+      - name: render frame chunk
+        if: ${{ matrix.task.kind == 'chunk' }}
+        run: |
+          mkdir -p "seg/${{ matrix.task.film }}/p${{ matrix.task.page_index }}/c${{ matrix.task.index }}"
+          node tools/render-chunk.mjs "${{ matrix.task.pagedir }}" \
+            --from "${{ matrix.task.from }}" --to "${{ matrix.task.to }}" \
+            --fps "${{ matrix.task.fps }}" --q "${{ matrix.task.q }}" \
+            --size "${{ matrix.task.size }}" \
+            --out "seg/${{ matrix.task.film }}/p${{ matrix.task.page_index }}/c${{ matrix.task.index }}/seg.mp4"
+      - name: upload look stills
+        if: ${{ matrix.task.kind == 'look' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: render-look-${{ matrix.task.film }}
+          path: look/${{ matrix.task.film }}/
+          retention-days: 1
+      - name: upload chunk segment
+        if: ${{ matrix.task.kind == 'chunk' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: render-chunk-${{ matrix.task.film }}-p${{ matrix.task.page_index }}-c${{ matrix.task.index }}
+          path: seg/${{ matrix.task.film }}/p${{ matrix.task.page_index }}/c${{ matrix.task.index }}/
+          retention-days: 1
+
+  stitch:
+    needs: [plan, render]
+    if: ${{ needs.plan.outputs.tasks != '[]' && always() && needs.render.result != 'cancelled' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: render-*
+          path: art
+          merge-multiple: true
+      - run: pip install --quiet numpy soundfile
+      - name: stitch and publish to renders branch
+        env:
+          ART_DIR: art
+          OUT_DIR: outbox
+          FILMS_JSON: ${{ needs.plan.outputs.films }}
+          FILM_ROOT: ${{ github.workspace }}
+        run: python3 .github/workflows/stitch.py
