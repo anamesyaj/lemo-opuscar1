@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ph-power-itself-90s</title>
+<style>
+  /* Fonts are self-hosted OFL via base64 transport (binary can't ride the
+     connector snapshot push); registered with the FontFace API in boot(). */
+  html,body { margin:0; padding:0; background:#000; width:1080px; height:1920px; overflow:hidden; }
+  canvas { position:absolute; left:0; top:0; width:1080px; height:1920px; }
+  #ov { pointer-events:none; }
+</style>
+<script>
+  // installed before the module: any page error is surfaced in the title
+  window.__pageErrors = [];
+  window.addEventListener('error', function (e) {
+    window.__pageErrors.push(String(e.message || e.error));
+    document.title = 'PAGEERROR: ' + window.__pageErrors.join(' | ');
+  });
+  window.addEventListener('unhandledrejection', function (e) {
+    window.__pageErrors.push('rejection: ' + String(e.reason));
+    document.title = 'PAGEERROR: ' + window.__pageErrors.join(' | ');
+  });
+</script>
+</head>
+<body>
+<canvas id="gl" width="1080" height="1920"></canvas>
+<canvas id="ov" width="1080" height="1920"></canvas>
+<script type="module">
+import { PlateRenderer } from './engine.js';
+import { createFilm } from './film.js';
+
+window.DUR = 90;
+window.READY = false;
+
+function loadImage(url) {
+  return new Promise((res, rej) => {
+    const im = new Image();
+    im.onload = () => res(im);
+    im.onerror = () => rej(new Error('img failed: ' + url));
+    im.src = url;
+  });
+}
+
+// Binary assets ride the connector snapshot push as base64 text (push_files
+// rejects non-UTF-8 content). Decode to a blob URL at boot; deterministic.
+async function fetchB64(url) {
+  const txt = await (await fetch(url)).text();
+  const b64 = txt.replace(/\s/g, '');
+  const bin = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+  return bin;
+}
+
+async function loadPlateB64(url) {
+  const bin = await fetchB64(url + '.b64');
+  const objUrl = URL.createObjectURL(new Blob([bin], { type: 'image/jpeg' }));
+  return loadImage(objUrl);
+}
+
+async function registerFont(family, weight, b64url) {
+  const bin = await fetchB64(b64url);
+  const objUrl = URL.createObjectURL(new Blob([bin], { type: 'font/ttf' }));
+  const face = new FontFace(family, `url(${objUrl})`, { weight: String(weight) });
+  await face.load();
+  document.fonts.add(face);
+}
+
+async function boot() {
+  // voice word timings drive label landings (fallbacks live in film.js)
+  let wordStarts = null;
+  try {
+    const words = await (await fetch('voices/voice.words.json')).json();
+    wordStarts = {};
+    for (const w of words) if (!(w.w in wordStarts)) wordStarts[w.w] = w.s;
+  } catch (e) { /* fallback timings in film.js */ }
+
+  // self-hosted OFL fonts via base64 transport — register, then wait
+  await Promise.all([
+    registerFont('Barlow Condensed', 400, 'fonts/BarlowCondensed-Regular.ttf.b64'),
+    registerFont('Barlow Condensed', 500, 'fonts/BarlowCondensed-Medium.ttf.b64'),
+    registerFont('Barlow Condensed', 600, 'fonts/BarlowCondensed-SemiBold.ttf.b64'),
+    registerFont('IBM Plex Mono', 400, 'fonts/IBMPlexMono-Regular.ttf.b64'),
+    registerFont('IBM Plex Mono', 500, 'fonts/IBMPlexMono-Medium.ttf.b64'),
+  ]);
+  const faces = [
+    "400 33px 'Barlow Condensed'", "500 33px 'Barlow Condensed'",
+    "600 72px 'Barlow Condensed'", "600 40px 'Barlow Condensed'",
+    "400 22px 'IBM Plex Mono'", "500 22px 'IBM Plex Mono'",
+    "500 26px 'IBM Plex Mono'", "500 24px 'IBM Plex Mono'",
+  ];
+  await Promise.all(faces.map(f => document.fonts.load(f)));
+  await document.fonts.ready;
+
+  const meta = await (await fetch('plates/plates.json')).json();
+  const order = ['opener', 'night', 'bataan', 'tiwi', 'makban', 'cordillera', 'ilocos'];
+  const byName = {};
+  for (const p of meta.plates) byName[p.name] = p;
+  const images = await Promise.all(order.map(n => loadPlateB64('plates/' + byName[n].web)));
+  const boxes = order.map(n => {
+    const p = byName[n];
+    return [p.lon_min, p.lat_min, p.lon_max, p.lat_max];
+  });
+
+  const renderer = new PlateRenderer(document.getElementById('gl'));
+  renderer.loadPlates(images, boxes);
+  const octx = document.getElementById('ov').getContext('2d');
+  const film = createFilm(wordStarts);
+
+  // deterministic render of any second t in [0, 90]
+  window.render = (t) => { film.render(Math.min(90, Math.max(0, t)), renderer, octx); };
+
+  window.render(0);          // first successful render
+  window.READY = true;
+
+  // stills mode for QC: ?t=<seconds> renders that frame once ready
+  const qs = new URLSearchParams(location.search);
+  if (qs.has('t')) {
+    window.render(parseFloat(qs.get('t')));
+    document.title = 'still-ready';
+  }
+}
+
+boot().catch(e => { document.title = 'PAGEERROR: boot: ' + String(e && e.message || e); });
+</script>
+</body>
+</html>

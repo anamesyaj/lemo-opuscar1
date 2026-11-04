@@ -1,0 +1,139 @@
+{
+ "bataan": {
+  "path": "bataan_20240416.tif",
+  "web": "bataan_20240416.jpg",
+  "preview": "bataan_20240416_preview.jpg",
+  "lon_min": 120.2,
+  "lon_max": 120.6,
+  "lat_min": 14.3,
+  "lat_max": 14.8,
+  "date": "2024-04-16",
+  "scene_ids": [
+   "S2A_MSIL2A_20240416T021611_R003_T51PTS_20240416T092653",
+   "S2A_MSIL2A_20240416T021611_R003_T50PRB_20240416T092706",
+   "S2A_MSIL2A_20240416T021611_R003_T50PRA_20240416T092837",
+   "S2A_MSIL2A_20240416T021611_R003_T51PTR_20240416T092653"
+  ],
+  "source": "Copernicus Sentinel-2 Level-2A via Microsoft Planetary Computer (no-account STAC)",
+  "licence": "Copernicus Sentinel data 2024 - free for commercial use with attribution (EU Copernicus licence)",
+  "credit": "Contains modified Copernicus Sentinel data 2024",
+  "max_cloud_cover_pct": 3.16,
+  "coverage": 0.9959,
+  "note": "rebuilt pinned to lowest-AOI-cloud date from cloud re-screen"
+ },
+ "tiwi": {
+  "path": "tiwi_20260418.tif",
+  "web": "tiwi_20260418.jpg",
+  "preview": "tiwi_20260418_preview.jpg",
+  "lon_min": 123.5,
+  "lon_max": 123.8,
+  "lat_min": 13.3,
+  "lat_max": 13.6,
+  "date": "2026-04-18",
+  "scene_ids": [
+   "S2B_MSIL2A_20260418T020649_R103_T51PWR_20260418T041438",
+   "S2B_MSIL2A_20260418T020649_R103_T51PWQ_20260418T041438"
+  ],
+  "source": "Copernicus Sentinel-2 Level-2A via Microsoft Planetary Computer (no-account STAC)",
+  "licence": "Copernicus Sentinel data 2026 - free for commercial use with attribution (EU Copernicus licence)",
+  "credit": "Contains modified Copernicus Sentinel data 2026",
+  "max_cloud_cover_pct": 4.15,
+  "coverage": 0.9988,
+  "note": "rebuilt pinned to lowest-AOI-cloud date from cloud re-screen"
+ },
+ "makban": {
+  "path": "makban_20240416.tif",
+  "web": "makban_20240416.jpg",
+  "preview": "makban_20240416_preview.jpg",
+  "lon_min": 121.1,
+  "lon_max": 121.5,
+  "lat_min": 13.9,
+  "lat_max": 14.3,
+  "date": "2024-04-16",
+  "scene_ids": [
+   "S2A_MSIL2A_20240416T021611_R003_T51PTR_20240416T092653",
+   "S2A_MSIL2A_20240416T021611_R003_T51PUR_20240416T150532"
+  ],
+  "source": "Copernicus Sentinel-2 Level-2A via Microsoft Planetary Computer (no-account STAC)",
+  "licence": "Copernicus Sentinel data 2024 - free for commercial use with attribution (EU Copernicus licence)",
+  "credit": "Contains modified Copernicus Sentinel data 2024",
+  "max_cloud_cover_pct": 11.03,
+  "coverage": 0.9995,
+  "note": "rebuilt pinned to lowest-AOI-cloud date from cloud re-screen"
+ },
+ "cordillera": {
+  "path": "cordillera_20240219-20230323.tif",
+  "web": "cordillera_20240219-20230323.jpg",
+  "preview": "cordillera_20240219-20230323_preview.jpg",
+  "lon_min": 120.7,
+  "lon_max": 121.3,
+  "lat_min": 16.4,
+  "lat_max": 17.6,
+  "date": "2024-02-19 (west) / 2023-03-23 (east)",
+  "scene_ids": [
+   "S2A_MSIL2A_20240219T022741_R046_T50QRE_20240219T072411",
+   "S2A_MSIL2A_20240219T022741_R046_T50QRD_20240219T072410",
+   "S2A_MSIL2A_20230323T021531_R003_T51QTU_20240831T072834",
+   "S2A_MSIL2A_20230323T021531_R003_T51QTV_20240831T072834",
+   "S2A_MSIL2A_20230323T021531_R003_T51QUU_20240831T072834",
+   "S2A_MSIL2A_20230323T021531_R003_T51QUV_20240831T072834"
+  ],
+  "tiles": [
+   {
+    "tile": "50QRE",
+    "date": "2024-02-19",
+    "cloud_cover_pct": 0.02
+   },
+   {
+    "tile": "50QRD",
+    "date": "2024-02-19",
+    "cloud_cover_pct": 0.04
+   },
+   {
+    "tile": "51QTU",
+    "date": "2023-03-23",
+    "cloud_cover_pct": 0.18
+   },
+   {
+    "tile": "51QTV",
+    "date": "2023-03-23",
+    "cloud_cover_pct": 0.2
+   },
+   {
+    "tile": "51QUU",
+    "date": "2023-03-23",
+    "cloud_cover_pct": 2.59
+   },
+   {
+    "tile": "51QUV",
+    "date": "2023-03-23",
+    "cloud_cover_pct": 0.24
+   }
+  ],
+  "source": "Copernicus Sentinel-2 Level-2A via Microsoft Planetary Computer (no-account STAC)",
+  "licence": "Copernicus Sentinel data 2023/2024 - free for commercial use with attribution (EU Copernicus licence)",
+  "credit": "Contains modified Copernicus Sentinel data 2023 & 2024",
+  "coverage": 0.9997,
+  "note": "multi-date mosaic: AOI spans UTM zones 50/51 and two relative orbits; west tiles 2024-02-19 (cloud ~0%), east tiles 2023-03-23 (max cloud 2.6%)"
+ },
+ "ilocos": {
+  "path": "ilocos_20240219.tif",
+  "web": "ilocos_20240219.jpg",
+  "preview": "ilocos_20240219_preview.jpg",
+  "lon_min": 120.5,
+  "lon_max": 121.0,
+  "lat_min": 18.2,
+  "lat_max": 18.7,
+  "date": "2024-02-19",
+  "scene_ids": [
+   "S2A_MSIL2A_20240219T022741_R046_T50QRF_20240219T072408",
+   "S2A_MSIL2A_20240219T022741_R046_T51QTA_20240219T072411"
+  ],
+  "source": "Copernicus Sentinel-2 Level-2A via Microsoft Planetary Computer (no-account STAC)",
+  "licence": "Copernicus Sentinel data 2024 - free for commercial use with attribution (EU Copernicus licence)",
+  "credit": "Contains modified Copernicus Sentinel data 2024",
+  "max_cloud_cover_pct": 0.0,
+  "coverage": 0.9997,
+  "note": ""
+ }
+}
