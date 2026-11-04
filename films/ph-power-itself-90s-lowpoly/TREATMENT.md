@@ -31,9 +31,9 @@ User verdict on the Satellite Briefing cut: "no visualization, just zooming at t
 | 35–50 | **Hydro**: dam drops across a river tile, water flows. **Wind**: turbines pop, blades turn (style-native "mills turn"). **Solar**: panel fields pop in rows. | **HYDRO · SOLAR · WIND** — "Unbuilt capacity." _(SRC · DOE)_ | L8–9 |
 | 50–65 | **Transmission lines** draw tile to tile across the islands (lateral truck shot). Towns' windows begin to glow. | **POWER PRICE** — "Among Asia's highest." _(SRC · DOE)_ | L10–14 |
 | 65–80 | **Night falls** (style's day→night colour keyframes). Emissive windows, lamps, plant beacons bloom. Boats bob, smoke puffs. | — (the lit world is the argument) | L15–17 |
-| 80–90 | **Pure zoom-out**: the whole archipelago glowing in the dark sea. Hold. | Credit line (small, low third) | L18–19 |
+| 80–90 | **Pure zoom-out**: the whole archipelago glowing in the dark sea. Hold. | — (no on-screen credit; style credit lives in the film folder's CREDITS) | L18–19 |
 
-**Label grammar (STYLE.md §4):** titles rise like tiles (letters one by one, overshoot, settle); geometric sans; no boxes. One finding per screen. Credit line: "Contains modified Copernicus Sentinel data 2024" is NOT needed here (no satellite plates) — instead credit the style licence per CREDITS convention.
+**Label grammar (STYLE.md §4):** titles rise like tiles (letters one by one, overshoot, settle); geometric sans; no boxes. One finding per screen. No on-screen credit line (removed per user direction 2026-11-04) — the style licence credit lives in the film folder's CREDITS file, which is where it belongs.
 
 ## 4. Motion quality (STYLE.md §5 — the anti-slideshow rules)
 - Every arrival: cubic ease up + damped-sine overshoot + splash ring/spray at the water line. Event time = when it settles.

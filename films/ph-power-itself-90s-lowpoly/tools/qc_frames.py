@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Per-frame QC for ph-power-itself-90s.mp4 (user directive: validate EVERY frame,
+"""Per-frame QC for ph-power-itself-90s-lowpoly.mp4 (user directive: validate EVERY frame,
 not just one still per beat). Streams downscaled frames and checks:
 
 1. black/empty frames      (mean luma < 5)
 2. frozen runs              (mean abs inter-frame diff < 0.35 for >= 12 frames / 0.5 s)
 3. luma anomalies           (sudden mean jump > 50, or flat frame std < 1.5)
 4. label presence           (amber pixels in right-third region during label windows)
+5. text bounds              (no text-colored pixels in the outer 12 px border ring
+                             during label windows; every title's measured width <= 920 px)
 
 Usage: python3 tools/qc_frames.py <mp4> [--out report.json]
 Exit 0 = PASS (no black frames, no frozen runs). Warnings printed for anomalies.
@@ -29,12 +31,21 @@ FLAT_STD = 1.5
 
 # (name, t_start, t_end) — from the treatment beat map + voice timings
 LABEL_WINDOWS = [
-    ("bataan", 8.5, 20.0),
-    ("geothermal", 24.0, 35.0),
-    ("hydro_solar_wind", 36.0, 50.0),
-    ("electricity", 49.0, 65.0),
-    ("credit", 80.0, 90.0),
+    ("bataan", 14.0, 22.0),
+    ("geothermal", 28.0, 37.0),
+    ("hydro_solar_wind", 44.0, 52.0),
+    ("power_price", 58.0, 66.0),
 ]
+
+# --- text-bounds checks (defect fix: titles must never overflow the frame) ---
+LABEL_TITLES = [
+    ("bataan", "BATAAN"),
+    ("geothermal", "GEOTHERMAL"),
+    ("hydro_solar_wind", "HYDRO · SOLAR · WIND"),
+    ("power_price", "POWER PRICE"),
+]
+TITLE_MAX_PX = 920          # shrink-to-fit ceiling in overlay.js
+EDGE_PX = 3                 # 12 full-res px at the 270x480 analysis scale
 
 
 def amber_mask(rgb):
@@ -42,6 +53,48 @@ def amber_mask(rgb):
     g = rgb[:, :, 1].astype(np.int16)
     b = rgb[:, :, 2].astype(np.int16)
     return (r > 180) & (g > 120) & (b < 150) & ((r - b) > 60)
+
+
+def white_mask(rgb):
+    return (rgb[:, :, 0] > 200) & (rgb[:, :, 1] > 200) & (rgb[:, :, 2] > 200)
+
+
+def text_mask(rgb):
+    return amber_mask(rgb) | white_mask(rgb)
+
+
+def border_text_px(f):
+    """Text-colored pixels in the outer EDGE_PX border ring (frame edges)."""
+    m = text_mask(f)
+    return int(m[:EDGE_PX, :].sum() + m[-EDGE_PX:, :].sum()
+               + m[:, :EDGE_PX].sum() + m[:, -EDGE_PX:].sum())
+
+
+def check_title_widths(font_b64_path):
+    """Replicate overlay.js shrink-to-fit; assert every title <= TITLE_MAX_PX."""
+    import base64
+    import tempfile
+    from PIL import ImageFont
+    raw = open(font_b64_path).read()
+    tmp = tempfile.NamedTemporaryFile(suffix=".ttf", delete=False)
+    tmp.write(base64.b64decode(raw)); tmp.close()
+    out = {}
+    for name, title in LABEL_TITLES:
+        fontPx, trackPx = 84, 14
+        def total(fp, tp):
+            fnt = ImageFont.truetype(tmp.name, fp)
+            ws = [fnt.getlength(ch) + tp for ch in title]
+            return sum(ws) - tp
+        t = total(fontPx, trackPx)
+        if t > TITLE_MAX_PX:
+            k = TITLE_MAX_PX / t
+            fontPx = max(24, int(fontPx * k))
+            trackPx = max(2, round(trackPx * k))
+            t = total(fontPx, trackPx)
+        out[name] = {"title": title, "width_px": round(t, 1),
+                     "font_px": fontPx, "track_px": trackPx,
+                     "verdict": "OK" if t <= TITLE_MAX_PX else "OVERFLOW"}
+    return out
 
 
 def main():
@@ -63,6 +116,9 @@ def main():
     prev = None
     frozen_runs, black_frames, jumps, flats = [], [], [], []
     frozen_start = None
+    # text-bounds: max border-ring text px per label window
+    win_ranges = {name: (int(t0 * FPS), int(t1 * FPS)) for name, t0, t1 in LABEL_WINDOWS}
+    border_max = {name: 0 for name, _, _ in LABEL_WINDOWS}
     n = 0
     while True:
         raw = proc.stdout.read(FRAME_BYTES)
@@ -76,6 +132,12 @@ def main():
         # amber in right-third region (label zone)
         region = f[:, W * 2 // 3:, :]
         ambers.append(int(amber_mask(region).sum()))
+        # text-bounds: border ring must stay text-free during label windows
+        for name, (f0, f1) in win_ranges.items():
+            if f0 <= n < f1:
+                b = border_text_px(f)
+                if b > border_max[name]:
+                    border_max[name] = b
 
         if prev is not None:
             d = float(np.abs(f.astype(np.int16) - prev.astype(np.int16)).mean())
@@ -127,6 +189,20 @@ def main():
             "verdict": "OK" if present.mean() > 0.9 else "CHECK",
         }
 
+    # text-bounds gate: measured title widths + border-ring violations
+    import os
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    font_b64 = os.path.join(script_dir, "..", "fonts", "JosefinSans-600.ttf.b64")
+    title_widths = check_title_widths(font_b64)
+    border_report = {}
+    for name, t0, t1 in LABEL_WINDOWS:
+        v = border_max[name]
+        border_report[name] = {"window_s": [t0, t1],
+                               "max_border_text_px": v,
+                               "verdict": "OK" if v == 0 else "OVERFLOW"}
+    text_bounds_ok = (all(r["verdict"] == "OK" for r in border_report.values())
+                      and all(r["verdict"] == "OK" for r in title_widths.values()))
+
     report = {
         "file": mp4, "duration_s": round(duration, 2), "frames": n,
         "luma": {"mean": round(float(means.mean()), 2),
@@ -137,15 +213,19 @@ def main():
         "luma_jumps": jumps[:20],
         "flat_frames": flats[:20],
         "labels": label_report,
+        "text_bounds": {"title_widths": title_widths,
+                        "border_ring": border_report,
+                        "verdict": "OK" if text_bounds_ok else "FAIL"},
     }
     print(json.dumps(report, indent=1))
     if out_path:
         json.dump(report, open(out_path, "w"), indent=1)
 
-    ok = not black_frames and not frozen_runs
+    ok = not black_frames and not frozen_runs and text_bounds_ok
     print("PASS" if ok else "FAIL", f"— {len(black_frames)} black, "
           f"{len(frozen_runs)} frozen runs, {len(jumps)} luma jumps, "
-          f"{len(flats)} flat frames")
+          f"{len(flats)} flat frames, "
+          f"text_bounds={'OK' if text_bounds_ok else 'FAIL'}")
     sys.exit(0 if ok else 1)
 
 

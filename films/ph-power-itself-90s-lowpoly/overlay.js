@@ -11,7 +11,6 @@ const LABELS = [
   { t0: 44, t1: 52, title: 'HYDRO · SOLAR · WIND', sub: 'Unbuilt capacity on every island.', src: 'SRC · DOE PHILIPPINES' },
   { t0: 58, t1: 66, title: 'POWER PRICE', sub: "Among Asia's highest today.", src: 'SRC · DOE PHILIPPINES' },
 ];
-const CREDIT = { t0: 81, t1: 89, text: 'A LOW-POLY ISLAND FILM · STYLE: LEMO-OPUSCAR (MIT · CC BY 4.0)' };
 window.__LABELS = LABELS;
 
 const clamp01 = v => Math.max(0, Math.min(1, v));
@@ -28,10 +27,24 @@ function drawLabel(L, t) {
   x.textAlign = 'center';
   const cx = W / 2, baseY = 640;
   // title: letters rise 55 ms apart from below with overshoot
-  x.font = '600 84px "Josefin Sans", sans-serif';
-  try { x.letterSpacing = '14px'; } catch (e) {}
-  const widths = [...L.title].map(ch => x.measureText(ch).width + 14);
-  const total = widths.reduce((a, b) => a + b, 0) - 14;
+  // shrink-to-fit: titles never exceed 920 px of the 1080 px frame
+  let fontPx = 84, trackPx = 14;
+  const setTitleFont = () => {
+    x.font = `600 ${fontPx}px "Josefin Sans", sans-serif`;
+    try { x.letterSpacing = `${trackPx}px`; } catch (e) {}
+  };
+  const measureTitle = () => {
+    setTitleFont();
+    const ws = [...L.title].map(ch => x.measureText(ch).width + trackPx);
+    return { ws, total: ws.reduce((a, b) => a + b, 0) - trackPx };
+  };
+  let { ws: widths, total } = measureTitle();
+  if (total > 920) {
+    const k = 920 / total;
+    fontPx = Math.max(24, Math.floor(fontPx * k));
+    trackPx = Math.max(2, Math.round(trackPx * k));
+    ({ ws: widths, total } = measureTitle());
+  }
   let px = cx - total / 2;
   const amber = '240,200,120';
   [...L.title].forEach((ch, i) => {
@@ -39,7 +52,7 @@ function drawLabel(L, t) {
     const y = baseY + (1 - u) * 90;
     x.fillStyle = `rgba(${amber},${clamp01((t - L.t0 - i * stagger) / .2)})`;
     x.shadowColor = 'rgba(20,30,60,.55)'; x.shadowBlur = 18; x.shadowOffsetY = 4;
-    x.fillText(ch, px + widths[i] / 2 - 7, y);
+    x.fillText(ch, px + widths[i] / 2 - trackPx / 2, y);
     px += widths[i];
   });
   x.shadowColor = 'transparent'; x.shadowBlur = 0; x.shadowOffsetY = 0;
@@ -62,13 +75,4 @@ function drawLabel(L, t) {
 export function drawLabels(t) {
   x.clearRect(0, 0, W, H);
   for (const L of LABELS) if (t >= L.t0 - .1 && t <= L.t1) drawLabel(L, t);
-  if (t >= CREDIT.t0 && t <= CREDIT.t1) {
-    const a = Math.min(clamp01((t - CREDIT.t0) / .5), clamp01((CREDIT.t1 - t) / .8));
-    if (a > 0) {
-      x.save(); x.globalAlpha = a * .8; x.textAlign = 'center';
-      x.font = '500 26px "IBM Plex Mono", monospace'; x.fillStyle = '#fffdf8';
-      x.fillText(CREDIT.text, W / 2, H - 120);
-      x.restore();
-    }
-  }
 }
