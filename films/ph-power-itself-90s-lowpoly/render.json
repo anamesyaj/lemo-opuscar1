@@ -1,0 +1,1 @@
+{"_trigger":"film-run-1","audio":{"music_script":"films/ph-power-itself-90s-lowpoly/make-music.py","voice_parts":"audio/voice.flac.b64.part"},"captions":{"burned_in":false},"chunks":24,"film":"ph-power-itself-90s-lowpoly","fps":24,"grain":1,"mode":"film","out":"ph-power-itself-90s-lowpoly.mp4","pages":[{"dir":".","dur":90,"q":""}],"size":"1080x1920"}

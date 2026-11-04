@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ph-power-itself-90s-lowpoly</title>
+<style>
+  /* Fonts are self-hosted OFL via base64 transport (binary can't ride the
+     connector snapshot push); registered with the FontFace API in boot(). */
+  html,body { margin:0; padding:0; background:#000; width:1080px; height:1920px; overflow:hidden; }
+  canvas { position:absolute; left:0; top:0; width:1080px; height:1920px; }
+  #stage canvas { position:static; }
+  #ov { pointer-events:none; }
+</style>
+<script>
+  window.__pageErrors = [];
+  window.addEventListener('error', function (e) {
+    window.__pageErrors.push(String(e.message || e.error));
+    document.title = 'PAGEERROR: ' + window.__pageErrors.join(' | ');
+  });
+  window.addEventListener('unhandledrejection', function (e) {
+    window.__pageErrors.push('rejection: ' + String(e.reason));
+    document.title = 'PAGEERROR: ' + window.__pageErrors.join(' | ');
+  });
+</script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "/node_modules/three/build/three.module.js",
+    "three/addons/": "/node_modules/three/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<div id="stage"></div>
+<canvas id="ov" width="1080" height="1920"></canvas>
+<script type="module">
+import './main.js';
+
+async function fetchB64(url) {
+  const txt = await (await fetch(url)).text();
+  const b64 = txt.replace(/\s/g, '');
+  return Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+}
+async function registerFont(family, weight, b64url) {
+  const bin = await fetchB64(b64url);
+  const objUrl = URL.createObjectURL(new Blob([bin], { type: 'font/ttf' }));
+  const face = new FontFace(family, `url(${objUrl})`, { weight: String(weight) });
+  await face.load();
+  document.fonts.add(face);
+}
+(async () => {
+  try {
+    await Promise.all([
+      registerFont('Josefin Sans', 600, 'fonts/JosefinSans-600.ttf.b64'),
+      registerFont('Quicksand', 600, 'fonts/Quicksand-600.ttf.b64'),
+      registerFont('IBM Plex Mono', 500, 'fonts/IBMPlexMono-Medium.ttf.b64'),
+    ]);
+  } catch (e) {
+    window.__pageErrors.push('font failed: ' + e.message);
+  }
+  // main.js sets window.render synchronously on import; flag ready after fonts
+  window.READY = true;
+  // stills mode: ?t=<seconds> renders one frame (used by stills.sh)
+  const qs = new URLSearchParams(location.search);
+  if (qs.has('t')) {
+    const t = parseFloat(qs.get('t'));
+    if (window.render && isFinite(t)) window.render(t);
+  }
+})();
+</script>
+</body>
+</html>
