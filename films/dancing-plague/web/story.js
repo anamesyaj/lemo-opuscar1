@@ -74,7 +74,10 @@ const S3b = (f) => dolly([6.5, 8.5, 16.5], [0, 0.8, -2], pushK(f, 380, 0.0012), 
 // Shot 4 — insert CU on feet, then rack focus up to the collapsing dancer's face.
 // S4a is LOW and CLOSE: feet + shins fill the frame, boots fully in frame
 // (the first version cut the boots off at the bottom edge).
-const S4a = (f) => dolly([0.6, 0.28, 2.3], [0, 0.08, 0.5], pushK(f, 506, 0.002), { fov: 36 });
+// Closer + lower, looking AT the feet (was [0.9,0.45,3.1], look y 0.3, fov 34):
+// the pull-back still showed legs + torso with the shoes small at the bottom.
+// Now the shoes are the hero, legs exit the top, street reads behind.
+const S4a = (f) => dolly([0.7, 0.3, 2.0], [0, 0.12, 0.5], pushK(f, 506, 0.0015), { fov: 30 });
 const S4b = (f) => dolly([0.9, 1.2, 3.4], [0, 1.4, 0.3], pushK(f, 585, 0.0018), { fov: 36 });
 // Shot 5 — whip-pan from the fallen dancer to the stage, then hold with creep.
 // S5b sits ~10 m from the stage, looking at the councillors' chests so they are
@@ -83,7 +86,10 @@ const S4b = (f) => dolly([0.9, 1.2, 3.4], [0, 1.4, 0.3], pushK(f, 585, 0.0018), 
 // shot, straight into the crowd block at z -4.5 (0.6 m from a face — the
 // looming blurred foreground the look-check caught).
 const S5a = (f) => S4b(f);
-const S5b = (f) => dolly([2.4, 2.2, -1.5], [0, 2.2, -12], pushK(f, 656, 0.0005), { fov: 40 });
+// Pulled back + up (was [2.4,2.2,-1.5], fov 40): the old framing put the
+// watchers ~8 m from the lens, huge, blurred and cut at the feet. Now the whole
+// watcher row + stage fit in frame with feet on the ground.
+const S5b = (f) => dolly([2.8, 2.8, 0.5], [0, 1.8, -12], pushK(f, 656, 0.0005), { fov: 42 });
 // Shot 6 — push-in toward the stage, then a slow orbit around the crowd edge.
 // Orbit radius 12 (was 10, was 7.5 and the lens got inside the wave: giant
 // blurry foreground heads filled the frame). With the wave z held behind
@@ -97,8 +103,11 @@ const S6b = (f) => {
 // S7b sits ~5.5 m back and WEST of the courtyard's east wall: the old (-9.6,...)
 // put the lens right against that wall, which hid the sneezer (i=3) at the
 // shot's key beat.
-const S7a = (f) => dolly([-11.5, 1.7, -16.5], [-14, 1.5, -20], pushK(f, 893, 0.002), { fov: 38 });
-const S7b = (f) => dolly([-11.0, 1.9, -15.0], [-13.0, 1.4, -20.5], pushK(f, 960, 0.0018), { fov: 40 });
+// Pulled back + widened (was [-11.5,1.7,-16.5] fov 38): the old framing put the
+// doctor 5.5 m from the lens, half out of the left edge, with the chain jammed
+// behind him against a blank wall. Now doctor + all four chain members fit.
+const S7a = (f) => dolly([-9.0, 2.4, -13.0], [-13.4, 1.3, -21.0], pushK(f, 893, 0.0015), { fov: 46 });
+const S7b = (f) => dolly([-9.5, 2.4, -14.0], [-13.6, 1.3, -21.2], pushK(f, 960, 0.0015), { fov: 46 });
 // Shot 8 — track alongside the marching crowd, then crane up to reveal the shrine.
 // The march walks NORTH along the street from (0,0,-2); the camera tracks the
 // leader's actual walk distance (not a time-based path point — the old version
@@ -110,7 +119,9 @@ const marchPoint = (f) => {
 };
 const S8a = (f) => {
   const m = marchPoint(f);
-  return dolly([m[0] - 4.2, m[1] + 1.7, m[2] + 3.0], [m[0] + 0.3, m[1] + 1.2, m[2] - 1.5], pushK(f, 1044, 0.0015), { fov: 40 });
+  // Pulled further west (was -4.2): the old track put the marchers ~4 m from the
+  // lens, so the near ones sliced at the frame edges. Now the whole line fits.
+  return dolly([m[0] - 6.0, m[1] + 2.0, m[2] + 3.5], [m[0] + 0.3, m[1] + 1.2, m[2] - 1.5], pushK(f, 1044, 0.0015), { fov: 40 });
 };
 // Rise first — a HIGH top-down view of the marching line (the town spread out
 // below) — THEN swing east over the houses. Looking north or east during the
@@ -125,8 +136,11 @@ const S8b = (f) => dolly([4, 16, -14], [17, 5, -37], pushK(f, 1150, 0.0012), { f
 // on the slope. The earlier (15,6.5,-31) was so close the chapel (3.2 m wide)
 // filled the frame and the door sat just outside the left edge, leaving a
 // flat featureless wall.
-const S9a = (f) => dolly([13, 7, -28], [18, 5.5, -37.5], pushK(f, 1166, 0.002),
-  { fov: 38, roll: 0.06 * smooth((f - 1166) / 113) });
+// Pulled back + less creep (was [13,7,-28], pushK 0.002, fov 38): the old push-in
+// ended with the chapel wall filling the frame and the kneelers cut at the
+// bottom. Now the whole chapel + door + kneelers + shoe fit with margin.
+const S9a = (f) => dolly([11, 8, -24], [18, 4.8, -37.5], pushK(f, 1166, 0.0008),
+  { fov: 42, roll: 0.06 * smooth((f - 1166) / 113) });
 
 const CAMS = {
   1: [{ f: 0, s: S1a }],
@@ -188,12 +202,12 @@ const DOF = [
   { f: 766, cInf: 8, focus: () => [0, 1.6, -12] },
   { f: 778, dur: 10, cInf: 3.5, focus: () => [0, 1.6, -12] },
   { f: 812, dur: 10, cInf: 8, focus: () => [0, 1.6, -12] },
-  { f: 893, cInf: 12, focus: () => [-13.6, 1.5, -19.7] },
-  { f: 960, dur: 14, cInf: 12, focus: () => [-14.3, 1.4, -22.0] },
+  { f: 893, cInf: 12, focus: () => [-13.4, 1.4, -21.0] },
+  { f: 960, dur: 14, cInf: 12, focus: () => [-13.6, 1.3, -21.2] },
   { f: 1044, cInf: 0 },
-  { f: 1130, dur: 20, cInf: 3, focus: (fr) => [0, 1.2, marchPoint(fr)[2]] },
-  { f: 1150, dur: 15, cInf: 4, focus: () => [18, 4.5, -38] },
-  { f: 1166, cInf: 10, focus: () => [18, 4.6, -38] },
+  { f: 1130, dur: 20, cInf: 8, focus: (fr) => [0, 1.2, marchPoint(fr)[2]] },
+  { f: 1150, dur: 15, cInf: 8, focus: () => [18, 4.5, -38] },
+  { f: 1166, cInf: 10, focus: () => [18, 4.2, -38] },
 ];
 export function dofAt(f) {
   let i = 0;
@@ -255,6 +269,13 @@ function folkOutfit(i) { return FOLK_COATS[i % 2]; }
  *  named-cast seeds: 1 Troffea, 20-22 councillors, 30-31 musicians, 70 doctor, and the
  *  per-shot one-offs 2-9), so a face keeps the same jacket/dress/hat in every shot. */
 const ROSTER = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 23, 24, 25, 26, 27, 28, 29, 32, 33, 34, 35, 36, 37, 38];
+/** Fixed background cast: one identity per slot — same seed AND same outfit
+ *  (townsman/townswoman) in every shot. The old code paired folkOutfit(i) with
+ *  ROSTER[s] using DIFFERENT indices per shot, so the same seed flipped gender
+ *  (e.g. seed 28 was a woman in shot 3, a man in shot 5) and the front row
+ *  reshuffled every shot. Every background placement below uses CAST[k], so the
+ *  same face keeps the same clothes and the same place in the crowd. */
+const CAST = ROSTER.map((seed, i) => ({ seed, outfit: FOLK_COATS[i % 2] }));
 
 /** Troffea dancing: phase from frame, head bob + arm lift on the stressed word. */
 function troffeaDance(f, x, y, z, cam, opts = {}) {
@@ -325,10 +346,10 @@ export function actorsAt(f, cam) {
       const [lo, hi] = ROWS[row], z = -1.5 - row * 1.7 + (hh(i, 2) - 0.5) * 0.4;
       const x = lerprojection(lo + 0.35, hi - 0.35, (col + 0.5) / 6) + (hh(i) - 0.5) * 0.44;
       const exprs = ['grin', 'laugh', 'dazed', 'stubborn', 'smile', 'grin'];
-      out.push(place(cam, folkOutfit(i), x, 0, z, {
-        seed: ROSTER[i], expr: exprs[i % 6], mode: 'stroll', phase: (t * 1.4 + i * 0.17) % 1,
+      out.push(place(cam, CAST[i].outfit, x, 0, z, {
+        seed: CAST[i].seed, expr: exprs[i % 6], mode: 'stroll', phase: (t * 1.4 + i * 0.17) % 1,
         arm: i % 3 === 0 ? 'up' : 'wave', wave: i % 3 === 1 ? q(Math.sin(t * 5 + i), 30) : undefined,
-        blink: blinkAt(f, ROSTER[i]),
+        blink: blinkAt(f, CAST[i].seed),
       }));
     }
   }
@@ -337,18 +358,23 @@ export function actorsAt(f, cam) {
     // Young man stumbles: wobble f592, collapse dip + dust f599-601 (before "collapsed" f602).
     const wobble = f >= 592 && f < 599 ? Math.sin((f - 592) * 1.4) * 6 : 0;
     const collapsed = f >= 599;
+    // During the feet insert (f506-585) he STANDS, both feet planted, weight
+    // shifting — the old 'stroll' left one foot floating mid-stride, which read
+    // as a mistake at this framing. He only starts moving for the wobble/collapse.
+    const insert = f < 585;
     out.push(place(cam, 'townsman', 0, 0, 0.5, {
-      seed: 7, expr: collapsed ? 'pained' : 'nervous', mode: collapsed ? 'fall' : 'stroll',
-      phase: (t * 1.4) % 1, tilt: collapsed ? 18 : wobble, arm: collapsed ? 'up' : 'hang',
+      seed: 7, expr: collapsed ? 'pained' : 'nervous', mode: collapsed ? 'fall' : (insert ? 'stand' : 'stroll'),
+      phase: (t * 1.4) % 1, tilt: collapsed ? 18 : (insert ? Math.sin((f - 506) * 0.15) * 4 : wobble), arm: collapsed ? 'up' : 'hang',
       blink: collapsed ? 1 : blinkAt(f, 7),
     }));
     // Troffea behind him, worried, hand to cheek.
     out.push(place(cam, 'troffea', -0.9, 0, 1.4, {
       seed: 1, expr: 'nervous', mode: 'stand', arm: 'cheek', blink: blinkAt(f, 1),
     }));
-    // A fourth dancer slowing deeper in the bg, feet shuffling (inside the S4b corridor;
-    // during the feet insert she reads as a small fg dancer, clear of every edge).
-    out.push(place(cam, 'townswoman', -0.7, 0, -4, {
+    // A fourth dancer slowing deeper in the bg — moved further back and aside
+    // (was -0.7,-4) so she reads as a small bg figure, fully in frame, during
+    // the feet insert instead of a giant sliced head at the top edge.
+    out.push(place(cam, 'townswoman', -1.6, 0, -5.5, {
       seed: 8, expr: 'pained', mode: 'stroll', phase: (t * 0.9) % 1, arm: 'belly', blink: blinkAt(f, 8),
     }));
   }
@@ -369,27 +395,32 @@ export function actorsAt(f, cam) {
           tilt: (i === 2 ? 5 : 0) + popDip, blink: blinkAt(f, 20 + i),
         }));
       });
-      // 2 musicians climb up with pipe + drum, x inside the corridor (±2.5 clipped).
+      // 2 musicians climb up with pipe + drum, x inside the corridor (±1.4 — the
+      // old ±1.7 put the drummer half out of the left edge mid-climb).
       const climb = smooth((f - 678) / 40);
-      out.push(place(cam, 'musician_pipe', 1.7, climb * 1.2, -10.5 + climb * -1.0, {
+      out.push(place(cam, 'musician_pipe', 1.4, climb * 1.2, -10.5 + climb * -1.0, {
         seed: 30, expr: 'grin', mode: 'stand', arm: 'lift', prop: 'pipe', blink: blinkAt(f, 30),
       }));
-      out.push(place(cam, 'musician_drum', -1.7, climb * 1.2, -10.5 + climb * -1.0, {
+      out.push(place(cam, 'musician_drum', -1.4, climb * 1.2, -10.5 + climb * -1.0, {
         seed: 31, expr: 'smile', mode: 'stand', arm: 'reach', prop: 'drum', blink: blinkAt(f, 31),
       }));
       // Troffea + hopeful watchers, in depth rows (cards ~35-40% of frame height);
       // the near rows the first pass had (z -7.5/-9) read as a wall of heads.
-      out.push(place(cam, 'troffea', 0.75, 0, -9.0, {
+      out.push(place(cam, 'troffea', 0.9, 0, -8.4, {
         seed: 1, expr: 'smile', mode: 'stand', arm: 'up', tilt: popDip, blink: blinkAt(f, 1),
       }));
+      // Watchers = the SAME front row as shot 3 (cast 0..6), now gathered at the
+      // stage. Same faces, same order, same clothes — no reshuffle, no gender flip.
+      // z stays IN FRONT of the stage deck (front face z=-10): the first pass put
+      // them at z=-10.6, inside the deck, so only their heads showed.
       const WATCH = [
-        [-1.3, -9.7, 12], [0.0, -9.8, 13], [1.3, -9.65, 14],
-        [-1.55, -10.4, 16], [-0.6, -10.45, 17], [0.35, -10.4, 18], [2.4, -10.35, 15],
+        [-1.3, -8.9, 0], [-0.5, -9.0, 1], [0.3, -8.9, 2], [1.1, -9.0, 3], [1.9, -8.9, 4],
+        [-0.6, -9.5, 5], [1.2, -9.5, 6],
       ];
       WATCH.forEach(([x, z, s], i) => {
-        out.push(place(cam, folkOutfit(i), x, 0, z, {
-          seed: ROSTER[s], expr: 'smile', mode: 'stand', arm: 'up',
-          phase: (t * 1.3 + i * 0.21) % 1, blink: blinkAt(f, ROSTER[s]),
+        out.push(place(cam, CAST[s].outfit, x, 0, z, {
+          seed: CAST[s].seed, expr: 'smile', mode: 'stand', arm: 'up',
+          phase: (t * 1.3 + i * 0.21) % 1, blink: blinkAt(f, CAST[s].seed),
         }));
       });
     }
@@ -422,21 +453,23 @@ export function actorsAt(f, cam) {
     ];
     WAVE.forEach(([x, y, z], i) => {
       const s = waveK(i);
-      out.push(place(cam, folkOutfit(i), x - (1 - clamp01x(s)) * 0.25, 0, z + (1 - s) * -1.2, {
-        seed: ROSTER[6 + i], expr: 'grin', mode: 'stroll', phase: (t * 1.8 + i * 0.2) % 1,
-        arm: 'up', tilt: (1 - s) * 8, blink: blinkAt(f, ROSTER[6 + i]),
+      out.push(place(cam, CAST[6 + i].outfit, x - (1 - clamp01x(s)) * 0.25, 0, z + (1 - s) * -1.2, {
+        seed: CAST[6 + i].seed, expr: 'grin', mode: 'stroll', phase: (t * 1.8 + i * 0.2) % 1,
+        arm: 'up', tilt: (1 - s) * 8, blink: blinkAt(f, CAST[6 + i].seed),
       }));
     });
-    // The packed crowd keeps dancing, two depth rows inside the orbit corridor.
+    // The packed crowd keeps dancing: the SAME front row as shots 3 and 5
+    // (cast 0..5) up front, cast 12..17 behind — same faces, same order.
     const CROWD = [
-      [-0.85, -8.5], [-0.05, -8.55], [0.85, -8.45], [1.75, -8.5],
-      [-1.25, -9.5], [-0.35, -9.55], [0.65, -9.45], [1.65, -9.5],
+      [-1.5, -8.5, 0], [-0.9, -8.55, 1], [-0.3, -8.5, 2], [0.3, -8.55, 3], [0.9, -8.5, 4], [1.5, -8.55, 5],
+      [-1.25, -9.4, 12], [-0.35, -9.45, 13], [0.65, -9.4, 14], [1.65, -9.45, 15],
+      [-0.8, -9.9, 16], [0.8, -9.9, 17],
     ];
     for (let i = 0; i < CROWD.length; i++) {
-      const [x, z] = CROWD[i];
-      out.push(place(cam, folkOutfit(i), x, 0, z, {
-        seed: ROSTER[12 + i], expr: i % 4 === 0 ? 'dazed' : 'grin', mode: 'stroll',
-        phase: (t * 1.6 + i * 0.13) % 1, arm: 'wave', blink: blinkAt(f, ROSTER[12 + i]),
+      const [x, z, s] = CROWD[i];
+      out.push(place(cam, CAST[s].outfit, x, 0, z, {
+        seed: CAST[s].seed, expr: i % 4 === 0 ? 'dazed' : 'grin', mode: 'stroll',
+        phase: (t * 1.6 + i * 0.13) % 1, arm: 'wave', blink: blinkAt(f, CAST[s].seed),
       }));
     }
   }
@@ -449,15 +482,19 @@ export function actorsAt(f, cam) {
     out.push(place(cam, 'doctor', -13.6, 0, -19.7, {
       seed: 70, expr: 'neutral', mode: 'stand', arm: 'point', blink: blinkAt(f, 70),
     }));
+    // Chain runs SOUTHEAST from the doctor, ~0.8 m apart across the screen,
+    // slightly receding: the old southwest line ran PARALLEL to the camera's
+    // view direction, so all four faces stacked into one twin blob. Each member
+    // is now ~0.8 m across the screen from the last, face fully distinct.
     for (let i = 0; i < 4; i++) {
       const sneeze = i === 3 && f >= 1012 && f <= 1014;
       const c = [
-        [-14.0, -21.2], [-14.75, -22.3], [-15.5, -23.0], [-16.2, -23.6],
+        [-13.1, -20.35], [-12.6, -21.0], [-12.1, -21.65], [-11.6, -22.3],
       ][i];
-      out.push(place(cam, folkOutfit(i), c[0], 0, c[1], {
-        seed: ROSTER[i], expr: sneeze ? 'shock' : i % 2 ? 'nervous' : 'neutral',
+      out.push(place(cam, CAST[i].outfit, c[0], 0, c[1], {
+        seed: CAST[i].seed, expr: sneeze ? 'shock' : i % 2 ? 'nervous' : 'neutral',
         mode: 'stand', arm: 'reach', headTilt: sneeze ? -8 : 0,
-        blink: sneeze ? 1 : blinkAt(f, ROSTER[i]),
+        blink: sneeze ? 1 : blinkAt(f, CAST[i].seed),
       }));
     }
   }
@@ -482,9 +519,9 @@ export function actorsAt(f, cam) {
           blink: blinkAt(f, 1),
         }));
       } else {
-        out.push(placeSide(cam, i === 1 ? 'troffea' : folkOutfit(i), p[0], p[1], p[2], {
-          seed: i === 1 ? 1 : ROSTER[i], expr: 'neutral', mode: 'march', phase: (w.phase + i * 0.5) % 1,
-          stride: 1, blink: blinkAt(f, i === 1 ? 1 : ROSTER[i]),
+        out.push(placeSide(cam, i === 1 ? 'troffea' : CAST[i].outfit, p[0], p[1], p[2], {
+          seed: i === 1 ? 1 : CAST[i].seed, expr: 'neutral', mode: 'march', phase: (w.phase + i * 0.5) % 1,
+          stride: 1, blink: blinkAt(f, i === 1 ? 1 : CAST[i].seed),
         }));
       }
     }
@@ -493,13 +530,15 @@ export function actorsAt(f, cam) {
   if (id === 9) {
     // Everyone kneeling/still at the shrine (hill top y=4, shrine at (18,4,-38)),
     // flanking the shrine in a semicircle — none between the camera and the shrine.
+    // Kneelers = the same flock that danced (cast 19..23), not new faces —
+    // the people the audience followed all film are the ones at the shrine.
     const kneel = [
-      [16.6, -37.6, 'townsman', 90], [18.0, -38.4, 'townswoman', 91], [19.4, -37.6, 'councillor', 92],
-      [17.3, -36.4, 'townsman', 93], [18.7, -36.4, 'townswoman', 94],
+      [16.6, -37.6, 19], [18.0, -38.4, 20], [19.4, -37.6, 21],
+      [17.3, -36.4, 22], [18.7, -36.4, 23],
     ];
-    kneel.forEach(([x, z, outfit, seed]) => {
-      out.push(place(cam, outfit, x, 4.0, z, {
-        seed, expr: 'smile_closed', mode: 'sit', arm: 'belly', blink: 1,
+    kneel.forEach(([x, z, s]) => {
+      out.push(place(cam, CAST[s].outfit, x, 4.0, z, {
+        seed: CAST[s].seed, expr: 'smile_closed', mode: 'sit', arm: 'belly', blink: 1,
       }));
     });
     // Troffea sits down, exhales, a small relieved smile on "cure" (f1171-1173).
@@ -602,8 +641,8 @@ export function fxAt(f, cam) {
     // Pale blue wisps travelling hand to hand along the queue (doctor -> F4).
     for (let i = 0; i < 3; i++) {
       const u = ((t * 0.5 + i * 0.33) % 1);
-      const wx = lerp(-13.7, -16.2, u);
-      const wz = lerp(-20.2, -23.6, u);
+      const wx = lerp(-13.7, -11.6, u);
+      const wz = lerp(-20.2, -22.3, u);
       out.push({
         key: `wisp${i}|${q(u, 20)}`, cw: 200, ch: 120,
         draw: (p) => p.ell(100, 60, 60, 22, `rgba(159,212,255,${(0.75 * (1 - u)).toFixed(3)})`, 0),
@@ -613,13 +652,13 @@ export function fxAt(f, cam) {
   }
 
   if (id === 8) {
-    // The "no dancing" proclamation, held up by the lead councillor (who walks
-    // at (0,0,-2-(dist+1.2)) along the street). Offset toward the camera (west).
+    // Held HIGH overhead (was y=1.6): the old height put the sign right across
+    // the lead councillor's face. Now it reads above his head, held up beside him.
     const w = walk(f, 1044, 1.1);
     const pz = -2 - (w.dist + 1.2);
     out.push({
       key: 'proclamation', cw: 700, ch: 520, draw: (p) => drawSign(p),
-      x: -0.4, y: 1.6, z: pz + 0.3, w: 0.85, h: 0.63, rot: 0.06,
+      x: -0.7, y: 2.05, z: pz + 0.3, w: 0.85, h: 0.63, rot: 0.06,
     });
   }
 
