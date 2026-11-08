@@ -68,21 +68,37 @@ const browser = await chromium.launch({
   args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist',
     '--disable-dev-shm-usage', '--no-sandbox'],
 });
-const page = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
-page.on('console', (m) => { if (m.type() === 'error') console.error('[page]', m.text()); });
-page.on('pageerror', (e) => console.error('[pageerror]', e.message));
-await page.goto(`http://127.0.0.1:${PORT}/web/index.html`, { waitUntil: 'load' });
-await page.waitForFunction(() => window.ready === true, null, { timeout: 60000 });
 
 const t0 = Date.now();
 let done = 0;
+const RECYCLE_EVERY = 8; // SwiftShader GPU/WebGL state leaks per frame: close+reopen the page
+let sinceRecycle = 0;
+async function openPage() {
+  const p = await browser.newPage({ viewport: { width: 1080, height: 1920 } });
+  p.on('console', (m) => { if (m.type() === 'error') console.error('[page]', m.text()); });
+  p.on('pageerror', (e) => console.error('[pageerror]', e.message));
+  await p.goto(`http://127.0.0.1:${PORT}/web/index.html`, { waitUntil: 'load' });
+  await p.waitForFunction(() => window.ready === true, null, { timeout: 60000 });
+  return p;
+}
+let page = await openPage();
 for (const f of frames) {
   const out = path.join(outDir, `f${String(f).padStart(4, '0')}.jpg`);
   if (RESUME && existsSync(out)) { done++; continue; }
-  const dataUrl = await page.evaluate((fr) => window.renderFrame(fr), f);
-  const b64 = dataUrl.split(',')[1];
-  writeFileSync(out, Buffer.from(b64, 'base64'));
+  try {
+    const dataUrl = await page.evaluate((fr) => window.renderFrame(fr), f);
+    writeFileSync(out, Buffer.from(dataUrl.split(',')[1], 'base64'));
+  } catch (e) {
+    console.error(`f${f} failed (${e.message.split('\n')[0]}); reviving page`);
+    try { await page.close(); } catch {}
+    page = await openPage();
+    const dataUrl = await page.evaluate((fr) => window.renderFrame(fr), f);
+    writeFileSync(out, Buffer.from(dataUrl.split(',')[1], 'base64'));
+    sinceRecycle = 0;
+  }
   done++;
+  sinceRecycle++;
+  if (sinceRecycle >= RECYCLE_EVERY) { await page.close(); page = await openPage(); sinceRecycle = 0; }
   const el = ((Date.now() - t0) / 1000).toFixed(1);
   console.log(`f${f} -> ${path.basename(out)} (${done}/${frames.length}, ${el}s)`);
 }
