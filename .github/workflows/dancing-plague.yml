@@ -1,0 +1,75 @@
+# Dancing Plague — cartoon-audio-short engine, rendered on GitHub runners.
+# 16 parallel chunk jobs (80 frames each) -> stitch job -> video-only MP4.
+# Audio is muxed locally afterwards (audio/mix.wav is not pushed).
+name: dancing-plague-render
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'films/dancing-plague/**'
+      - '.github/workflows/dancing-plague.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dancing-plague-render
+  cancel-in-progress: false
+
+jobs:
+  render:
+    strategy:
+      fail-fast: false
+      matrix:
+        chunk: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: films/dancing-plague
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '24' }
+      - run: npm ci
+      - run: node node_modules/playwright-core/cli.js install chromium
+      - name: render chunk
+        run: |
+          A=$(( ${{ matrix.chunk }} * 80 ))
+          B=$(( A + 79 ))
+          if [ "$B" -gt 1279 ]; then B=1279; fi
+          echo "chunk ${{ matrix.chunk }}: frames $A-$B"
+          node render.mjs frames $A $B
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dancing-plague-chunk-${{ matrix.chunk }}
+          path: films/dancing-plague/frames/
+          retention-days: 1
+
+  stitch:
+    needs: render
+    if: ${{ always() && needs.render.result != 'cancelled' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: dancing-plague-chunk-*
+          path: art
+      - name: install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+      - name: stitch video-only MP4
+        run: |
+          mkdir -p frames
+          cp art/*/f*.jpg frames/
+          echo "frames: $(ls frames | wc -l)"
+          ffmpeg -y -framerate 30 -i frames/f%04d.jpg -c:v libx264 -pix_fmt yuv420p -crf 17 -movflags +faststart dancing-plague-video.mp4
+          ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1 dancing-plague-video.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dancing-plague-video
+          path: dancing-plague-video.mp4
+          retention-days: 7
