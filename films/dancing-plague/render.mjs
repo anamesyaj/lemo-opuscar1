@@ -13,15 +13,25 @@ import os from 'node:os';
 // playwright-core + a Chromium build.
 // Resolution: explicit CHROME env first, then any installed playwright build
 // (a GitHub runner after `playwright install chromium`), then this VM's
-// cached build. Local behaviour is unchanged.
+// cached build. Layout differs by revision: older builds use
+// chrome-linux/chrome, newer Chrome-for-Testing builds (v1254+, playwright
+// 1.65) use chrome-linux64/chrome — check both, newest revision first.
+// (Run #1 failed because only chrome-linux/ was checked and the runner had
+// installed v1254 with the chrome-linux64 layout, so it fell back to a
+// hardcoded 1194 path that does not exist there.)
 function resolveChrome() {
   if (process.env.CHROME && existsSync(process.env.CHROME)) return process.env.CHROME;
   const base = path.join(os.homedir(), '.cache/ms-playwright');
   try {
-    const builds = readdirSync(base)
-      .filter((d) => d.startsWith('chromium-') && existsSync(path.join(base, d, 'chrome-linux', 'chrome')))
-      .sort();
-    if (builds.length) return path.join(base, builds[builds.length - 1], 'chrome-linux', 'chrome');
+    const entries = readdirSync(base);
+    console.log('playwright cache:', entries.join(' '));
+    const builds = entries.filter((d) => d.startsWith('chromium-')).sort().reverse();
+    for (const d of builds) {
+      for (const sub of ['chrome-linux/chrome', 'chrome-linux64/chrome']) {
+        const p = path.join(base, d, sub);
+        if (existsSync(p)) return p;
+      }
+    }
   } catch {}
   return path.join(base, 'chromium-1194', 'chrome-linux', 'chrome');
 }
