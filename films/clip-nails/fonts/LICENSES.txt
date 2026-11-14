@@ -1,0 +1,2 @@
+cond.ttf: Bebas Neue, SIL Open Font License 1.1, from https://raw.githubusercontent.com/google/fonts/main/ofl/bebasneue/BebasNeue-Regular.ttf
+hand.ttf: Homemade Apple, Apache License 2.0, from https://raw.githubusercontent.com/google/fonts/main/apache/homemadeapple/HomemadeApple-Regular.ttf
