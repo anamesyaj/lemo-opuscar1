@@ -1,0 +1,21 @@
+{
+  "_trigger": "zackd-3d-run-1",
+  "audio": {
+    "music_script": "films/what-if-particle-accelerator/make-music.py",
+    "voice_parts": "audio/voice.flac.b64.part"
+  },
+  "chunks": 18,
+  "film": "what-if-particle-accelerator",
+  "fps": 30,
+  "grain": 0,
+  "mode": "film",
+  "out": "what-if-particle-accelerator-zackd-3d.mp4",
+  "pages": [
+    {
+      "dir": ".",
+      "dur": 48.5,
+      "q": "render=1"
+    }
+  ],
+  "size": "1080x1920"
+}

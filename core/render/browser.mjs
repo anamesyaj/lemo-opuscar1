@@ -3,8 +3,8 @@
 // GPU: on macOS, Metal explicitly (on newer headless-shell, --use-angle=gl falls back to SwiftShader software rendering, ~6x slower);
 //      other systems get no forced backend. LEMO_ANGLE=metal|gl|vulkan|swiftshader… overrides it; LEMO_ANGLE=default means don't pass --use-angle.
 export const EXE = process.env.PLAYWRIGHT_CHROME || undefined;   // undefined = let playwright find it
-const angle = process.env.LEMO_ANGLE || (process.platform === 'darwin' ? 'metal' : 'default');
-export const ARGS = [...(angle === 'default' ? [] : [`--use-angle=${angle}`]), '--enable-gpu', '--ignore-gpu-blocklist', '--font-render-hinting=none', '--force-color-profile=srgb'];
+const angle = process.env.LEMO_ANGLE || (process.platform === 'darwin' ? 'metal' : 'swiftshader');
+export const ARGS = [...(angle === 'default' ? [] : [`--use-angle=${angle}`]), '--enable-unsafe-swiftshader', '--disable-accelerated-2d-canvas', '--enable-gpu', '--ignore-gpu-blocklist', '--font-render-hinting=none', '--force-color-profile=srgb'];
 
 // warn once if WebGL ended up on software rendering (2D-canvas demos are unaffected; never fails the render)
 let warned = false;
