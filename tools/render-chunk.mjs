@@ -28,7 +28,7 @@ ff.stdin.on('error', () => { dead ??= 'ffmpeg closed its input early'; });
 const t0 = Date.now();
 for (let f = FROM; f < TO && !dead; f++) {
   const dataUrl = await page.evaluate(t => {
-    window.render(t);
+    (window.render || window.renderAt)(t);
     return window.renderDataURL ? window.renderDataURL() : null;
   }, f / FPS);
   const buf = dataUrl

@@ -1187,6 +1187,8 @@ function draw(t) {
 /* ---------- 4. PLAYER + EXPORT (keep as is) ---------- */
 const N = Math.round(CONFIG.duration * CONFIG.fps);
 window.renderAt = t => draw(clamp(t, 0, CONFIG.duration));
+window.render = window.renderAt;
+window.renderDataURL = () => stage.toDataURL("image/jpeg", 0.95);
 window.renderFrame = f => draw(clamp(f, 0, N - 1) / CONFIG.fps);
 window.CONFIG = CONFIG;
 
