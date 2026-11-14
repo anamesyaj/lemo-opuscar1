@@ -72,6 +72,7 @@ def build_audio(cfg, film_dir, work):
     # and the mix comes out short (mux.sh would then pad the tail with silence,
     # killing the closing music swell).
     film_dur = sum(p.get("dur", 60) for p in cfg.get("pages", [{"dur": 60}]))
+    pad_dur = max(film_dur, 65)
     # NOTE: link labels must NOT be single letters like [v] — ffmpeg fails to
     # resolve a re-used single-char output label ("Stream specifier 'v' ...
     # matches no streams", Invalid argument). Descriptive labels work.
@@ -80,9 +81,9 @@ def build_audio(cfg, film_dir, work):
     # ffmpeg accepts. asplit=2 is bit-identical and version-safe.
     run("ffmpeg", "-y", "-loglevel", "error", "-i", voice_src, "-i", music_wav,
         "-filter_complex",
-        f"[0:a]aresample=44100,apad=whole_dur={film_dur},asplit=2[voice][vsc];[1:a]aresample=44100[mus];"
+        f"[0:a]aresample=44100,apad=whole_dur={pad_dur},asplit=2[voice][vsc];[1:a]aresample=44100,apad=whole_dur={pad_dur}[mus];"
         "[mus][vsc]sidechaincompress=threshold=0.04:ratio=9:attack=15:release=600:makeup=1[ducked];"
-        "[voice][ducked]amix=inputs=2:duration=longest:normalize=0[aout]",
+        f"[voice][ducked]amix=inputs=2:duration=longest:normalize=0,apad=whole_dur={pad_dur}[aout]",
         "-map", "[aout]", mix_wav)
     return mix_wav
 

@@ -4,7 +4,7 @@ import wave
 
 out = sys.argv[1] if len(sys.argv) > 1 else "music.wav"
 sr = 44100
-n_samples = int(48.5 * sr)
+n_samples = int(65.0 * sr)
 with wave.open(out, "wb") as wf:
     wf.setnchannels(2)
     wf.setsampwidth(2)
