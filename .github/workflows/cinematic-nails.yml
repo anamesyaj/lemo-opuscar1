@@ -1,0 +1,78 @@
+# CLIP: How Humans Cut Their Nails — cinematic-film (Python/Skia) engine on GitHub runners.
+# 8 parallel chunk jobs (476 frames each, 3807 frames total) -> stitch job -> final MP4 with audio.
+name: cinematic-nails-render
+
+on:
+  push:
+    branches: [clip-nails]
+    paths:
+      - 'films/clip-nails/TRIGGER'
+      - '.github/workflows/cinematic-nails.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cinematic-nails-render
+  cancel-in-progress: false
+
+jobs:
+  render:
+    strategy:
+      fail-fast: false
+      matrix:
+        chunk: [0, 1, 2, 3, 4, 5, 6, 7]
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    defaults:
+      run:
+        working-directory: films/clip-nails
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: install system deps
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg libegl1 libgl1
+      - name: install python deps
+        run: pip install "skia-python==144.1" numpy pillow scipy
+      - name: render chunk
+        run: |
+          A=$(( ${{ matrix.chunk }} * 476 ))
+          B=$(( A + 476 ))
+          if [ "$B" -gt 3807 ]; then B=3807; fi
+          T0=$(python3 -c "print($A/30)")
+          T1=$(python3 -c "print(min($B/30, 126.91))")
+          echo "chunk ${{ matrix.chunk }}: frames $A-$((B-1)) ($T0 -> $T1)"
+          python3 engine/render.py --project . --size 1920x1080 --t0 "$T0" --t1 "$T1" --out "chunk_${{ matrix.chunk }}.mp4"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: clip-nails-chunk-${{ matrix.chunk }}
+          path: films/clip-nails/chunk_${{ matrix.chunk }}.mp4
+          retention-days: 1
+
+  stitch:
+    needs: render
+    if: ${{ always() && needs.render.result != 'cancelled' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: clip-nails-chunk-*
+          path: art
+      - name: install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+      - name: stitch chunks and mux soundtrack
+        run: |
+          ls art/*/chunk_*.mp4
+          for i in 0 1 2 3 4 5 6 7; do echo "file '$PWD/art/clip-nails-chunk-$i/chunk_$i.mp4'"; done > concat.txt
+          cat concat.txt
+          ffmpeg -y -f concat -safe 0 -i concat.txt -i films/clip-nails/audio/mix.m4a -map 0:v -map 1:a -c:v copy -c:a copy -movflags +faststart clip-nails-final.mp4
+          ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_type,width,height -of default=noprint_wrappers=1 clip-nails-final.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: clip-nails-final
+          path: clip-nails-final.mp4
+          retention-days: 7
