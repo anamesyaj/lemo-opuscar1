@@ -1,0 +1,83 @@
+# WIPE: How Humans Wiped Before Toilet Paper — cinematic-film (Python/Skia) engine on GitHub runners.
+# 8 parallel chunk jobs (432 frames each, 3455 frames total) -> stitch job -> final MP4 with audio.
+name: cinematic-wipe-render
+
+on:
+  push:
+    branches: [wipe-paper]
+    paths:
+      - 'films/wipe-paper/TRIGGER'
+      - '.github/workflows/cinematic-wipe.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cinematic-wipe-render
+  cancel-in-progress: false
+
+jobs:
+  render:
+    strategy:
+      fail-fast: false
+      matrix:
+        chunk: [0, 1, 2, 3, 4, 5, 6, 7]
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    defaults:
+      run:
+        working-directory: films/wipe-paper
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - name: install system deps
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg libegl1 libgl1
+      - name: install python deps
+        run: pip install "skia-python==144.1" numpy pillow scipy
+      - name: fetch archive photos and prep assets
+        run: |
+          python3 engine/fetch_commons.py get --project .
+          python3 engine/prep_assets.py --project . --textures
+          python3 engine/get_fonts.py --project . --force
+      - name: render chunk
+        run: |
+          A=$(( ${{ matrix.chunk }} * 432 ))
+          B=$(( A + 432 ))
+          if [ "$B" -gt 3455 ]; then B=3455; fi
+          T0=$(python3 -c "print($A/30)")
+          T1=$(python3 -c "print(min($B/30, 115.17))")
+          echo "chunk ${{ matrix.chunk }}: frames $A-$((B-1)) ($T0 -> $T1)"
+          python3 engine/render.py --project . --size 1920x1080 --t0 "$T0" --t1 "$T1" --out "chunk_${{ matrix.chunk }}.mp4"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wipe-paper-chunk-${{ matrix.chunk }}
+          path: films/wipe-paper/chunk_${{ matrix.chunk }}.mp4
+          retention-days: 1
+
+  stitch:
+    needs: render
+    if: ${{ always() && needs.render.result != 'cancelled' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: wipe-paper-chunk-*
+          path: art
+      - name: install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+      - name: stitch chunks and mux soundtrack
+        run: |
+          ls art/*/chunk_*.mp4
+          for i in 0 1 2 3 4 5 6 7; do echo "file '$PWD/art/wipe-paper-chunk-$i/chunk_$i.mp4'"; done > concat.txt
+          cat concat.txt
+          ffmpeg -y -f concat -safe 0 -i concat.txt -i films/wipe-paper/audio/mix.m4a -map 0:v -map 1:a -c:v copy -c:a copy -movflags +faststart wipe-paper-final.mp4
+          ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_type,width,height -of default=noprint_wrappers=1 wipe-paper-final.mp4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: wipe-paper-final
+          path: wipe-paper-final.mp4
+          retention-days: 7
