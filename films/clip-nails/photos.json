@@ -1,0 +1,138 @@
+{
+ "grade": "sepia",
+ "photos": [
+  {
+   "id": "P01",
+   "kind": "photo",
+   "commons": "File:Flint-knapping Demonstration (27349458154).jpg",
+   "file": "P01_Flint_knapping_Demonstration_27349458154_.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Flint-knapping_Demonstration_(27349458154).jpg",
+   "credit": "Tonto National Monument",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "date": "2016-05-10 03:32",
+   "license_ok": true
+  },
+  {
+   "id": "P02",
+   "kind": "photo",
+   "commons": "File:Percussor for flint knapping, flint - Museo Egizio, Turin S 4029 p01.jpg",
+   "file": "P02_Percussor_for_flint_knapping_flint_Museo_Egizio_.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Percussor_for_flint_knapping,_flint_-_Museo_Egizio,_Turin_S_4029_p01.jpg",
+   "credit": "Museo Egizio",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "date": "between 3500 and 3200 BCdate QS:P,-3500-00-00T00:00:00Z/6,P1319,-3500-00-00T00:00:00Z/9,P1326,-3200-00-00T00:00:00Z/9 Gerzeh culture (3650 BCdate QS:P,-3650-00-00T00:00:00Z/9–3300 BCdate QS:P,-3300-00-00T00:00:00Z/9) / Naqada III (3200 BCdate QS:P,-3200-00-00T00:00:00Z/9–3060 BCdate QS:P,-3060-00-00T00:00:00Z/9)",
+   "license_ok": true
+  },
+  {
+   "id": "P03",
+   "kind": "photo",
+   "commons": "File:Jewellery PG 580 - Ur RT.jpg",
+   "file": "P03_Jewellery_PG_580_Ur_RT.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Jewellery_PG_580_-_Ur_RT.jpg",
+   "credit": "Zunkir",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+   "date": "2019-09-30 11:48:17",
+   "license_ok": true
+  },
+  {
+   "id": "P04",
+   "kind": "photo",
+   "commons": "File:Cosmetic tool MET 11.151.146 EGDP014805.jpg",
+   "file": "P04_Cosmetic_tool_MET_11_151_146_EGDP014805.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Cosmetic_tool_MET_11.151.146_EGDP014805.jpg",
+   "credit": "This file was donated to Wikimedia Commons as part of a project by the Metropolitan Museum of Art. See the Image and Data Resources Open Access Policy",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "date": "circa 1295date QS:P571,+1295-00-00T00:00:00Z/9,P1480,Q5727902–1070 B.C.\nPeriod: New Kingdom, Ramesside\nDynasty: Dynasty 19–20",
+   "license_ok": true
+  },
+  {
+   "id": "P05",
+   "kind": "photo",
+   "commons": "File:Magdalenenberg cut and shave.jpg",
+   "file": "P05_Magdalenenberg_cut_and_shave.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Magdalenenberg_cut_and_shave.jpg",
+   "credit": "Flominator",
+   "license": "CC BY-SA 3.0",
+   "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+   "date": "2005-07-16",
+   "license_ok": true
+  },
+  {
+   "id": "P06",
+   "kind": "photo",
+   "commons": "File:Roman Toilet Set Hanger (FindID 414425).jpg",
+   "file": "P06_Roman_Toilet_Set_Hanger_FindID_414425_.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Roman_Toilet_Set_Hanger_(FindID_414425).jpg",
+   "credit": "Derby Museums Trust, Charlotte Burrill, 2010-11-08 16:15:32",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+   "date": "between 43 and 200",
+   "license_ok": true
+  },
+  {
+   "id": "P07",
+   "kind": "photo",
+   "commons": "File:Roman nail-cleaner (incomplete) (FindID 233642).jpg",
+   "file": "P07_Roman_nail_cleaner_incomplete_FindID_233642_.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Roman_nail-cleaner_(incomplete)_(FindID_233642).jpg",
+   "credit": "None, Julian Watters, 2008-09-30 13:40:50",
+   "license": "CC BY-SA 2.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+   "date": "between 50 and 125",
+   "license_ok": true
+  },
+  {
+   "id": "P08",
+   "kind": "photo",
+   "commons": "File:Pumice Stone.jpg",
+   "file": "P08_Pumice_Stone.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Pumice_Stone.jpg",
+   "credit": "Ambuj Saxena",
+   "license": "CC BY 2.0",
+   "license_url": "https://creativecommons.org/licenses/by/2.0",
+   "date": "2007-01-04 16:39:14",
+   "license_ok": true
+  },
+  {
+   "id": "P09",
+   "kind": "photo",
+   "commons": "File:Empress Dowager Cixi (c. 1890, small version) - 02.jpg",
+   "file": "P09_Empress_Dowager_Cixi_c_1890_small_version_02.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Empress_Dowager_Cixi_(c._1890,_small_version)_-_02.jpg",
+   "credit": "Yu Xunling (court photographer).",
+   "license": "Public domain",
+   "license_url": "",
+   "date": "circa 1890date QS:P571,+1890-00-00T00:00:00Z/9,P1480,Q5727902.",
+   "license_ok": true
+  },
+  {
+   "id": "P10",
+   "kind": "photo",
+   "commons": "File:Köln Museum für Ostasiatische Kunst 03012015 Nail Protector 1.jpg",
+   "file": "P10_K_ln_Museum_f_r_Ostasiatische_Kunst_03012015_Nai.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:K%C3%B6ln_Museum_f%C3%BCr_Ostasiatische_Kunst_03012015_Nail_Protector_1.jpg",
+   "credit": "Vassil",
+   "license": "CC0",
+   "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+   "date": "2015-01-03 13:15:21",
+   "license_ok": true
+  },
+  {
+   "id": "P11",
+   "kind": "photo",
+   "commons": "File:Nail-clippers-variety.jpg",
+   "file": "P11_Nail_clippers_variety.jpg",
+   "source": "https://commons.wikimedia.org/wiki/File:Nail-clippers-variety.jpg",
+   "credit": "Evan-Amos",
+   "license": "Public domain",
+   "license_url": "",
+   "date": "2010-08-27",
+   "license_ok": true
+  }
+ ],
+ "recreations": []
+}

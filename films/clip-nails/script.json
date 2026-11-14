@@ -1,0 +1,233 @@
+{
+ "title": "CLIP: How Humans Cut Their Nails",
+ "takes": [
+  {
+   "take": "T01_open_modern",
+   "lines": [
+    {
+     "id": 1,
+     "text": "Click. Three seconds, and a nail is cut.",
+     "spoken": "Click. Three seconds, and a nail is cut.",
+     "hero": "a modern lever clipper, set huge",
+     "typed": "3 SECONDS",
+     "gap_after": 0.8
+    },
+    {
+     "id": 2,
+     "text": "Your nails grow about three millimetres a month, and they never stop.",
+     "spoken": "Your nails grow about three millimetres a month, and they never stop.",
+     "hero": "counter rolling up beside a fingertip card",
+     "typed": "3 MM A MONTH"
+    },
+    {
+     "id": 3,
+     "text": "So every human who ever lived had to solve the same small problem.",
+     "spoken": "So every human who ever lived had to solve the same small problem.",
+     "hero": "the title, set big",
+     "typed": "CLIP"
+    }
+   ]
+  },
+  {
+   "take": "T02_stone_age",
+   "lines": [
+    {
+     "id": 4,
+     "text": "For most of history, work solved it first.",
+     "spoken": "For most of history, work solved it first.",
+     "hero": "card STONE AGE; hands digging in earth (AI still, illustration)",
+     "typed": "STONE AGE"
+    },
+    {
+     "id": 5,
+     "text": "Digging, climbing and knapping stone wore nails down, and broke them off.",
+     "spoken": "Digging, climbing and knapping stone wore nails down, and broke them off.",
+     "hero": "a knapped flint tool, pinned print (AI still, illustration)",
+     "typed": ""
+    },
+    {
+     "id": 6,
+     "text": "What work left behind, teeth took off, and rough stone filed the rest.",
+     "spoken": "What work left behind, teeth took off, and rough stone filed the rest.",
+     "hero": "a rough filing stone beside a sharp flint flake (AI still, illustration)",
+     "typed": ""
+    },
+    {
+     "id": 7,
+     "text": "No nails survive from that age, so this part is a careful guess.",
+     "spoken": "No nails survive from that age, so this part is a careful guess.",
+     "hero": "a small stamped card, labelled as inference",
+     "typed": "INFERRED"
+    }
+   ]
+  },
+  {
+   "take": "T03_first_cities",
+   "lines": [
+    {
+     "id": 8,
+     "text": "About five thousand years ago, cities turned nail care into a craft.",
+     "spoken": "About five thousand years ago, cities turned nail care into a craft.",
+     "hero": "card FIRST CITIES; the board shifts from stone to gold",
+     "typed": "FIRST CITIES"
+    },
+    {
+     "id": 9,
+     "text": "In Babylon, noblemen manicured their nails with tools of solid gold.",
+     "spoken": "In Babylon, noblemen manicured their nails with tools of solid gold.",
+     "hero": "a gold manicure set, pinned print",
+     "typed": "BABYLON · GOLD"
+    },
+    {
+     "id": 10,
+     "text": "In Egypt, manicure tools were buried in royal tombs, and henna stained nails red.",
+     "spoken": "In Egypt, manicure tools were buried in royal tombs, and henna stained nails red.",
+     "hero": "an Egyptian tomb print with henna-red nails",
+     "typed": "EGYPT · HENNA"
+    }
+   ]
+  },
+  {
+   "take": "T04_written_word",
+   "lines": [
+    {
+     "id": 11,
+     "text": "The oldest written mention we have dates to the eighth century before Christ.",
+     "spoken": "The oldest written mention we have dates to the eighth century before Christ.",
+     "hero": "a typeset document, labelled recreation, quoting the real line",
+     "typed": "8TH CENTURY BC"
+    },
+    {
+     "id": 12,
+     "text": "They pared them with a small knife, the way you pare an apple.",
+     "spoken": "They pared them with a small knife, the way you pare an apple.",
+     "hero": "a small paring knife, pinned print",
+     "typed": "PARED"
+    }
+   ]
+  },
+  {
+   "take": "T05_rome",
+   "lines": [
+    {
+     "id": 13,
+     "text": "In Rome, Horace watched a man in a barber shop, penknife in hand, quietly cleaning his nails.",
+     "spoken": "In Rome, Horace watched a man in a barber shop, penknife in hand, quietly cleaning his nails.",
+     "hero": "a typeset Horace document, labelled recreation, with the real quote",
+     "typed": "ROME"
+    },
+    {
+     "id": 14,
+     "text": "Romans carried nail cleaners on rings, with tweezers and ear scoops.",
+     "spoken": "Romans carried nail cleaners on rings, with tweezers and ear scoops.",
+     "hero": "a Roman bronze toilet set on its ring (archive photo)",
+     "typed": ""
+    },
+    {
+     "id": 15,
+     "text": "A V-shaped tip cleaned underneath, and could file an edge smooth.",
+     "spoken": "A V-shaped tip cleaned underneath, and could file an edge smooth.",
+     "hero": "the V-shaped nail cleaner, close up (archive photo)",
+     "typed": "V-TIP"
+    }
+   ]
+  },
+  {
+   "take": "T06_medieval",
+   "lines": [
+    {
+     "id": 16,
+     "text": "For a thousand years after Rome, the answer barely changed.",
+     "spoken": "For a thousand years after Rome, the answer barely changed.",
+     "hero": "card MEDIEVAL; the same knife, older and worn",
+     "typed": "MEDIEVAL"
+    },
+    {
+     "id": 17,
+     "text": "Small shears, a small knife, and pumice to smooth the edge.",
+     "spoken": "Small shears, a small knife, and pumice to smooth the edge.",
+     "hero": "small shears and a pumice stone, pinned prints",
+     "typed": ""
+    }
+   ]
+  },
+  {
+   "take": "T07_china_reversal",
+   "lines": [
+    {
+     "id": 18,
+     "text": "Then imperial China turned the whole idea upside down.",
+     "spoken": "Then imperial China turned the whole idea upside down.",
+     "hero": "card IMPERIAL CHINA; a long-nailed hand (archive portrait)",
+     "typed": "IMPERIAL CHINA"
+    },
+    {
+     "id": 19,
+     "text": "Long nails proved you did no manual work, so they were grown, not trimmed.",
+     "spoken": "Long nails proved you did no manual work, so they were grown, not trimmed.",
+     "hero": "the long nails, close up (archive photo)",
+     "typed": "GROWN, NOT TRIMMED"
+    },
+    {
+     "id": 20,
+     "text": "Guards of gold, silver and jade protected nails over three inches long.",
+     "spoken": "Guards of gold, silver and jade protected nails over three inches long.",
+     "hero": "Qing dynasty nail guards (museum photo)",
+     "typed": "NAIL GUARDS"
+    }
+   ]
+  },
+  {
+   "take": "T08_the_clipper",
+   "lines": [
+    {
+     "id": 21,
+     "text": "The modern clipper only arrives in 1875, with Valentine Fogerty's patent.",
+     "spoken": "The modern clipper only arrives in eighteen seventy-five, with Valentine Fogerty's patent.",
+     "hero": "the 1875 patent drawing (public domain document)",
+     "typed": "1875"
+    },
+    {
+     "id": 22,
+     "text": "In 1881, Heim and Matz patent the clamp style we still use today.",
+     "spoken": "In eighteen eighty-one, Heim and Matz patent the clamp style we still use today.",
+     "hero": "the 1881 clamp-style patent drawing (public domain document)",
+     "typed": "1881"
+    }
+   ]
+  },
+  {
+   "take": "T09_modern_close",
+   "lines": [
+    {
+     "id": 23,
+     "text": "Today that click is stainless steel, made by the million, sold for coins.",
+     "spoken": "Today that click is stainless steel, made by the million, sold for coins.",
+     "hero": "rows of modern clippers, one card",
+     "typed": "TODAY"
+    },
+    {
+     "id": 24,
+     "text": "Stone, teeth, gold and steel. The problem never changed.",
+     "spoken": "Stone, teeth, gold and steel. The problem never changed.",
+     "hero": "final pull-back: the whole board, every era in one frame",
+     "typed": ""
+    }
+   ]
+  }
+ ],
+ "fact_notes": [
+  "Growth rate: fingernails grow about 3 to 3.47 mm per month, toenails about 1.5 to 1.62 mm per month. Cleveland Clinic nail anatomy page; 2010 study reported by Verywell Health.",
+  "Stone Age: NO direct evidence survives - no fingernails survive from Stone Age burials, so wear, biting, flint edges and rough-stone filing are inference from daily labour and tool use. The film says this on screen (line 7).",
+  "Babylon: royal tombs in Ur, southern Babylon, yielded a multi-piece manicure set with solid gold implements; Babylonian noblemen manicured with solid gold tools, traced to about 3200 BC. NAILS Magazine history; nail-care textbook summaries.",
+  "Egypt: manicure instruments found in royal tombs; Egyptians trimmed/shaped with copper and bronze tools, buffed with pumice, stained with henna, red marking highest status. NAILS Magazine; NailPeak ancient nails guide.",
+  "Written mention: descriptions of nail trimming date to the 8th century BC; Deuteronomy 21:12 - she shall shave her head and trim her nails. Wikipedia Nail clipper; Atlas Obscura 2017.",
+  "Paring: before the modern clipper, people used small knives to trim or pare their nails. Wikipedia Nail clipper history.",
+  "Rome: Horace, Epistles (about 20 BC): a close-shaven man in an empty barber booth, penknife in hand, quietly cleaning his nails. Atlas Obscura; National Geographic 2024.",
+  "Roman toilet sets: bronze implements strung like a ring of keys - tweezers, ear scoop, dedicated nail cleaner; V-shaped type in Roman Britain could also serve as a file. National Geographic 2024; ScienceABC.",
+  "Medieval: small shears resembling yarn cutters, or small ordinary blades; small sharp knife and pumice as file. SwissKlip history; Calendar-Australia FAQ. Weakest-sourced era - narration stays generic.",
+  "China: long fingernails a status symbol in Qing dynasty (1644-1912) Manchu high culture, showing no manual labour; protectors of gold, silver, jade, tortoiseshell; Cixi portraits show nails exceeding three inches. Pitt Rivers Museum Body Arts. Origin earlier (Warring States) but film places era at Qing peak so time only moves forward.",
+  "Clipper patents: first US patent for an improvement in finger-nail clippers filed 1875 by Valentine Fogerty (US 161112); clamp-style recognisable today patented 1881 by Eugene Heim and Celestin Matz. Wikipedia; Atlas Obscura 2017. Fogerty 1875 device was closer to a circular file - film wording reflects arrival, not finished design.",
+  "Modern: mass-produced stainless lever clippers are the present-day default - general knowledge, no specific claim."
+ ]
+}

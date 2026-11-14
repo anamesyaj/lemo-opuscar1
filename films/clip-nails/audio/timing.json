@@ -1,0 +1,224 @@
+{
+  "total_duration": 126.909,
+  "lead_in": 0.9,
+  "tail_out": 3.0,
+  "tempo": 1.0,
+  "segments": [
+    {
+      "id": 1,
+      "scene": "T01_open_modern",
+      "caption": "Click. Three seconds, and a nail is cut.",
+      "vo": "Click. Three seconds, and a nail is cut.",
+      "start": 0.9,
+      "end": 4.317,
+      "duration": 3.417
+    },
+    {
+      "id": 2,
+      "scene": "T01_open_modern",
+      "caption": "Your nails grow about three millimetres a month, and they never stop.",
+      "vo": "Your nails grow about three millimetres a month, and they never stop.",
+      "start": 5.117,
+      "end": 9.42,
+      "duration": 4.303
+    },
+    {
+      "id": 3,
+      "scene": "T01_open_modern",
+      "caption": "So every human who ever lived had to solve the same small problem.",
+      "vo": "So every human who ever lived had to solve the same small problem.",
+      "start": 9.87,
+      "end": 13.968,
+      "duration": 4.097
+    },
+    {
+      "id": 4,
+      "scene": "T02_stone_age",
+      "caption": "For most of history, work solved it first.",
+      "vo": "For most of history, work solved it first.",
+      "start": 14.968,
+      "end": 17.844,
+      "duration": 2.877
+    },
+    {
+      "id": 5,
+      "scene": "T02_stone_age",
+      "caption": "Digging, climbing and knapping stone wore nails down, and broke them off.",
+      "vo": "Digging, climbing and knapping stone wore nails down, and broke them off.",
+      "start": 18.294,
+      "end": 23.731,
+      "duration": 5.437
+    },
+    {
+      "id": 6,
+      "scene": "T02_stone_age",
+      "caption": "What work left behind, teeth took off, and rough stone filed the rest.",
+      "vo": "What work left behind, teeth took off, and rough stone filed the rest.",
+      "start": 24.181,
+      "end": 29.343,
+      "duration": 5.162
+    },
+    {
+      "id": 7,
+      "scene": "T02_stone_age",
+      "caption": "No nails survive from that age, so this part is a careful guess.",
+      "vo": "No nails survive from that age, so this part is a careful guess.",
+      "start": 29.793,
+      "end": 33.872,
+      "duration": 4.079
+    },
+    {
+      "id": 8,
+      "scene": "T03_first_cities",
+      "caption": "About five thousand years ago, cities turned nail care into a craft.",
+      "vo": "About five thousand years ago, cities turned nail care into a craft.",
+      "start": 34.872,
+      "end": 39.631,
+      "duration": 4.758
+    },
+    {
+      "id": 9,
+      "scene": "T03_first_cities",
+      "caption": "In Babylon, noblemen manicured their nails with tools of solid gold.",
+      "vo": "In Babylon, noblemen manicured their nails with tools of solid gold.",
+      "start": 40.081,
+      "end": 44.603,
+      "duration": 4.522
+    },
+    {
+      "id": 10,
+      "scene": "T03_first_cities",
+      "caption": "In Egypt, manicure tools were buried in royal tombs, and henna stained nails red.",
+      "vo": "In Egypt, manicure tools were buried in royal tombs, and henna stained nails red.",
+      "start": 45.053,
+      "end": 50.79,
+      "duration": 5.738
+    },
+    {
+      "id": 11,
+      "scene": "T04_written_word",
+      "caption": "The oldest written mention we have dates to the eighth century before Christ.",
+      "vo": "The oldest written mention we have dates to the eighth century before Christ.",
+      "start": 51.79,
+      "end": 55.673,
+      "duration": 3.883
+    },
+    {
+      "id": 12,
+      "scene": "T04_written_word",
+      "caption": "They pared them with a small knife, the way you pare an apple.",
+      "vo": "They pared them with a small knife, the way you pare an apple.",
+      "start": 56.123,
+      "end": 59.063,
+      "duration": 2.94
+    },
+    {
+      "id": 13,
+      "scene": "T05_rome",
+      "caption": "In Rome, Horace watched a man in a barber shop, penknife in hand, quietly cleaning his nails.",
+      "vo": "In Rome, Horace watched a man in a barber shop, penknife in hand, quietly cleaning his nails.",
+      "start": 60.063,
+      "end": 66.659,
+      "duration": 6.596
+    },
+    {
+      "id": 14,
+      "scene": "T05_rome",
+      "caption": "Romans carried nail cleaners on rings, with tweezers and ear scoops.",
+      "vo": "Romans carried nail cleaners on rings, with tweezers and ear scoops.",
+      "start": 67.109,
+      "end": 71.635,
+      "duration": 4.526
+    },
+    {
+      "id": 15,
+      "scene": "T05_rome",
+      "caption": "A V-shaped tip cleaned underneath, and could file an edge smooth.",
+      "vo": "A V-shaped tip cleaned underneath, and could file an edge smooth.",
+      "start": 72.085,
+      "end": 76.226,
+      "duration": 4.141
+    },
+    {
+      "id": 16,
+      "scene": "T06_medieval",
+      "caption": "For a thousand years after Rome, the answer barely changed.",
+      "vo": "For a thousand years after Rome, the answer barely changed.",
+      "start": 77.226,
+      "end": 80.78,
+      "duration": 3.554
+    },
+    {
+      "id": 17,
+      "scene": "T06_medieval",
+      "caption": "Small shears, a small knife, and pumice to smooth the edge.",
+      "vo": "Small shears, a small knife, and pumice to smooth the edge.",
+      "start": 81.23,
+      "end": 85.298,
+      "duration": 4.068
+    },
+    {
+      "id": 18,
+      "scene": "T07_china_reversal",
+      "caption": "Then imperial China turned the whole idea upside down.",
+      "vo": "Then imperial China turned the whole idea upside down.",
+      "start": 86.298,
+      "end": 89.891,
+      "duration": 3.593
+    },
+    {
+      "id": 19,
+      "scene": "T07_china_reversal",
+      "caption": "Long nails proved you did no manual work, so they were grown, not trimmed.",
+      "vo": "Long nails proved you did no manual work, so they were grown, not trimmed.",
+      "start": 90.341,
+      "end": 95.331,
+      "duration": 4.991
+    },
+    {
+      "id": 20,
+      "scene": "T07_china_reversal",
+      "caption": "Guards of gold, silver and jade protected nails over three inches long.",
+      "vo": "Guards of gold, silver and jade protected nails over three inches long.",
+      "start": 95.781,
+      "end": 100.661,
+      "duration": 4.88
+    },
+    {
+      "id": 21,
+      "scene": "T08_the_clipper",
+      "caption": "The modern clipper only arrives in 1875, with Valentine Fogerty's patent.",
+      "vo": "The modern clipper only arrives in eighteen seventy-five, with Valentine Fogerty's patent.",
+      "start": 101.661,
+      "end": 106.798,
+      "duration": 5.137
+    },
+    {
+      "id": 22,
+      "scene": "T08_the_clipper",
+      "caption": "In 1881, Heim and Matz patent the clamp style we still use today.",
+      "vo": "In eighteen eighty-one, Heim and Matz patent the clamp style we still use today.",
+      "start": 107.248,
+      "end": 112.085,
+      "duration": 4.837
+    },
+    {
+      "id": 23,
+      "scene": "T09_modern_close",
+      "caption": "Today that click is stainless steel, made by the million, sold for coins.",
+      "vo": "Today that click is stainless steel, made by the million, sold for coins.",
+      "start": 113.085,
+      "end": 118.238,
+      "duration": 5.153
+    },
+    {
+      "id": 24,
+      "scene": "T09_modern_close",
+      "caption": "Stone, teeth, gold and steel. The problem never changed.",
+      "vo": "Stone, teeth, gold and steel. The problem never changed.",
+      "start": 118.688,
+      "end": 123.909,
+      "duration": 5.221
+    }
+  ]
+}
