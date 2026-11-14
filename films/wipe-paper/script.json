@@ -1,0 +1,284 @@
+{
+ "meta": {
+  "title": "WIPE — How Humans Wiped Before Toilet Paper",
+  "format": "Your Move long-form cinematic (evidence wall), picture-first, no-pause pacing",
+  "tone": "COMEDY LOCK (user, Nov 14, 2026): playful potty words throughout — poo poo, bum bum, buddy — silly euphemisms, straight facts. Advertiser-safe: no crude profanity.",
+  "voice": "same locked male AI Studio voice as CLIP; user generates",
+  "target_seconds": 130
+ },
+ "fact_notes": [
+  "Toilet paper is recent: first commercial product 1857 (Gayetty) — 'barely 170 years old' is arithmetic from 1857 to today.",
+  "Stone Age kit (stones/leaves/moss/snow/water) is INFERENCE — organic materials rot; stated on screen with the INFERRED stamp, same honesty device as CLIP.",
+  "Greek pessoi: smooth stones/pebbles kept for wiping; the 'three stones' minimum is an attested ancient saying (widely cited in scholarship on ancient hygiene). Ostraka: pottery shards used for wiping; inscribed shards with names survive (archaeological reports, widely covered).",
+  "Roman tersorium: sponge on a stick in communal latrines, shared, rinsed in running water channel or vinegar/salt water (multiple museum/scholarly sources; the film says 'water channel').",
+  "China: paper used for toilet hygiene by 589 AD (Lapham's Quarterly timeline; DK/Smithsonian Inventions). Yan Zhitui (6th c.) advised against using paper bearing sages' writing as toilet paper — the paraphrase in L15 follows his Family Instructions. 1393 imperial order: 720,000 sheets for the court, incl. large soft perfumed sheets for the imperial family (recorded in Ming sources, via Joseph Needham, Science and Civilisation in China).",
+  "Medieval West: moss/hay/sticks common; wool/cloth for the wealthy; cloth fragments survive in cesspits (research report, Ireland/Norway finds).",
+  "Colonial America: dried corncobs by the outhouse; printed catalogues (Sears) and newspapers hung in outhouses afterwards (Farmers' Almanac and museum sources).",
+  "Gayetty 1857: first US commercial toilet paper, flat aloe 'medicated' sheets, each watermarked/printed with his name; sold as a health product; purchases were embarrassing/shame-wrapped (Smithsonian Magazine, 'A Brief History of Toilet Paper').",
+  "Scott brothers: toilet paper on a roll, 1890 (company history; they were initially embarrassed to be associated with it). Early paper could contain wood splinters; Northern Tissue advertised 'splinter-free' in 1935 (famous campaign, widely documented).",
+  "Close: most of the world uses water washing rather than paper (widely reported global practice; phrased without a hard percentage)."
+ ],
+ "takes": [
+  {
+   "take": "T01_open",
+   "lines": [
+    {
+     "id": 1,
+     "text": "Plop. You did your poo poo. Now what, buddy?",
+     "spoken": "Plop. You did your poo poo. Now what, buddy?",
+     "hero": "a modern toilet roll, extreme close-up",
+     "typed": "",
+     "gap_after": 0.2
+    },
+    {
+     "id": 2,
+     "text": "For you, the answer is soft, white, and always just... there.",
+     "spoken": "For you, the answer is soft, white, and always just... there.",
+     "hero": "the roll unspooling",
+     "typed": "",
+     "gap_after": 0.2
+    },
+    {
+     "id": 3,
+     "text": "But toilet paper is a baby. Barely a hundred and seventy years old.",
+     "spoken": "But toilet paper is a baby. Barely a hundred and seventy years old.",
+     "hero": "counters beside the roll",
+     "typed": "170 YEARS",
+     "gap_after": 0.2
+    },
+    {
+     "id": 4,
+     "text": "So for thousands of years... how did everybody wipe their bum bum?",
+     "spoken": "So for thousands of years... how did everybody wipe their bum bum?",
+     "hero": "the title, set big",
+     "typed": "WIPE",
+     "gap_after": 0.3
+    }
+   ]
+  },
+  {
+   "take": "T02_stone",
+   "lines": [
+    {
+     "id": 5,
+     "text": "The world's first toilet kit: whatever was lying around.",
+     "spoken": "The world's first toilet kit: whatever was lying around.",
+     "hero": "stones, leaves and moss still-life print",
+     "typed": "",
+     "gap_after": 0.2
+    },
+    {
+     "id": 6,
+     "text": "Smooth stones. Leaves. Moss. Snow, if you were unlucky.",
+     "spoken": "Smooth stones. Leaves. Moss. Snow, if you were unlucky.",
+     "hero": "four mini prints: stone, leaves, moss, snow",
+     "typed": "",
+     "gap_after": 0.2
+    },
+    {
+     "id": 7,
+     "text": "No receipts survive. It all rotted. So this part is our best guess.",
+     "spoken": "No receipts survive. It all rotted. So this part is our best guess.",
+     "hero": "still-life print with the INFERRED stamp",
+     "typed": "INFERRED",
+     "gap_after": 0.3
+    }
+   ]
+  },
+  {
+   "take": "T03_greece",
+   "lines": [
+    {
+     "id": 8,
+     "text": "The Greeks upgraded: little pebbles, kept by the potty.",
+     "spoken": "The Greeks upgraded: little pebbles, kept by the potty.",
+     "hero": "smooth pebbles print, labelled PESSOI",
+     "typed": "",
+     "gap_after": 0.2
+    },
+    {
+     "id": 9,
+     "text": "Three stones was the polite minimum. There was a whole saying about it.",
+     "spoken": "Three stones was the polite minimum. There was a whole saying about it.",
+     "hero": "three pebbles in a row",
+     "typed": "",
+     "gap_after": 0.2
+    },
+    {
+     "id": 10,
+     "text": "Or a pottery shard. Some still have names scratched on them. Imagine the grudge.",
+     "spoken": "Or a pottery shard. Some still have names scratched on them. Imagine the grudge.",
+     "hero": "the Themistocles ostrakon, name inscribed",
+     "typed": "",
+     "gap_after": 0.3
+    }
+   ]
+  },
+  {
+   "take": "T04_rome",
+   "lines": [
+    {
+     "id": 11,
+     "text": "Rome said, why wipe alone? Pooping was a group activity.",
+     "spoken": "Rome said, why wipe alone? Pooping was a group activity.",
+     "hero": "Roman communal latrine benches",
+     "typed": "",
+     "gap_after": 0.2
+    },
+    {
+     "id": 12,
+     "text": "And the house sponge was shared. One sponge, on a stick, for everyone.",
+     "spoken": "And the house sponge was shared. One sponge, on a stick, for everyone.",
+     "hero": "tersorium replica with the SHARED stamp",
+     "typed": "SHARED!",
+     "gap_after": 0.2
+    },
+    {
+     "id": 13,
+     "text": "Between buddies it got a rinse in the channel, and passed along. Friendship.",
+     "spoken": "Between buddies it got a rinse in the channel, and passed along. Friendship.",
+     "hero": "latrine water channel close-up",
+     "typed": "",
+     "gap_after": 0.3
+    }
+   ]
+  },
+  {
+   "take": "T05_china",
+   "lines": [
+    {
+     "id": 14,
+     "text": "Meanwhile, China was living in the future.",
+     "spoken": "Meanwhile, China was living in the future.",
+     "hero": "papermaking woodcut print",
+     "typed": "",
+     "gap_after": 0.2
+    },
+    {
+     "id": 15,
+     "text": "By 589, a scholar begged people: stop wiping your bum with pages of wise writing.",
+     "spoken": "By 589, a scholar begged people: stop wiping your bum with pages of wise writing.",
+     "hero": "Dunhuang manuscript print",
+     "typed": "589 AD",
+     "gap_after": 0.2
+    },
+    {
+     "id": 16,
+     "text": "By 1393, the palace ordered seven hundred twenty thousand sheets a year. Perfumed. Royal poo poo only.",
+     "spoken": "By 1393, the palace ordered seven hundred twenty thousand sheets a year. Perfumed. Royal poo poo only.",
+     "hero": "palace print and drying sheets woodcut",
+     "typed": "720,000 SHEETS A YEAR",
+     "gap_after": 0.3
+    }
+   ]
+  },
+  {
+   "take": "T06_medieval",
+   "lines": [
+    {
+     "id": 17,
+     "text": "Back in Europe? Moss, hay, a stick. The Middle Ages were itchy.",
+     "spoken": "Back in Europe? Moss, hay, a stick. The Middle Ages were itchy.",
+     "hero": "moss and hay prints",
+     "typed": "",
+     "gap_after": 0.2
+    },
+    {
+     "id": 18,
+     "text": "Rich bum bums got wool and lace. Everyone else made do.",
+     "spoken": "Rich bum bums got wool and lace. Everyone else made do.",
+     "hero": "wool cloth print",
+     "typed": "",
+     "gap_after": 0.3
+    }
+   ]
+  },
+  {
+   "take": "T07_america",
+   "lines": [
+    {
+     "id": 19,
+     "text": "Colonial America kept dried corncobs by the outhouse.",
+     "spoken": "Colonial America kept dried corncobs by the outhouse.",
+     "hero": "dried corncobs and outhouse prints",
+     "typed": "",
+     "gap_after": 0.2
+    },
+    {
+     "id": 20,
+     "text": "Then came the catalogue. Free, plentiful, readable first.",
+     "spoken": "Then came the catalogue. Free, plentiful, readable first.",
+     "hero": "Sears catalogue page print",
+     "typed": "",
+     "gap_after": 0.2
+    },
+    {
+     "id": 21,
+     "text": "Read your page. Do your business. Then the page does its.",
+     "spoken": "Read your page. Do your business. Then the page does its.",
+     "hero": "catalogue page hanging on a nail",
+     "typed": "",
+     "gap_after": 0.3
+    }
+   ]
+  },
+  {
+   "take": "T08_invention",
+   "lines": [
+    {
+     "id": 22,
+     "text": "1857: Gayetty sells the first real toilet paper. His name, printed on every sheet.",
+     "spoken": "1857: Gayetty sells the first real toilet paper. His name, printed on every sheet.",
+     "hero": "Gayetty's 1857 advertisement print",
+     "typed": "",
+     "gap_after": 0.2
+    },
+    {
+     "id": 23,
+     "text": "People were so embarrassed to buy it, shops hid it in plain brown wrapping.",
+     "spoken": "People were so embarrassed to buy it, shops hid it in plain brown wrapping.",
+     "hero": "plain brown parcel print (drawn)",
+     "typed": "",
+     "gap_after": 0.2
+    },
+    {
+     "id": 24,
+     "text": "1890: the Scott brothers put it on a roll. Early rolls could give you splinters.",
+     "spoken": "1890: the Scott brothers put it on a roll. Early rolls could give you splinters.",
+     "hero": "the roll print, 1890 counter",
+     "typed": "",
+     "gap_after": 0.2
+    },
+    {
+     "id": 25,
+     "text": "1935: one brand wins with two magic words. Splinter-free.",
+     "spoken": "1935: one brand wins with two magic words. Splinter-free.",
+     "hero": "the roll bright with SPLINTER-FREE hilite",
+     "typed": "SPLINTER-FREE",
+     "gap_after": 0.3
+    }
+   ]
+  },
+  {
+   "take": "T09_today",
+   "lines": [
+    {
+     "id": 26,
+     "text": "And yet, most of the world still skips paper, and washes with water.",
+     "spoken": "And yet, most of the world still skips paper, and washes with water.",
+     "hero": "modern bidet print",
+     "typed": "",
+     "gap_after": 0.2
+    },
+    {
+     "id": 27,
+     "text": "Stones, sponges, corncobs, catalogues. Your bum bum has come a long way, buddy.",
+     "spoken": "Stones, sponges, corncobs, catalogues. Your bum bum has come a long way, buddy.",
+     "hero": "the whole board, pull-back",
+     "typed": "",
+     "gap_after": 0.0
+    }
+   ]
+  }
+ ]
+}

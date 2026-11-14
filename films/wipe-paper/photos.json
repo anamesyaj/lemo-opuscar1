@@ -1,0 +1,100 @@
+{
+ "grade": "sepia",
+ "photos": [
+  {
+   "id": "P01",
+   "kind": "photo",
+   "commons": "File:Roll of toilet paper with one sheet folded down in front.jpg"
+  },
+  {
+   "id": "P02",
+   "kind": "photo",
+   "commons": "File:Five Pebbles.jpg"
+  },
+  {
+   "id": "P03",
+   "kind": "photo",
+   "commons": "File:Tarn Moss (close-up) - geograph.org.uk - 4542107.jpg"
+  },
+  {
+   "id": "P04",
+   "kind": "photo",
+   "commons": "File:Fresh snow on dead grass.jpg"
+  },
+  {
+   "id": "P05",
+   "kind": "photo",
+   "commons": "File:Fresh green leaves background (55060632960).jpg"
+  },
+  {
+   "id": "P06",
+   "kind": "photo",
+   "commons": "File:Ostracon with the name of Themistocles.jpg"
+  },
+  {
+   "id": "P07",
+   "kind": "photo",
+   "commons": "File:Bardon Mill, Housesteads Roman Fort, The latrine - geograph.org.uk - 7851725.jpg"
+  },
+  {
+   "id": "P08",
+   "kind": "photo",
+   "commons": "File:Xylospongium.jpg"
+  },
+  {
+   "id": "P09",
+   "kind": "paper",
+   "commons": "File:Five Steps of Papermaking - Step 5 - Drying the Sheets of Paper on a Wall - As described by Cai Lun in 105 CE.jpg"
+  },
+  {
+   "id": "P10",
+   "kind": "paper",
+   "commons": "File:Five Steps of Papermaking - Step 3 - Casting the Paper Pulp - As described by Cai Lun in 105 CE.jpg"
+  },
+  {
+   "id": "P11",
+   "kind": "photo",
+   "commons": "File:Digitisation of a Dunhuang manuscript.jpg"
+  },
+  {
+   "id": "P12",
+   "kind": "photo",
+   "commons": "File:Hall of Supreme Harmony.JPG"
+  },
+  {
+   "id": "P13",
+   "kind": "photo",
+   "commons": "File:Hay roll macro.jpg"
+  },
+  {
+   "id": "P14",
+   "kind": "photo",
+   "commons": "File:Poly wool herringbone metal 8k (Rico Cilliers and colormass via Poly Haven).jpg"
+  },
+  {
+   "id": "P15",
+   "kind": "photo",
+   "commons": "File:Dried corn cobs and kernels stored in a rustic barn during autumn harvest season.jpg"
+  },
+  {
+   "id": "P16",
+   "kind": "photo",
+   "commons": "File:Peterson Farmstead Outhouse-front.jpg"
+  },
+  {
+   "id": "P17",
+   "kind": "paper",
+   "commons": "File:Acme Queen Parlor Organ, $27.45 at c.1902 Sears Roebuck Catalog, MIM PHX.jpg"
+  },
+  {
+   "id": "P18",
+   "kind": "paper",
+   "commons": "File:GayettysMedicatedPaperAdvertisement.jpg"
+  },
+  {
+   "id": "P20",
+   "kind": "photo",
+   "commons": "File:Bidet weiss.jpg"
+  }
+ ]
+}

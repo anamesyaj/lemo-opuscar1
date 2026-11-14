@@ -1,0 +1,251 @@
+{
+  "total_duration": 115.17,
+  "lead_in": 0.9,
+  "tail_out": 3.0,
+  "tempo": 1.0,
+  "segments": [
+    {
+      "id": 1,
+      "scene": "T01_open",
+      "caption": "Plop. You did your poo poo. Now what, buddy?",
+      "vo": "Plop. You did your poo poo. Now what, buddy?",
+      "start": 0.9,
+      "end": 3.401,
+      "duration": 2.501
+    },
+    {
+      "id": 2,
+      "scene": "T01_open",
+      "caption": "For you, the answer is soft, white, and always just... there.",
+      "vo": "For you, the answer is soft, white, and always just... there.",
+      "start": 3.601,
+      "end": 7.563,
+      "duration": 3.962
+    },
+    {
+      "id": 3,
+      "scene": "T01_open",
+      "caption": "But toilet paper is a baby. Barely a hundred and seventy years old.",
+      "vo": "But toilet paper is a baby. Barely a hundred and seventy years old.",
+      "start": 7.763,
+      "end": 12.172,
+      "duration": 4.409
+    },
+    {
+      "id": 4,
+      "scene": "T01_open",
+      "caption": "So for thousands of years... how did everybody wipe their bum bum?",
+      "vo": "So for thousands of years... how did everybody wipe their bum bum?",
+      "start": 12.372,
+      "end": 16.06,
+      "duration": 3.689
+    },
+    {
+      "id": 5,
+      "scene": "T02_stone",
+      "caption": "The world's first toilet kit: whatever was lying around.",
+      "vo": "The world's first toilet kit: whatever was lying around.",
+      "start": 16.36,
+      "end": 19.33,
+      "duration": 2.97
+    },
+    {
+      "id": 6,
+      "scene": "T02_stone",
+      "caption": "Smooth stones. Leaves. Moss. Snow, if you were unlucky.",
+      "vo": "Smooth stones. Leaves. Moss. Snow, if you were unlucky.",
+      "start": 19.53,
+      "end": 23.488,
+      "duration": 3.958
+    },
+    {
+      "id": 7,
+      "scene": "T02_stone",
+      "caption": "No receipts survive. It all rotted. So this part is our best guess.",
+      "vo": "No receipts survive. It all rotted. So this part is our best guess.",
+      "start": 23.688,
+      "end": 27.081,
+      "duration": 3.393
+    },
+    {
+      "id": 8,
+      "scene": "T03_greece",
+      "caption": "The Greeks upgraded: little pebbles, kept by the potty.",
+      "vo": "The Greeks upgraded: little pebbles, kept by the potty.",
+      "start": 27.381,
+      "end": 30.224,
+      "duration": 2.843
+    },
+    {
+      "id": 9,
+      "scene": "T03_greece",
+      "caption": "Three stones was the polite minimum. There was a whole saying about it.",
+      "vo": "Three stones was the polite minimum. There was a whole saying about it.",
+      "start": 30.424,
+      "end": 33.375,
+      "duration": 2.95
+    },
+    {
+      "id": 10,
+      "scene": "T03_greece",
+      "caption": "Or a pottery shard. Some still have names scratched on them. Imagine the grudge.",
+      "vo": "Or a pottery shard. Some still have names scratched on them. Imagine the grudge.",
+      "start": 33.575,
+      "end": 37.951,
+      "duration": 4.377
+    },
+    {
+      "id": 11,
+      "scene": "T04_rome",
+      "caption": "Rome said, why wipe alone? Pooping was a group activity.",
+      "vo": "Rome said, why wipe alone? Pooping was a group activity.",
+      "start": 38.251,
+      "end": 42.276,
+      "duration": 4.025
+    },
+    {
+      "id": 12,
+      "scene": "T04_rome",
+      "caption": "And the house sponge was shared. One sponge, on a stick, for everyone.",
+      "vo": "And the house sponge was shared. One sponge, on a stick, for everyone.",
+      "start": 42.476,
+      "end": 46.827,
+      "duration": 4.351
+    },
+    {
+      "id": 13,
+      "scene": "T04_rome",
+      "caption": "Between buddies it got a rinse in the channel, and passed along. Friendship.",
+      "vo": "Between buddies it got a rinse in the channel, and passed along. Friendship.",
+      "start": 47.027,
+      "end": 50.812,
+      "duration": 3.785
+    },
+    {
+      "id": 14,
+      "scene": "T05_china",
+      "caption": "Meanwhile, China was living in the future.",
+      "vo": "Meanwhile, China was living in the future.",
+      "start": 51.112,
+      "end": 53.177,
+      "duration": 2.065
+    },
+    {
+      "id": 15,
+      "scene": "T05_china",
+      "caption": "By 589, a scholar begged people: stop wiping your bum with pages of wise writing.",
+      "vo": "By 589, a scholar begged people: stop wiping your bum with pages of wise writing.",
+      "start": 53.377,
+      "end": 59.082,
+      "duration": 5.704
+    },
+    {
+      "id": 16,
+      "scene": "T05_china",
+      "caption": "By 1393, the palace ordered seven hundred twenty thousand sheets a year. Perfumed. Royal poo poo only.",
+      "vo": "By 1393, the palace ordered seven hundred twenty thousand sheets a year. Perfumed. Royal poo poo only.",
+      "start": 59.282,
+      "end": 66.529,
+      "duration": 7.248
+    },
+    {
+      "id": 17,
+      "scene": "T06_medieval",
+      "caption": "Back in Europe? Moss, hay, a stick. The Middle Ages were itchy.",
+      "vo": "Back in Europe? Moss, hay, a stick. The Middle Ages were itchy.",
+      "start": 66.829,
+      "end": 70.88,
+      "duration": 4.051
+    },
+    {
+      "id": 18,
+      "scene": "T06_medieval",
+      "caption": "Rich bum bums got wool and lace. Everyone else made do.",
+      "vo": "Rich bum bums got wool and lace. Everyone else made do.",
+      "start": 71.08,
+      "end": 74.206,
+      "duration": 3.126
+    },
+    {
+      "id": 19,
+      "scene": "T07_america",
+      "caption": "Colonial America kept dried corncobs by the outhouse.",
+      "vo": "Colonial America kept dried corncobs by the outhouse.",
+      "start": 74.506,
+      "end": 77.451,
+      "duration": 2.946
+    },
+    {
+      "id": 20,
+      "scene": "T07_america",
+      "caption": "Then came the catalogue. Free, plentiful, readable first.",
+      "vo": "Then came the catalogue. Free, plentiful, readable first.",
+      "start": 77.651,
+      "end": 81.776,
+      "duration": 4.124
+    },
+    {
+      "id": 21,
+      "scene": "T07_america",
+      "caption": "Read your page. Do your business. Then the page does its.",
+      "vo": "Read your page. Do your business. Then the page does its.",
+      "start": 81.976,
+      "end": 84.933,
+      "duration": 2.957
+    },
+    {
+      "id": 22,
+      "scene": "T08_invention",
+      "caption": "1857: Gayetty sells the first real toilet paper. His name, printed on every sheet.",
+      "vo": "1857: Gayetty sells the first real toilet paper. His name, printed on every sheet.",
+      "start": 85.233,
+      "end": 90.695,
+      "duration": 5.462
+    },
+    {
+      "id": 23,
+      "scene": "T08_invention",
+      "caption": "People were so embarrassed to buy it, shops hid it in plain brown wrapping.",
+      "vo": "People were so embarrassed to buy it, shops hid it in plain brown wrapping.",
+      "start": 90.895,
+      "end": 94.261,
+      "duration": 3.366
+    },
+    {
+      "id": 24,
+      "scene": "T08_invention",
+      "caption": "1890: the Scott brothers put it on a roll. Early rolls could give you splinters.",
+      "vo": "1890: the Scott brothers put it on a roll. Early rolls could give you splinters.",
+      "start": 94.461,
+      "end": 98.761,
+      "duration": 4.3
+    },
+    {
+      "id": 25,
+      "scene": "T08_invention",
+      "caption": "1935: one brand wins with two magic words. Splinter-free.",
+      "vo": "1935: one brand wins with two magic words. Splinter-free.",
+      "start": 98.961,
+      "end": 103.58,
+      "duration": 4.619
+    },
+    {
+      "id": 26,
+      "scene": "T09_today",
+      "caption": "And yet, most of the world still skips paper, and washes with water.",
+      "vo": "And yet, most of the world still skips paper, and washes with water.",
+      "start": 103.88,
+      "end": 106.914,
+      "duration": 3.034
+    },
+    {
+      "id": 27,
+      "scene": "T09_today",
+      "caption": "Stones, sponges, corncobs, catalogues. Your bum bum has come a long way, buddy.",
+      "vo": "Stones, sponges, corncobs, catalogues. Your bum bum has come a long way, buddy.",
+      "start": 107.114,
+      "end": 112.17,
+      "duration": 5.057
+    }
+  ]
+}
