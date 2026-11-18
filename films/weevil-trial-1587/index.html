@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>The French Town That Sued Tiny Bugs (1587)</title>
+<link rel="stylesheet" href="/core/fonts/fonts.css">
+<style>
+  html, body {
+    margin: 0; height: 100%; background: #0b0f19; color: #f6ead0;
+    font: 14px "Fredoka", system-ui, sans-serif; overflow: hidden;
+  }
+  #wrap {
+    position: fixed; inset: 0 0 60px 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #stage {
+    height: 100%; width: auto; aspect-ratio: 9 / 16;
+    background: #0b101b; box-shadow: 0 10px 40px rgba(0,0,0,.6);
+    display: block;
+  }
+  #bar {
+    position: fixed; left: 0; right: 0; bottom: 0; height: 60px;
+    display: flex; gap: 12px; align-items: center; padding: 0 16px;
+    background: #17141f; box-sizing: border-box;
+  }
+  #bar button {
+    background: #9c2d2a; color: #fff; border: 0; border-radius: 8px;
+    padding: 8px 16px; font-weight: 600; font-family: inherit; cursor: pointer;
+  }
+  #bar input[type=range] { flex: 1; }
+  #msg { min-width: 110px; font-variant-numeric: tabular-nums; opacity: 0.9; }
+  body.render #bar { display: none; }
+  body.render #wrap { inset: 0; display: block; }
+  body.render #stage { width: 1080px; height: 1920px; box-shadow: none; }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "three": "/node_modules/three/build/three.module.js"
+  }
+}
+</script>
+</head>
+<body>
+<div id="wrap"><canvas id="stage" width="1080" height="1920"></canvas></div>
+<div id="bar">
+  <button id="play">Play</button>
+  <input id="scrub" type="range" min="0" max="30" step="0.033" value="0">
+  <div id="msg">0.00 / 30.0s</div>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

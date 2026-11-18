@@ -1,0 +1,45 @@
+[
+  {
+    "id": "01",
+    "voice": "bm_fable",
+    "speed": 1.12,
+    "lang": "en-gb",
+    "text": "In fifteen eighty seven, a French town actually sued tiny green weevils for eating their vineyards.",
+    "asr": "In 1587, a French town actually sued tiny green weevils for eating their vineyards."
+  },
+  {
+    "id": "02",
+    "voice": "bm_fable",
+    "speed": 1.12,
+    "lang": "en-gb",
+    "text": "The church court even gave the bugs real defense lawyers, who nearly won the case."
+  },
+  {
+    "id": "03",
+    "voice": "bm_fable",
+    "speed": 1.12,
+    "lang": "en-gb",
+    "text": "Since God created insects first, lawyers argued bugs held prior rights to eat green leaves."
+  },
+  {
+    "id": "04",
+    "voice": "bm_fable",
+    "speed": 1.12,
+    "lang": "en-gb",
+    "text": "Panicked villagers offered the bugs free land, yet the lawyer rejected it as rocky dirt."
+  },
+  {
+    "id": "05",
+    "voice": "bm_fable",
+    "speed": 1.12,
+    "lang": "en-gb",
+    "text": "Months of delays dragged on until the bishop finally penned a verdict."
+  },
+  {
+    "id": "06",
+    "voice": "bm_fable",
+    "speed": 1.12,
+    "lang": "en-gb",
+    "text": "History never learned who won, because insects literally chewed up the last page!"
+  }
+]

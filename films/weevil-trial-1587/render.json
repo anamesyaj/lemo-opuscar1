@@ -1,0 +1,32 @@
+{
+  "_trigger": "weevil-trial-1587-v1",
+  "audio": {
+    "music_script": "films/weevil-trial-1587/make-music.py",
+    "voice_parts": "audio/voice.flac.b64.part"
+  },
+  "captions": {
+    "burned_in": true,
+    "srt": "audio/captions.srt"
+  },
+  "chunks": 18,
+  "film": "weevil-trial-1587",
+  "fps": 30,
+  "grain": 0,
+  "look": {
+    "stills": [
+      { "name": "vineyard_hook", "q": "render=1" },
+      { "name": "court_witness", "q": "render=1" },
+      { "name": "verdict_bite", "q": "render=1" }
+    ]
+  },
+  "mode": "film",
+  "out": "weevil-trial-1587.mp4",
+  "pages": [
+    {
+      "dir": ".",
+      "dur": 30.0,
+      "q": "render=1"
+    }
+  ],
+  "size": "1080x1920"
+}

@@ -1,0 +1,21 @@
+CREDITS & THIRD-PARTY LICENCES — weevil-trial-1587
+
+1. Historical Record & Legal Quotes
+   - E. P. Evans, "The Criminal Prosecution and Capital Punishment of Animals" (London: William Heinemann / New York: E. P. Dutton, 1906), Public Domain (Project Gutenberg eBook #43286).
+   - Archival transcript summary: St-Julien-en-Maurienne 1587 proceedings (see FACTS.md for scholarly citations).
+
+2. 3D Rendering & Animation Stack
+   - Three.js (MIT License) — https://github.com/mrdoob/three.js/
+   - Cartoon engine architecture adapted from the MIT-licensed cartoon-short-kit workspace pattern.
+   - Playwright Chromium (Apache 2.0 License) — https://playwright.dev/
+
+3. Typography (Self-Hosted Offline WOFF2)
+   - Fredoka (SIL Open Font License 1.1) — https://fonts.google.com/specimen/Fredoka
+   - IM Fell English (SIL Open Font License 1.1) — https://fonts.google.com/specimen/IM+Fell+English
+
+4. Voiceover & Speech Verification
+   - Kokoro-82M (`bm_fable` voice model, Apache 2.0 License) — https://huggingface.co/hexgrad/Kokoro-82M
+   - faster-whisper / OpenAI Whisper `base.en` (MIT License) — https://github.com/SYSTRAN/faster-whisper
+
+5. Original Music Score & Procedural Foley
+   - Synthesized from scratch via pure NumPy + soundfile (no external audio samples or third-party stems).
