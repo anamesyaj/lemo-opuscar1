@@ -1,0 +1,32 @@
+{
+  "_trigger": "zackd-lava-run-1",
+  "audio": {
+    "music_script": "films/what-if-drop-of-lava/make-music.py",
+    "voice_parts": "audio/voice.flac.b64.part"
+  },
+  "captions": {
+    "burned_in": true,
+    "srt": "audio/captions.srt"
+  },
+  "chunks": 18,
+  "film": "what-if-drop-of-lava",
+  "fps": 30,
+  "grain": 0,
+  "look": {
+    "stills": [
+      { "name": "hook", "q": "render=1" },
+      { "name": "cutaway", "q": "render=1" },
+      { "name": "obsidian", "q": "render=1" }
+    ]
+  },
+  "mode": "film",
+  "out": "what-if-drop-of-lava.mp4",
+  "pages": [
+    {
+      "dir": ".",
+      "dur": 60.0,
+      "q": "render=1"
+    }
+  ],
+  "size": "1080x1920"
+}

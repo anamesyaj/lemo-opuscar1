@@ -1,0 +1,20 @@
+# CREDITS — What If You Swallowed a Single Drop of Lava?
+
+All third-party libraries, fonts, and voice models used in this film and their licences:
+
+- **three.js (r128)** — 3D WebGL engine (`three.min.js`)
+  - Source: https://github.com/mrdoob/three.js
+  - Copyright (c) 2010–2021 three.js authors
+  - Licence: MIT License (permissive open-source)
+
+- **Fredoka** — Display & caption typeface (Latin subset embedded from `core/fonts/f3.woff2`)
+  - Source: https://github.com/hafontia/Fredoka-One
+  - Copyright 2016 The Fredoka Project Authors
+  - Licence: SIL Open Font License 1.1 (OFL-1.1, http://scripts.sil.org/OFL)
+
+- **Kokoro-82M / kokoro-onnx** — English neural text-to-speech (`am_michael` voice)
+  - Source: https://huggingface.co/hexgrad/Kokoro-82M · https://github.com/thewh1teagle/kokoro-onnx
+  - Licence: Apache License 2.0
+
+- **Score & Sound Effects (`make-music.py`)**
+  - Original procedural synthesis (NumPy) written specifically for this film; no third-party audio samples used.

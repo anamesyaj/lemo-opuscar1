@@ -1,0 +1,58 @@
+[
+  {
+    "id": "01",
+    "voice": "am_michael",
+    "speed": 1.05,
+    "text": "What if you swallowed a single drop of lava?"
+  },
+  {
+    "id": "02",
+    "voice": "am_michael",
+    "speed": 1.1,
+    "text": "Fresh lava erupts at twelve hundred degrees Celsius, twelve times hotter than boiling water, and thick like honey.",
+    "asr": "Fresh lava erupts at 1200 degrees Celsius, 12 times hotter than boiling water, and thick like honey."
+  },
+  {
+    "id": "03",
+    "voice": "am_michael",
+    "speed": 1.1,
+    "text": "The instant it touches your wet tongue, saliva flashes into steam, expanding seventeen hundred times.",
+    "asr": "The instant it touches your wet tongue, saliva flashes into steam, expanding 1700 times."
+  },
+  {
+    "id": "04",
+    "voice": "am_michael",
+    "speed": 1.1,
+    "text": "For a split second, the drop skates on boiling vapor, searing a white track across your taste buds."
+  },
+  {
+    "id": "05",
+    "voice": "am_michael",
+    "speed": 1.09,
+    "text": "Worse, inhaling that superheated steam swells your airway shut in seconds, threatening suffocation first."
+  },
+  {
+    "id": "06",
+    "voice": "am_michael",
+    "speed": 1.09,
+    "text": "As you swallow, sticky molten rock clings to your esophagus, burning a deep crater into the wall."
+  },
+  {
+    "id": "07",
+    "voice": "am_michael",
+    "speed": 1.08,
+    "text": "Hollywood shows lava melting right through your stomach, yet one small drop holds only a thousand joules of heat."
+  },
+  {
+    "id": "08",
+    "voice": "am_michael",
+    "speed": 1.08,
+    "text": "That boils less than half a gram of water, so stomach acid quenches it in three seconds into volcanic glass."
+  },
+  {
+    "id": "09",
+    "voice": "am_michael",
+    "speed": 1.05,
+    "text": "One drop will not melt through your belly. Steam, a burned throat, and sharp obsidian inside you are the real danger."
+  }
+]
