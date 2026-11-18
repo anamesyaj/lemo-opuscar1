@@ -40,7 +40,7 @@ export function evaluateFrame(f, world) {
   let flash = 0;
 
   if (world) {
-    world.tombLid.position.x = 0.25;
+    world.tombLid.position.x = 0.05;
     world.splashRing.visible = false;
     world.papalCart.visible = false;
   }
@@ -76,11 +76,11 @@ export function evaluateFrame(f, world) {
     shake = [shSlam, shSlam * 1.25];
     const gavelDown = f >= 60 && f <= 74 ? M.ease(f, 60, 65, 'in2') * (1 - M.ease(f, 67, 74, 'out2')) : 0;
 
-    // Left at Pulpit: Furious Pope Stephen VI slamming gavel & pointing at skeleton
+    // Left behind Pulpit (pulpit is at z = -1.22, back face -1.42): Pope Stephen VI at z = -1.85
     const sIdle = M.idle(f, 1);
     cards.push({
       key: `stephen|s1|${f >= 60 && f < 82 ? 'gavel' : 'accuse'}|${(gavelDown * 4) | 0}|${M.blinkAt(f, 1) ? 1 : 0}`,
-      x: -0.92, y: 0, z: -1.78,
+      x: -0.98, y: 0, z: -1.85,
       scY: 0.98 + sIdle.sy, rotZ: sIdle.rz,
       draw: (p) => humanFront(p, 'stephen', {
         seed: 1, expr: 'stern',
@@ -90,14 +90,14 @@ export function evaluateFrame(f, world) {
         talk: (f % 16) < 8 ? 0.65 : 0.15,
       }),
     });
-    contactBlob(fx, -0.92, 0, -1.78, sun, light, 0.98);
+    contactBlob(fx, -0.98, 0, -1.85, sun, light, 0.98);
 
-    // Right on Crimson Papal Throne: Skeleton Pope Formosus in full gold robes & mitre
+    // Right in front of Crimson Papal Throne (throne is at z = -2.55): Skeleton Pope Formosus at z = -1.72
     const jawClack = f >= 105 && f <= 128 ? 0.55 * Math.abs(Math.sin((f - 105) * 0.45)) : 0;
     const fIdle = M.idle(f, 2);
     cards.push({
       key: `formosus|s1|throne|${(jawClack * 4) | 0}|${(f >> 1) & 3}`,
-      x: 0.55, y: 0.14, z: -1.68,
+      x: 0.62, y: 0.14, z: -1.72,
       scY: 1.05 + fIdle.sy * 0.4, rotZ: fIdle.rz,
       draw: (p) => drawSkeletonPope(p, {
         pose: 'throne',
@@ -109,14 +109,14 @@ export function evaluateFrame(f, world) {
         facing: -0.35,
       }),
     });
-    contactBlob(fx, 0.55, 0.14, -1.68, sun, light, 1.15);
+    contactBlob(fx, 0.62, 0.14, -1.72, sun, light, 1.15);
 
     if (f >= 64 && f <= 77) {
       const uPuff = (f - 64) / 13;
       fx.push({
         key: `puff|s1|${(uPuff * 8) | 0}`, cw: 256, ch: 128,
         draw: (p) => fxPuff(p, uPuff, 64),
-        x: -0.75, y: 1.02, z: -1.42, w: 0.95, h: 0.48, soft: true,
+        x: -0.82, y: 1.02, z: -0.95, w: 0.95, h: 0.48, soft: true,
       });
     }
   }
@@ -135,23 +135,24 @@ export function evaluateFrame(f, world) {
     ];
     camTgt = [0.0, 1.44, -52.0];
     fov = 44;
-    dofFocus = camPos[2] - (-51.70);
+    dofFocus = camPos[2] - (-51.60);
 
-    // Sarcophagus lid slides open at f = 215..255 ("guards dug up his corpse")
+    // Sarcophagus lid at z = -52.55 slides open at f = 215..255 ("guards dug up his corpse")
     const uLid = M.ease(f, 215, 255, 'io2');
     if (world) {
-      world.tombLid.position.x = M.lerp(0.05, 0.95, uLid);
+      world.tombLid.position.x = M.lerp(0.05, 0.72, uLid);
     }
 
     const isDressed = f >= 278; // "dressed the skeleton in gold robes"
     const shDress = M.shake7(f - 278) * 0.04;
     shake = [shDress, shDress * 1.2];
 
-    const riseY = M.ease(f, 222, 262, 'outBack') * 0.18;
+    // All three characters staged cleanly in front of the tomb (tomb front face is at z = -52.10)
+    const riseY = M.ease(f, 222, 262, 'outBack') * 0.14;
     const fIdle = M.idle(f, 4);
     cards.push({
       key: `formosus|s2|${isDressed ? 'robed' : 'bare'}|${(f >> 1) & 3}`,
-      x: 0.0, y: riseY, z: -51.62,
+      x: 0.0, y: riseY, z: -51.48,
       scY: (isDressed ? 1.04 : 0.98) + fIdle.sy * 0.4,
       rotZ: fIdle.rz,
       draw: (p) => drawSkeletonPope(p, {
@@ -163,26 +164,26 @@ export function evaluateFrame(f, world) {
         phase: (f % 48) / 48,
       }),
     });
-    contactBlob(fx, 0.0, 0, -51.62, sun, light, 1.12);
+    contactBlob(fx, 0.0, 0, -51.48, sun, light, 1.12);
 
-    // Left: Crypt Guard #1 with iron shovel
+    // Left: Crypt Guard #1 with iron shovel (cleanly in front of tomb at z = -51.55)
     const g1Idle = M.idle(f, 5);
     cards.push({
       key: `guard1|s2|shovel|${M.blinkAt(f, 5) ? 1 : 0}`,
-      x: -0.96, y: 0, z: -51.82,
+      x: -1.04, y: 0, z: -51.55,
       scY: 0.95 + g1Idle.sy, rotZ: g1Idle.rz,
       draw: (p) => humanFront(p, 'guard', {
         seed: 5, expr: 'stern', arm: 'shovel',
         blink: M.blinkAt(f, 5), facing: 0.4,
       }),
     });
-    contactBlob(fx, -0.96, 0, -51.82, sun, light, 0.95);
+    contactBlob(fx, -1.04, 0, -51.55, sun, light, 0.95);
 
-    // Right: Crypt Guard #2 presenting gold papal robes & mitre
+    // Right: Crypt Guard #2 presenting gold papal robes & mitre (cleanly in front of tomb at z = -51.55)
     const g2Idle = M.idle(f, 6);
     cards.push({
       key: `guard2|s2|${isDressed ? 'up' : 'robe'}|${M.blinkAt(f, 6) ? 1 : 0}`,
-      x: 0.96, y: 0, z: -51.82,
+      x: 1.04, y: 0, z: -51.55,
       scY: 0.95 + g2Idle.sy, rotZ: g2Idle.rz,
       draw: (p) => humanFront(p, 'guard', {
         seed: 6, expr: isDressed ? 'happy' : 'stern',
@@ -190,7 +191,7 @@ export function evaluateFrame(f, world) {
         blink: M.blinkAt(f, 6), facing: -0.4,
       }),
     });
-    contactBlob(fx, 0.96, 0, -51.82, sun, light, 0.95);
+    contactBlob(fx, 1.04, 0, -51.55, sun, light, 0.95);
 
     for (const fTrig of [225, 278]) {
       if (f >= fTrig && f <= fTrig + 14) {
@@ -198,7 +199,7 @@ export function evaluateFrame(f, world) {
         fx.push({
           key: `puff|s2|${fTrig}|${(uPuff * 8) | 0}`, cw: 256, ch: 128,
           draw: (p) => fxPuff(p, uPuff, fTrig),
-          x: 0.0, y: 0.55, z: -51.40, w: 1.45, h: 0.72, soft: true,
+          x: 0.0, y: 0.55, z: -51.10, w: 1.45, h: 0.72, soft: true,
         });
       }
     }
@@ -216,31 +217,31 @@ export function evaluateFrame(f, world) {
       M.lerp(1.62, 1.68, uShot),
       M.lerp(4.95, 4.65, uShot),
     ];
-    camTgt = [0.12, 1.46, -2.0];
+    camTgt = [0.05, 1.46, -2.0];
     fov = 44;
-    dofFocus = camPos[2] - (-1.70);
+    dofFocus = camPos[2] - (-1.75);
 
     const isPuppet = f >= 392; // "trembling young deacon to answer as his defence lawyer"
 
-    // Left at Pulpit: Pope Stephen VI leaning over pulpit demanding answers
+    // Left behind Pulpit: Pope Stephen VI demanding answers
     const sIdle = M.idle(f, 10);
     cards.push({
       key: `stephen|s3|accuse|${M.blinkAt(f, 10) ? 1 : 0}`,
-      x: -0.98, y: 0, z: -1.82,
+      x: -0.98, y: 0, z: -1.85,
       scY: 0.98 + sIdle.sy, rotZ: sIdle.rz,
       draw: (p) => humanFront(p, 'stephen', {
         seed: 1, expr: 'stern', arm: 'accuse',
         blink: M.blinkAt(f, 10), facing: 0.45,
       }),
     });
-    contactBlob(fx, -0.98, 0, -1.82, sun, light, 0.98);
+    contactBlob(fx, -0.98, 0, -1.85, sun, light, 0.98);
 
-    // Center-Left beside Throne: Trembling Young Deacon sweating with DEFENSE scroll
+    // Center-Left beside Throne (clear of both pulpit and throne): Trembling Young Deacon sweating with DEFENSE scroll
     const trembleX = isPuppet ? 0.025 * Math.sin(f * 1.4) : 0;
     const dIdle = M.idle(f, 11);
     cards.push({
       key: `deacon|s3|panic|${(f >> 1) & 3}|${M.blinkAt(f, 11) ? 1 : 0}`,
-      x: -0.08 + trembleX, y: 0, z: -1.85,
+      x: -0.15 + trembleX, y: 0, z: -1.78,
       scY: 0.92 + dIdle.sy, rotZ: dIdle.rz,
       draw: (p) => humanFront(p, 'deacon', {
         seed: 11, expr: 'shock', arm: 'scroll_panic',
@@ -249,13 +250,13 @@ export function evaluateFrame(f, world) {
         talk: isPuppet && (f % 10) < 5 ? 0.75 : 0.15,
       }),
     });
-    contactBlob(fx, -0.08 + trembleX, 0, -1.85, sun, light, 0.92);
+    contactBlob(fx, -0.15 + trembleX, 0, -1.78, sun, light, 0.92);
 
-    // Right on Papal Throne: Skeleton Formosus being puppeteered by the deacon
+    // Right in front of Papal Throne: Skeleton Formosus being puppeteered by the deacon
     const fIdle = M.idle(f, 12);
     cards.push({
       key: `formosus|s3|${isPuppet ? 'puppet' : 'throne'}|${(f >> 1) & 3}`,
-      x: 0.68, y: 0.14, z: -1.65,
+      x: 0.65, y: 0.14, z: -1.70,
       scY: 1.05 + fIdle.sy * 0.4, rotZ: fIdle.rz,
       draw: (p) => drawSkeletonPope(p, {
         pose: isPuppet ? 'puppet' : 'throne',
@@ -267,7 +268,7 @@ export function evaluateFrame(f, world) {
         facing: -0.35,
       }),
     });
-    contactBlob(fx, 0.68, 0.14, -1.65, sun, light, 1.15);
+    contactBlob(fx, 0.65, 0.14, -1.70, sun, light, 1.15);
   }
 
   // ==========================================================================
@@ -284,7 +285,7 @@ export function evaluateFrame(f, world) {
     ];
     camTgt = [0.05, 1.44, -2.0];
     fov = 44;
-    dofFocus = camPos[2] - (-1.68);
+    dofFocus = camPos[2] - (-1.72);
 
     const isGuilty = f >= 525;    // "still lost the case" (17.50s)
     const isChopped = f >= 585;   // "three blessing fingers chopped off" (19.50s)
@@ -296,34 +297,34 @@ export function evaluateFrame(f, world) {
 
     const gavelDown = f >= 520 && f <= 536 ? M.ease(f, 520, 526, 'in2') * (1 - M.ease(f, 529, 536, 'out2')) : 0;
 
-    // Left: Pope Stephen VI slamming gavel in triumph
+    // Left behind Pulpit: Pope Stephen VI slamming gavel in triumph
     cards.push({
       key: `stephen|s4|gavel|${(gavelDown * 4) | 0}|${M.blinkAt(f, 15) ? 1 : 0}`,
-      x: -0.95, y: 0, z: -1.80,
+      x: -0.98, y: 0, z: -1.85,
       scY: 0.98, rotZ: 0,
       draw: (p) => humanFront(p, 'stephen', {
         seed: 1, expr: 'stern', arm: 'gavel', gavelY: gavelDown,
         blink: M.blinkAt(f, 15), facing: 0.45,
       }),
     });
-    contactBlob(fx, -0.95, 0, -1.80, sun, light, 0.98);
+    contactBlob(fx, -0.98, 0, -1.85, sun, light, 0.98);
 
     // Center-Left: Trembling Deacon throwing hands up in despair
     cards.push({
       key: `deacon|s4|${isGuilty ? 'up' : 'panic'}|${M.blinkAt(f, 16) ? 1 : 0}`,
-      x: -0.12, y: 0, z: -1.88,
+      x: -0.15, y: 0, z: -1.78,
       scY: 0.92, rotZ: 0,
       draw: (p) => humanFront(p, 'deacon', {
         seed: 11, expr: 'shock', arm: isGuilty ? 'up' : 'scroll_panic',
         blink: M.blinkAt(f, 16), facing: 0.25,
       }),
     });
-    contactBlob(fx, -0.12, 0, -1.88, sun, light, 0.92);
+    contactBlob(fx, -0.15, 0, -1.78, sun, light, 0.92);
 
-    // Right on Papal Throne: Skeleton Formosus (loses 3 fingers at f=585, stripped of robes at f=618!)
+    // Right in front of Papal Throne: Skeleton Formosus (loses 3 fingers at f=585, stripped to sackcloth at f=618!)
     cards.push({
       key: `formosus|s4|${isChopped ? 0 : 3}|${isStripped ? 'strip' : 'robe'}|${(f >> 1) & 3}`,
-      x: 0.65, y: 0.14, z: -1.65,
+      x: 0.65, y: 0.14, z: -1.70,
       scY: 1.05, rotZ: 0,
       draw: (p) => drawSkeletonPope(p, {
         pose: isChopped ? 'chopped' : 'throne',
@@ -335,14 +336,14 @@ export function evaluateFrame(f, world) {
         facing: -0.35,
       }),
     });
-    contactBlob(fx, 0.65, 0.14, -1.65, sun, light, 1.15);
+    contactBlob(fx, 0.65, 0.14, -1.70, sun, light, 1.15);
 
     // Pop-in Red Guilty Ban Badge above prosecutor pulpit (f >= 525, clear of LATERAN BASILICA sign)
     if (isGuilty) {
       const scBan = M.ease(f, 525, 537, 'outBack');
       cards.push({
         key: 'badge|ban|s4',
-        x: -0.95, y: 1.92, z: -1.68,
+        x: -0.98, y: 1.92, z: -1.55,
         scX: 0.36 * scBan, scY: 0.36 * scBan,
         draw: (p) => drawBadge(p, 'ban'),
       });
@@ -354,7 +355,7 @@ export function evaluateFrame(f, world) {
         fx.push({
           key: `puff|s4|${fTrig}|${(uPuff * 8) | 0}`, cw: 256, ch: 128,
           draw: (p) => fxPuff(p, uPuff, fTrig),
-          x: px, y: py, z: -1.42, w: 1.35, h: 0.68, soft: true,
+          x: px, y: py, z: -1.35, w: 1.35, h: 0.68, soft: true,
         });
       }
     }
@@ -366,15 +367,13 @@ export function evaluateFrame(f, world) {
   else {
     light = 'emblem_road';
     const sun = sunVec(60, 42);
-    if (f <= 668) {
-      flash = 0.68 * (1 - (f - 663) / 6);
-    }
+    flash = 0;
 
     const isCartFinale = f >= 815;
     const uShot = (f - 663) / (899 - 663);
 
     if (!isCartFinale) {
-      // Beat 5a (f = 663..814): Tiber River Splash & "NO DEAD ON TRIAL" Stone Monument
+      // Beat 5a (f = 663..814): Tiber River Splash & "NO DEAD ON TRIAL" Stone Monument (at x = 0, z = -102.55)
       camPos = [
         M.lerp(-0.15, 0.12, uShot),
         1.66,
@@ -394,10 +393,10 @@ export function evaluateFrame(f, world) {
       const shBan = M.shake7(f - 765) * 0.035;
       shake = [shBan, shBan];
 
-      // Center-Right beside "NO DEAD ON TRIAL" Monument: Restored Skeleton Pope Formosus in full gold robes!
+      // Right of "NO DEAD ON TRIAL" Monument (monument is centered at x = 0, z = -102.55): Restored Skeleton Pope Formosus!
       cards.push({
         key: `formosus|s5a|restored|${(f >> 1) & 3}`,
-        x: 0.42, y: 0, z: -101.52,
+        x: 0.92, y: 0, z: -101.52,
         scY: 1.04, rotZ: 0,
         draw: (p) => drawSkeletonPope(p, {
           pose: 'crypt',
@@ -408,41 +407,30 @@ export function evaluateFrame(f, world) {
           phase: (f % 48) / 48,
         }),
       });
-      contactBlob(fx, 0.42, 0, -101.52, sun, light, 1.15);
+      contactBlob(fx, 0.92, 0, -101.52, sun, light, 1.15);
 
       // Pop-in Emerald Green Checkmark Badge cleanly on top of NO DEAD ON TRIAL Monument (f >= 765)
       if (isBannedForever) {
         const scCheck = M.ease(f, 765, 777, 'outBack');
         cards.push({
           key: 'badge|check|s5',
-          x: -0.65, y: 1.92, z: -101.65,
+          x: 0.0, y: 1.92, z: -101.85,
           scX: 0.36 * scCheck, scY: 0.36 * scCheck,
           draw: (p) => drawBadge(p, 'check'),
         });
       }
 
-      // Cheering Deacon & Roman Guard celebrating the permanent ban
+      // Left of "NO DEAD ON TRIAL" Monument: Cheering Deacon celebrating the permanent ban
       cards.push({
         key: `deacon|s5a|up|${M.blinkAt(f, 22) ? 1 : 0}`,
-        x: -1.18, y: 0, z: -101.78,
+        x: -0.98, y: 0, z: -101.55,
         scY: 0.94, rotZ: 0,
         draw: (p) => humanFront(p, 'deacon', {
           seed: 11, expr: 'happy', arm: 'up',
           blink: M.blinkAt(f, 22), facing: 0.35,
         }),
       });
-      contactBlob(fx, -1.18, 0, -101.78, sun, light, 0.92);
-
-      cards.push({
-        key: `guard|s5a|up|${M.blinkAt(f, 23) ? 1 : 0}`,
-        x: 1.18, y: 0, z: -101.78,
-        scY: 0.95, rotZ: 0,
-        draw: (p) => humanFront(p, 'guard', {
-          seed: 5, expr: 'happy', arm: 'up',
-          blink: M.blinkAt(f, 23), facing: -0.35,
-        }),
-      });
-      contactBlob(fx, 1.18, 0, -101.78, sun, light, 0.95);
+      contactBlob(fx, -0.98, 0, -101.55, sun, light, 0.92);
     } else {
       // Beat 5b (f = 815..899): Rolling Ceremonial Papal Carriage with PAPAL EDICT 897 Seal!
       const uCart = M.ease(f, 815, 899, 'out2');
@@ -454,12 +442,13 @@ export function evaluateFrame(f, world) {
 
       if (world) {
         world.papalCart.visible = true;
-        world.papalCart.position.set(cx, 0, -99.85);
+        // Place rolling papalCart at z = -100.55 (front wheels at z = -99.63) so foreground Skeleton Pope at z = -98.85 never touches it
+        world.papalCart.position.set(cx, 0, -100.55);
         const wheelSpin = -(cx + 1.35) / 0.52;
         for (const w of world.cartWheels) w.rotation.z = wheelSpin;
       }
 
-      // Restored Skeleton Pope Formosus riding beside the Papal Edict carriage, waving his 3 blessing fingers!
+      // Restored Skeleton Pope Formosus riding in front of the Papal Edict carriage, waving his 3 blessing fingers!
       cards.push({
         key: `formosus|s5b|cart|${(f >> 1) & 3}`,
         x: cx + 0.72, y: 0.52, z: -98.85,

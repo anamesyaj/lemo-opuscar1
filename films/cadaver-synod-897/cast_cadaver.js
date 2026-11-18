@@ -342,16 +342,26 @@ export function drawSkeletonPope(p, opts = {}) {
       p.stroke([[cx - 14, cyCross], [cx + 14, cyCross]], 6, TB.INK);
     }
   } else {
-    // Stripped to exposed cartoon ribcage & tattered sackcloth waist wrap!
-    p.poly(TB.rrect(cx - 98, 650, cx + 98, 805, 8), '#8c7355', 7);
-    // Spine column
-    p.stroke([[cx, 415], [cx, 665]], 28, TB.INK);
-    p.stroke([[cx, 415], [cx, 665]], 18, BONE_SHADE);
-    // 4 curved cartoon ribs
+    // Stripped of royal vestments: tattered brown penitent sackcloth tunic + continuous neck & ribcage!
+    p.poly([
+      [cx - 118, 430],
+      [cx + 118, 430],
+      [cx + 132, 805],
+      [cx - 132, 805],
+    ], '#7d6346', 7);
+    // Rope belt around sackcloth waist
+    p.poly(TB.rrect(cx - 122, 650, cx + 122, 672, 6), '#c8a870', 5);
+    // Continuous cervical & thoracic spine column connecting skull (y=360) to pelvis (y=655)
+    p.stroke([[cx, 355], [cx, 650]], 30, TB.INK);
+    p.stroke([[cx, 355], [cx, 650]], 18, BONE_SHADE);
+    // Collarbone / clavicle bar connecting left & right shoulder sockets
+    p.stroke([[cx - 126, 452], [cx + 126, 452]], 22, TB.INK);
+    p.stroke([[cx - 126, 452], [cx + 126, 452]], 12, BONE_MAIN);
+    // 4 curved cartoon ribs over the sackcloth chest
     for (let r = 0; r < 4; r++) {
-      const ry = 455 + r * 44;
-      const rw = 108 - r * 8;
-      p.ell(cx, ry, rw, 16, BONE_MAIN, 6);
+      const ry = 468 + r * 42;
+      const rw = 104 - r * 7;
+      p.ell(cx, ry, rw, 15, BONE_MAIN, 6);
     }
   }
 

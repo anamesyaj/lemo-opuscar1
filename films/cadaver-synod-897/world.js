@@ -341,43 +341,45 @@ export function buildWorld(scene) {
   signBasilica.position.set(0, 2.88, 1.34);
   apse.add(signBasilica);
 
-  // Elevated Crimson-and-Gold Papal Throne for Skeleton Formosus at (0.55, 0, -2.05)
+  // Elevated Crimson-and-Gold Papal Throne for Skeleton Formosus at (0.62, 0, -2.55)
+  // Placed cleanly behind the character staging plane (z = -1.72) with flush side pilasters so no armrests clip character cards
   const throne = new THREE.Group();
-  throne.position.set(0.55, 0, -2.05);
+  throne.position.set(0.62, 0, -2.55);
   z1.add(throne);
 
-  const dais = sh(new THREE.Mesh(tbox(1.65, 0.26, 1.45, 1.2), mMarble));
-  dais.position.y = 0.13;
+  const dais = sh(new THREE.Mesh(tbox(1.55, 0.14, 1.05, 1.2), mMarble));
+  dais.position.set(0, 0.07, 0.05);
   throne.add(dais);
-  const backRest = sh(new THREE.Mesh(tbox(1.22, 2.25, 0.18, 1.2), mGold));
-  backRest.position.set(0, 1.35, -0.42);
+  const backRest = sh(new THREE.Mesh(tbox(1.26, 2.35, 0.18, 1.2), mGold));
+  backRest.position.set(0, 1.30, -0.22);
   throne.add(backRest);
-  const velvetBack = sh(new THREE.Mesh(tbox(0.98, 1.95, 0.20, 1.0), mCrimson));
-  velvetBack.position.set(0, 1.32, -0.40);
+  const velvetBack = sh(new THREE.Mesh(tbox(1.00, 2.05, 0.20, 1.0), mCrimson));
+  velvetBack.position.set(0, 1.28, -0.20);
   throne.add(velvetBack);
-  for (const sx of [-0.56, 0.56]) {
-    const armRest = sh(new THREE.Mesh(tbox(0.16, 0.65, 0.85, 0.8), mGold));
-    armRest.position.set(sx, 0.58, -0.05);
-    throne.add(armRest);
+  for (const sx of [-0.58, 0.58]) {
+    const pilaster = sh(new THREE.Mesh(tbox(0.16, 1.15, 0.24, 0.8), mGold));
+    pilaster.position.set(sx, 0.65, -0.18);
+    throne.add(pilaster);
   }
 
-  // Prosecutor's Carved Oak Pulpit Desk for Pope Stephen VI at (-0.95, 0, -1.65)
+  // Prosecutor's Carved Oak Pulpit Desk for Pope Stephen VI at (-0.98, 0, -1.22)
+  // Compact depth (d = 0.42) placed cleanly in front of Pope Stephen VI (z = -1.85) so zero diagonal clipping occurs
   const pulpit = new THREE.Group();
-  pulpit.position.set(-0.95, 0, -1.65);
+  pulpit.position.set(-0.98, 0, -1.22);
   z1.add(pulpit);
-  const pBody = sh(new THREE.Mesh(tbox(1.05, 0.92, 0.72, 1.0), mPlank));
-  pBody.position.y = 0.46;
+  const pBody = sh(new THREE.Mesh(tbox(0.96, 0.88, 0.40, 1.0), mPlank));
+  pBody.position.y = 0.44;
   pulpit.add(pBody);
-  const pTop = sh(new THREE.Mesh(tbox(1.18, 0.12, 0.82, 1.0), mBeam));
-  pTop.position.y = 0.96;
+  const pTop = sh(new THREE.Mesh(tbox(1.08, 0.10, 0.48, 1.0), mBeam));
+  pTop.position.y = 0.92;
   pulpit.add(pTop);
   // Crimson papal banner hanging on front of pulpit
-  const pCloth = sh(new THREE.Mesh(tbox(0.76, 0.58, 0.06, 0.8), mCrimson));
-  pCloth.position.set(0, 0.52, 0.37);
+  const pCloth = sh(new THREE.Mesh(tbox(0.72, 0.56, 0.05, 0.8), mCrimson));
+  pCloth.position.set(0, 0.50, 0.21);
   pulpit.add(pCloth);
 
-  addBrazier(z1, -2.35, -2.25);
-  addBrazier(z1, 2.35, -2.25);
+  addBrazier(z1, -2.35, -2.55);
+  addBrazier(z1, 2.35, -2.55);
 
   // ==========================================================================
   // ZONE 2 (z = -50): PAPAL CRYPT OF ROME (EXHUMATION, 897 AD)
@@ -410,26 +412,27 @@ export function buildWorld(scene) {
   signCrypt.position.set(0, 2.84, 1.16);
   cryptWall.add(signCrypt);
 
-  // Carved Stone Papal Sarcophagus at (0, 0, -1.85) with Sliding Stone Lid
+  // Carved Stone Papal Sarcophagus at (0, 0, -2.55) with Sliding Stone Lid
+  // Placed cleanly behind the character staging plane (z = -51.55) so neither tombBox nor sliding tombLid intersects characters
   const tomb = new THREE.Group();
-  tomb.position.set(0, 0, -1.85);
+  tomb.position.set(0, 0, -2.55);
   z2.add(tomb);
 
-  const tombBox = sh(new THREE.Mesh(tbox(2.15, 0.78, 1.05, 1.2), mMarble));
-  tombBox.position.y = 0.39;
+  const tombBox = sh(new THREE.Mesh(tbox(2.05, 0.82, 0.85, 1.2), mMarble));
+  tombBox.position.y = 0.41;
   tomb.add(tombBox);
 
-  const tombPlinth = sh(new THREE.Mesh(tbox(2.35, 0.18, 1.22, 1.2), mDarkStone));
+  const tombPlinth = sh(new THREE.Mesh(tbox(2.25, 0.18, 0.98, 1.2), mDarkStone));
   tombPlinth.position.y = 0.09;
   tomb.add(tombPlinth);
 
   // Sliding Sarcophagus Lid (animated open in story.js!)
-  const tombLid = sh(new THREE.Mesh(tbox(2.22, 0.18, 1.12, 1.2), mGold));
-  tombLid.position.set(0.35, 0.86, 0);
+  const tombLid = sh(new THREE.Mesh(tbox(2.10, 0.18, 0.90, 1.2), mGold));
+  tombLid.position.set(0.15, 0.90, 0);
   tomb.add(tombLid);
 
-  addBrazier(z2, -2.15, -2.35);
-  addBrazier(z2, 2.15, -2.35);
+  addBrazier(z2, -2.25, -2.65);
+  addBrazier(z2, 2.25, -2.65);
 
   // ==========================================================================
   // ZONE 3 (z = -100): TIBER RIVER EMBANKMENT & PAPAL DECREE PLAZA (897 AD)
@@ -482,9 +485,9 @@ export function buildWorld(scene) {
   signTiber.position.set(0, 2.82, 1.06);
   loggia.add(signTiber);
 
-  // Carved Stone Edict Monument ("NO DEAD ON TRIAL") at (-0.65, 0, -1.95)
+  // Carved Stone Edict Monument ("NO DEAD ON TRIAL") centered at (0.0, 0, -2.55) cleanly behind characters
   const edictMonument = makeEdictMonument();
-  edictMonument.position.set(-0.65, 0, -1.95);
+  edictMonument.position.set(0.0, 0, -2.55);
   z3.add(edictMonument);
 
   addCypress(z3, -4.2, -5.4, 1.15);
