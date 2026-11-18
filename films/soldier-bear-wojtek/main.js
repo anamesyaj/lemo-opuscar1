@@ -285,7 +285,7 @@ window.TOTAL = TOTAL_FRAMES;
 window.EV = EV;
 window.render = renderAtTime;
 window.renderAt = renderAtTime;
-window.renderDataURL = () => stageCanvas.toDataURL('image/png');
+window.renderDataURL = () => stageCanvas.toDataURL('image/jpeg', 0.95);
 
 // Diegetic world fascia signs reported for core/render/readcheck.mjs
 const DIEGETIC_SIGNS = [

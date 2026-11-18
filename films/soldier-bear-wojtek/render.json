@@ -1,11 +1,25 @@
 {
-  "entry": "films/soldier-bear-wojtek/index.html",
-  "size": "1080x1920",
-  "fps": 30,
-  "dur": 32.0,
+  "_trigger": "soldier-bear-wojtek-v1",
+  "audio": {
+    "music_script": "films/soldier-bear-wojtek/make-music.py",
+    "voice_parts": "audio/voice.flac.b64.part"
+  },
+  "captions": {
+    "burned_in": true,
+    "srt": "audio/captions.srt"
+  },
   "chunks": 18,
-  "q": "render=1",
-  "music": "films/soldier-bear-wojtek/make-music.py",
-  "voice_b64": "films/soldier-bear-wojtek/audio/voice.flac.b64.part*",
-  "out": "soldier-bear-wojtek.mp4"
+  "film": "soldier-bear-wojtek",
+  "fps": 30,
+  "grain": 0,
+  "mode": "film",
+  "out": "soldier-bear-wojtek.mp4",
+  "pages": [
+    {
+      "dir": ".",
+      "dur": 32.0,
+      "q": "render=1"
+    }
+  ],
+  "size": "1080x1920"
 }
