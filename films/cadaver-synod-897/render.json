@@ -1,0 +1,20 @@
+{
+  "mode": "video",
+  "fps": 30,
+  "size": "1080x1920",
+  "grain": 0,
+  "chunks": 18,
+  "pages": [
+    {
+      "dir": ".",
+      "dur": 30.0,
+      "q": "render=1"
+    }
+  ],
+  "audio": {
+    "music_script": "films/cadaver-synod-897/make-music.py",
+    "voice_parts": "audio/voice.flac.b64.part"
+  },
+  "output": "cadaver-synod-897.mp4",
+  "subtitles": "audio/captions.srt"
+}

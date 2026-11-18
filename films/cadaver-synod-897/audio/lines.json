@@ -1,0 +1,42 @@
+[
+  {
+    "id": "01",
+    "voice": "bm_fable",
+    "speed": 1.13,
+    "lang": "en-gb",
+    "text": "In the year eight ninety seven, Pope Stephen the Sixth put his dead predecessor on trial for real.",
+    "asr": "In the year 897, Pope Stephen VI put his dead predecessor on trial for real."
+  },
+  {
+    "id": "02",
+    "voice": "bm_fable",
+    "speed": 1.13,
+    "lang": "en-gb",
+    "text": "Nine months after Pope Formosus died, guards dug up his corpse and dressed the skeleton in gold robes.",
+    "asr": "Nine months after Pope Formosus died, guards dug up his corpse and dressed the skeleton in gold robes."
+  },
+  {
+    "id": "03",
+    "voice": "bm_fable",
+    "speed": 1.13,
+    "lang": "en-gb",
+    "text": "They propped him on a throne and appointed a trembling young deacon to answer as his defence lawyer.",
+    "asr": "They propped him on a throne and appointed a trembling young deacon to answer as his defence lawyer."
+  },
+  {
+    "id": "04",
+    "voice": "bm_fable",
+    "speed": 1.13,
+    "lang": "en-gb",
+    "text": "The silent skeleton still lost the case, had his three blessing fingers chopped off, and was stripped of his title.",
+    "asr": "The silent skeleton still lost the case, had his three blessing fingers chopped off, and was stripped of his title."
+  },
+  {
+    "id": "05",
+    "voice": "bm_fable",
+    "speed": 1.13,
+    "lang": "en-gb",
+    "text": "After his body was tossed into the Tiber River, Rome rebelled and banned putting dead people on trial forever.",
+    "asr": "After his body was tossed into the Tiber River, Rome rebelled and banned putting dead people on trial forever."
+  }
+]
