@@ -1,0 +1,42 @@
+[
+  {
+    "id": "01",
+    "voice": "bm_fable",
+    "speed": 1.13,
+    "lang": "en-gb",
+    "text": "During World War Two, the Polish Army officially enlisted a five hundred pound brown bear.",
+    "asr": "During World War II, the Polish Army officially enlisted a 500-pound brown bear."
+  },
+  {
+    "id": "02",
+    "voice": "bm_fable",
+    "speed": 1.13,
+    "lang": "en-gb",
+    "text": "After adopting an orphaned cub named Voytek in Iran, soldiers taught him to salute, wrestle, and drink beer.",
+    "asr": "After adopting an orphaned cub named Voitek in Iran, soldiers taught him to salute, wrestle, and drink beer."
+  },
+  {
+    "id": "03",
+    "voice": "bm_fable",
+    "speed": 1.13,
+    "lang": "en-gb",
+    "text": "When British port officials banned pets from boarding their warship to Italy, the soldiers drafted Voytek as a real private with his own paybook.",
+    "asr": "When British port officials banned pets from boarding their warship to Italy, the soldiers drafted Voitek as a real private with his own paybook."
+  },
+  {
+    "id": "04",
+    "voice": "bm_fable",
+    "speed": 1.13,
+    "lang": "en-gb",
+    "text": "Then at Monte Cassino, while cannons roared, Voytek watched the exhausted crew and began hauling heavy ammo crates himself.",
+    "asr": "Then at Monte Cassino while cannons roared, Vojtek watched the exhausted crew and began hauling heavy ammo crates himself."
+  },
+  {
+    "id": "05",
+    "voice": "bm_fable",
+    "speed": 1.13,
+    "lang": "en-gb",
+    "text": "He never dropped a single shell, earning promotion to Corporal and a place on the company's official emblem.",
+    "asr": "He never dropped a single shell, earning promotion to corporal and a place on the company's official emblem."
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "entry": "films/soldier-bear-wojtek/index.html",
+  "size": "1080x1920",
+  "fps": 30,
+  "dur": 32.0,
+  "chunks": 18,
+  "q": "render=1",
+  "music": "films/soldier-bear-wojtek/make-music.py",
+  "voice_b64": "films/soldier-bear-wojtek/audio/voice.flac.b64.part*",
+  "out": "soldier-bear-wojtek.mp4"
+}

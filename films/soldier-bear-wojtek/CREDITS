@@ -1,0 +1,13 @@
+# Credits — The Bear That Enlisted in the Polish Army (Corporal Wojtek, 1942–1944)
+
+## Fonts (bundled in `/core/fonts/`)
+- **Fredoka** — Designed by Milena Brandao, licensed under the SIL Open Font License 1.1 (`core/fonts/OFL.txt`).
+
+## Software & Synthesis
+- **Three.js r170** (`node_modules/three`) — MIT License.
+- **Kokoro-82M TTS** (`bm_fable` voice) — Apache 2.0 License.
+- **Original Procedural Score & Foley** — Synthesized from scratch via NumPy/SciPy in `films/soldier-bear-wojtek/make-music.py` (CC0 / Public Domain dedication).
+- **2D & 3D Artwork / Character Rigs / Painted Textures** — Original procedural Canvas2D and WebGL2 code in `films/soldier-bear-wojtek/`.
+
+## Historical Sources
+- Public-domain historical records of the 22nd Artillery Supply Company (*22 Kompania Zaopatrzenia Artylerii*), II Polish Corps (1942–1947), Imperial War Museum & Sikorski Museum archives.
